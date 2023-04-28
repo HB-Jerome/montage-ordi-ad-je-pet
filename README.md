@@ -249,3 +249,21 @@ Pour valider le rendu, voici ce qui est attendu par votre chef de projet, pour c
 
 -   Un schéma de base de données
 -   un dump de la base de données finale
+
+## Conseils techniques
+
+### Tickets
+Pour les tickets, l'idéal reste de faire des user stories, si ça vous rappelle quelque chose 😉 
+
+Je suis un administrateur, je veux créer un nouveau produit
+J'ai accès à un formulaire me permettant d'ajouter un produit avec 
+- un prix
+- une description
+etc.
+
+### Structure du code du projet
+ Pour la structure du code du projet, vous pouvez vous baser sur ce que vous avez déjà fait sur le projet Bonnets, voir même sur la correction du projet, pour ceux qui aiment/veulent le MVC : 
+https://github.com/Dreeckan/beanies/tree/main/src
+
+### Configurer InnoDB par défaut
+Dans Wamp, vous allez avoir besoin de InnoDB pour vos tables par défaut. Pour ça, vous pouvez ouvrir le fichier my.ini et modifier la ligne default_storage_engine. Il faut décommenter la ligne InnoDB et commenter la ligne MyISAM
