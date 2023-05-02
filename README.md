@@ -267,3 +267,6 @@ https://github.com/Dreeckan/beanies/tree/main/src
 
 ### Configurer InnoDB par défaut
 Dans Wamp, vous allez avoir besoin de InnoDB pour vos tables par défaut. Pour ça, vous pouvez ouvrir le fichier my.ini et modifier la ligne default_storage_engine. Il faut décommenter la ligne InnoDB et commenter la ligne MyISAM
+
+## MCD 
+![ schéma du MCD](/assets/img/mcd.png "MCD")
