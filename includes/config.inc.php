@@ -6,10 +6,10 @@ $password = ''; // Par défaut, pas de mot de passe sur Wamp
 // Try nous permet d'attraper une exception
 try {
     // On crée une connexion (objet PDO) à norte BdD
-    $connection = new PDO($dsn, $user, $password, [
-        // Définition du mode d'erreur : on renvoie une exception es
+    $db = new PDO($dsn, $user, $password, [
+            // Définition du mode d'erreur : on renvoie une exception es
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        // On définit sous quel format on récupère les données de la base
+            // On définit sous quel format on récupère les données de la base
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     ]);
 } catch (PDOException $e) {
