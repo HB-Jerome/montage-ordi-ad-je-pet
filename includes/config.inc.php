@@ -1,5 +1,5 @@
 <?php
-$dsn = 'mysql:dbname=exo_beanies;port=3306;host=127.0.0.1';
+$dsn = 'mysql:dbname=montage_ordi;port=3306;host=127.0.0.1';
 $user = 'root'; // Utilisateur par défaut
 $password = ''; // Par défaut, pas de mot de passe sur Wamp
 
