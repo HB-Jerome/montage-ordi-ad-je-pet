@@ -4,7 +4,7 @@ namespace Model;
 
 class User
 {
-    protected int $id_user;
+    protected int $idUser;
     protected string $username;
     protected string $password;
     protected string $role;
@@ -12,14 +12,14 @@ class User
     public function __construct()
     {
     }
-    public function getId_user(): int
+    public function getIdUser(): int
     {
-        return $this->id_user;
+        return $this->idUser;
     }
 
-    public function setId_user(int $id_user): self
+    public function setIdUser(int $idUser): self
     {
-        $this->id_user = $id_user;
+        $this->idUser = $idUser;
         return $this;
     }
 
