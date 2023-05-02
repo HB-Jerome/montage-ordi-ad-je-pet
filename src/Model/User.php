@@ -9,13 +9,8 @@ class User
     protected string $password;
     protected string $role;
 
-    public function __construct($Id_users, $username, $password, $role)
+    public function __construct()
     {
-        $this->Id_users = $Id_users;
-        $this->username = $username;
-        $this->password = $password;
-        $this->role = $role;
-
     }
     public function getId_users(): int
     {
