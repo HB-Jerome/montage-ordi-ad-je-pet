@@ -73,23 +73,23 @@ abstract class Component
 		return $this;
 	}
 
-	public function getPc_type(): string
+	public function getPcType(): string
 	{
-		return $this->pc_type;
+		return $this->pcType;
 	}
 
-	public function setPc_type(string $pcType): self
+	public function setPcType(string $pcType): self
 	{
 		$this->pcType = $pcType;
 		return $this;
 	}
 
-	public function getIs_archived(): bool
+	public function getIsArchived(): bool
 	{
 		return $this->isArchived;
 	}
 
-	public function setIs_archived(bool $isArchived): self
+	public function setIsArchived(bool $isArchived): self
 	{
 		$this->isArchived = $isArchived;
 		return $this;
