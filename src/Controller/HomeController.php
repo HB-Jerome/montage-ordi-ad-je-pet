@@ -2,7 +2,6 @@
 
 namespace Controller;
 
-use Service\BeanieFactory;
 use PDOStatement;
 
 class HomeController extends AbstractController

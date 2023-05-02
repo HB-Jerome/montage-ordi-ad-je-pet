@@ -1,4 +1,4 @@
-<?
+<?php
 use Controller\HomeController;
 use Controller\LoginController;
 use Model\Page;
