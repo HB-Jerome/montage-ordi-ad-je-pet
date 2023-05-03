@@ -21,7 +21,6 @@ class PagesHandler
             $page = $getData['page'];
         }
 
-        /** @var Page $currentPage */
         foreach ($this->pages as $currentPage) {
             if ($currentPage->getFileName() == $page) {
                 return $currentPage;
