@@ -60,11 +60,11 @@ CREATE TABLE IF NOT EXISTS `component` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `graphic_card`
+-- Table structure for table `graphicCard`
 --
 
-DROP TABLE IF EXISTS `graphic_card`;
-CREATE TABLE IF NOT EXISTS `graphic_card` (
+DROP TABLE IF EXISTS `graphicCard`;
+CREATE TABLE IF NOT EXISTS `graphicCard` (
   `idComponent` int NOT NULL,
   `chipset` varchar(50) DEFAULT NULL,
   `memory` varchar(50) DEFAULT NULL,
@@ -74,11 +74,11 @@ CREATE TABLE IF NOT EXISTS `graphic_card` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hard_disc`
+-- Table structure for table `hardDisc`
 --
 
-DROP TABLE IF EXISTS `hard_disc`;
-CREATE TABLE IF NOT EXISTS `hard_disc` (
+DROP TABLE IF EXISTS `hardDisc`;
+CREATE TABLE IF NOT EXISTS `hardDisc` (
   `idComponent` int NOT NULL,
   `capacity` int DEFAULT NULL,
   `ssd` tinyint(1) DEFAULT NULL,
@@ -95,7 +95,7 @@ DROP TABLE IF EXISTS `keyboard`;
 CREATE TABLE IF NOT EXISTS `keyboard` (
   `idComponent` int NOT NULL,
   `isWireless` tinyint(1) DEFAULT NULL,
-  `keylessKeyboard` tinyint(1) DEFAULT NULL,
+  `withPad` tinyint(1) DEFAULT NULL,
   `keyType` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -176,11 +176,11 @@ CREATE TABLE IF NOT EXISTS `power_supply` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `procceser`
+-- Table structure for table `processor`
 --
 
-DROP TABLE IF EXISTS `procceser`;
-CREATE TABLE IF NOT EXISTS `procceser` (
+DROP TABLE IF EXISTS `processor`;
+CREATE TABLE IF NOT EXISTS `processor` (
   `idComponent` int NOT NULL,
   `coreNumber` int DEFAULT NULL,
   `compatibleChipset` varchar(50) DEFAULT NULL,
