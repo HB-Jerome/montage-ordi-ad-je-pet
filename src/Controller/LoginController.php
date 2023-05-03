@@ -12,7 +12,7 @@ class LoginController extends AbstractController
     {
         $login = new Login($_POST);
 
-        if ($login->isValid()) {
+        if ($login->isValid() && $login->isSubmited()) {
             $sql = 'SELECT * FROM users WHERE username=:username AND password=:password';
             $statement = $this->db->prepare($sql);
             $statement->bindValue(':username', $login->getUsername(), PDO::PARAM_STR);
