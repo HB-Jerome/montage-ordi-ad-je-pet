@@ -1,7 +1,7 @@
 <?php 
 namespace Model; // afin que l'autoload puisse retrouver notre classe. Model correspond au nom du dossier
 
-class Hard_disc extends Component
+class HardDisc extends Component
 {
     protected int $capacity;
     protected bool $isSsd;
