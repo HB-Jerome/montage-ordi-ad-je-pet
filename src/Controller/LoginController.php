@@ -14,11 +14,11 @@ class HomeController extends AbstractController
 
     public function getFileName(): string
     {
-        return 'home';
+        return 'login';
     }
 
     public function getPageTitle(): string
     {
-        return 'Bienvenue !';
+        return 'Connexion';
     }
 }
