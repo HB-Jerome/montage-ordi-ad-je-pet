@@ -56,4 +56,10 @@ class User
         $this->role = $role;
         return $this;
     }
+    public function saveSession()
+    {
+        $_SESSION['username'] = $this->username;
+        $_SESSION['role'] = $this->role;
+
+    }
 }
