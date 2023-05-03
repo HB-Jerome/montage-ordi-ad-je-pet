@@ -10,7 +10,7 @@ class LoginController extends AbstractController
 {
     public function getContent(): array
     {
-        $login = new login($_POST);
+        $login = new Login($_POST);
 
         if ($login->isValid()) {
             $sql = 'SELECT * FROM users WHERE username=:username AND password=:password';
