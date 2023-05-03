@@ -6,7 +6,7 @@ use Model\Component;
 class Keyboard extends Component {
     protected int $idComponent; 	
     protected  bool $isWireless; 	
-    protected  bool $keylessKeyboard; 	
+    protected  bool $withPad; 	
     protected string $keyType; 
     
     public function __construct()
@@ -31,15 +31,16 @@ class Keyboard extends Component {
 		$this->isWireless = $isWireless;
 		return $this;
 	}
-	
-	public function getKeylessKeyboard(): bool {
-		return $this->keylessKeyboard;
+
+	public function getWithPad(): bool {
+		return $this->withPad;
 	}
 	
-	public function setKeylessKeyboard(bool $keylessKeyboard): self {
-		$this->keylessKeyboard = $keylessKeyboard;
+	public function setWithPad(bool $withPad): self {
+		$this->withPad = $withPad;
 		return $this;
 	}
+	
 
 	public function getKeyType(): string {
 		return $this->keyType;
@@ -49,5 +50,6 @@ class Keyboard extends Component {
 		$this->keyType = $keyType;
 		return $this;
 	}
+
 }
 ?>
