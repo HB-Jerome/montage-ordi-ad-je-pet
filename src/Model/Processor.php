@@ -1,8 +1,8 @@
 <?php
 namespace Model;
 use Model\Component;
-// Création de la classe enfant processer extends Component
-class Processer extends Component {
+// Création de la classe enfant processor extends Component
+class Processor extends Component {
     protected  int $idComponent;	
     protected int $coreNumber;	
     protected string $compatibleChipset;	
