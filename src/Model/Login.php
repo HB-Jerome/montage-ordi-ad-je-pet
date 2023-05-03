@@ -29,7 +29,7 @@ class Login
     public function setUsername(?string $username): self
     {
         if (empty($username) || ctype_space($username)) {
-            $this->errors[] = "Le nom d'utilisateur doit être renseingé";
+            $this->errors[] = "Le nom d'utilisateur doit être renseigné";
         }
         $this->username = $username;
         return $this;
