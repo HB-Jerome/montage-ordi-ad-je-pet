@@ -24,11 +24,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment`
+-- Table structure for table `Comment`
 --
 
-DROP TABLE IF EXISTS `comment`;
-CREATE TABLE IF NOT EXISTS `comment` (
+DROP TABLE IF EXISTS `Comment`;
+CREATE TABLE IF NOT EXISTS `Comment` (
   `idComment` int NOT NULL AUTO_INCREMENT,
   `commentDate` datetime DEFAULT NULL,
   `messageSeen` tinyint(1) DEFAULT NULL,
@@ -37,16 +37,16 @@ CREATE TABLE IF NOT EXISTS `comment` (
   PRIMARY KEY (`idComment`),
   KEY `idModel` (`idModel`),
   KEY `idUser` (`idUser`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `component`
+-- Table structure for table `Component`
 --
 
-DROP TABLE IF EXISTS `component`;
-CREATE TABLE IF NOT EXISTS `component` (
+DROP TABLE IF EXISTS `Component`;
+CREATE TABLE IF NOT EXISTS `Component` (
   `idComponent` int NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
   `brand` varchar(250) DEFAULT NULL,
@@ -55,59 +55,59 @@ CREATE TABLE IF NOT EXISTS `component` (
   `pcType` varchar(50) DEFAULT NULL,
   `isArchived` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `graphicCard`
+-- Table structure for table `GraphicCard`
 --
 
-DROP TABLE IF EXISTS `graphicCard`;
-CREATE TABLE IF NOT EXISTS `graphicCard` (
+DROP TABLE IF EXISTS `GraphicCard`;
+CREATE TABLE IF NOT EXISTS `GraphicCard` (
   `idComponent` int NOT NULL,
   `chipset` varchar(50) DEFAULT NULL,
   `memory` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hardDisc`
+-- Table structure for table `HardDisc`
 --
 
-DROP TABLE IF EXISTS `hardDisc`;
-CREATE TABLE IF NOT EXISTS `hardDisc` (
+DROP TABLE IF EXISTS `HardDisc`;
+CREATE TABLE IF NOT EXISTS `HardDisc` (
   `idComponent` int NOT NULL,
   `capacity` int DEFAULT NULL,
   `ssd` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `keyboard`
+-- Table structure for table `Keyboard`
 --
 
-DROP TABLE IF EXISTS `keyboard`;
-CREATE TABLE IF NOT EXISTS `keyboard` (
+DROP TABLE IF EXISTS `Keyboard`;
+CREATE TABLE IF NOT EXISTS `Keyboard` (
   `idComponent` int NOT NULL,
   `isWireless` tinyint(1) DEFAULT NULL,
   `withPad` tinyint(1) DEFAULT NULL,
   `keyType` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `model`
+-- Table structure for table `Model`
 --
 
-DROP TABLE IF EXISTS `model`;
-CREATE TABLE IF NOT EXISTS `model` (
+DROP TABLE IF EXISTS `Model`;
+CREATE TABLE IF NOT EXISTS `Model` (
   `idModel` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `pcNumber` int DEFAULT NULL,
@@ -116,114 +116,114 @@ CREATE TABLE IF NOT EXISTS `model` (
   `addDate` datetime DEFAULT NULL,
   `isArchived` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idModel`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `model_component`
+-- Table structure for table `ModelComponent`
 --
 
-DROP TABLE IF EXISTS `model_component`;
-CREATE TABLE IF NOT EXISTS `model_component` (
+DROP TABLE IF EXISTS `ModelComponent`;
+CREATE TABLE IF NOT EXISTS `ModelComponent` (
   `idComponent` int NOT NULL,
   `idModel` int NOT NULL,
   PRIMARY KEY (`idComponent`,`idModel`),
   KEY `idModel` (`idModel`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mother_board`
+-- Table structure for table `MotherBoard`
 --
 
-DROP TABLE IF EXISTS `mother_board`;
-CREATE TABLE IF NOT EXISTS `mother_board` (
+DROP TABLE IF EXISTS `MotherBoard`;
+CREATE TABLE IF NOT EXISTS `MotherBoard` (
   `idComponent` int NOT NULL,
   `socket` varchar(50) DEFAULT NULL,
   `format` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mouse_and_pad`
+-- Table structure for table `MouseAndPad`
 --
 
-DROP TABLE IF EXISTS `mouse_and_pad`;
-CREATE TABLE IF NOT EXISTS `mouse_and_pad` (
+DROP TABLE IF EXISTS `MouseAndPad`;
+CREATE TABLE IF NOT EXISTS `MouseAndPad` (
   `idComponent` int NOT NULL,
   `isWireless` tinyint(1) DEFAULT NULL,
   `keyType` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `power_supply`
+-- Table structure for table `PowerSupply`
 --
 
-DROP TABLE IF EXISTS `power_supply`;
-CREATE TABLE IF NOT EXISTS `power_supply` (
+DROP TABLE IF EXISTS `PowerSupply`;
+CREATE TABLE IF NOT EXISTS `PowerSupply` (
   `idComponent` int NOT NULL,
   `_batteryPower` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `processor`
+-- Table structure for table `Processor`
 --
 
-DROP TABLE IF EXISTS `processor`;
-CREATE TABLE IF NOT EXISTS `processor` (
+DROP TABLE IF EXISTS `Processor`;
+CREATE TABLE IF NOT EXISTS `Processor` (
   `idComponent` int NOT NULL,
   `coreNumber` int DEFAULT NULL,
   `compatibleChipset` varchar(50) DEFAULT NULL,
   `cpuFrequency` decimal(15,2) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ram`
+-- Table structure for table `Ram`
 --
 
-DROP TABLE IF EXISTS `ram`;
-CREATE TABLE IF NOT EXISTS `ram` (
+DROP TABLE IF EXISTS `Ram`;
+CREATE TABLE IF NOT EXISTS `Ram` (
   `idComponent` int NOT NULL,
   `capacity` int DEFAULT NULL,
   `numberOfBars` int DEFAULT NULL,
   `description` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `screen`
+-- Table structure for table `Screen`
 --
 
-DROP TABLE IF EXISTS `screen`;
-CREATE TABLE IF NOT EXISTS `screen` (
+DROP TABLE IF EXISTS `Screen`;
+CREATE TABLE IF NOT EXISTS `Screen` (
   `idComponent` int NOT NULL,
   `size` decimal(15,2) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stock_history`
+-- Table structure for table `StockHistory`
 --
 
-DROP TABLE IF EXISTS `stock_history`;
-CREATE TABLE IF NOT EXISTS `stock_history` (
+DROP TABLE IF EXISTS `StockHistory`;
+CREATE TABLE IF NOT EXISTS `StockHistory` (
   `idStockHistory` int NOT NULL AUTO_INCREMENT,
   `modificationDate` datetime DEFAULT NULL,
   `quantity` int DEFAULT NULL,
@@ -231,22 +231,22 @@ CREATE TABLE IF NOT EXISTS `stock_history` (
   `idComponent` int NOT NULL,
   PRIMARY KEY (`idStockHistory`),
   KEY `idComponent` (`idComponent`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `Users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
+DROP TABLE IF EXISTS `Users`;
+CREATE TABLE IF NOT EXISTS `Users` (
   `idUser` int NOT NULL AUTO_INCREMENT,
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(250) DEFAULT NULL,
   `role` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
