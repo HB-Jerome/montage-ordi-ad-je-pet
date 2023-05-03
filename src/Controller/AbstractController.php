@@ -22,7 +22,6 @@ abstract class AbstractController
         ob_start();
 
         require_once 'includes/functions.php';
-        var_dump($_SESSION);
 
         $pageTitle = $this->getPageTitle();
 
