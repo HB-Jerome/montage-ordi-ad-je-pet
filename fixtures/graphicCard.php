@@ -19,30 +19,30 @@ $des3 = "Grâce au DLSS 3, au ray tracing à haute vitesse et aux performances a
 $graphicCards = [
     (new GraphicCard())
 
-        // propriéte commune a tous les composants
+        // propriété commune à tous les composants
         ->setName("MSI GeForce RTX 3060 VENTUS 2X 12G OC LHR")
         ->setBrand("MSI")
         ->setDescription($des1)
         ->setPrice(399)
         ->setPcType("fixe")
         ->setIsArchived(false)
-        // proprièté spécifique a GraphicCard
+        // propriétés spécifiques à GraphicCard
         ->setChipset("NVIDIA GeForce RTX 3060")
         ->setMemory("12Go"),
 
     (new GraphicCard())
-        // propriéte commune a tous les composants
+        // propriétés communes à tous les composants
         ->setName("Gigabyte GeForce RTX 4080 GAMING OC 16G")
         ->setBrand("Gigabyte")
         ->setDescription($des2)
         ->setPrice(1249)
         ->setPcType("fixe")
         ->setIsArchived(false)
-        // proprièté spécifique a GraphicCard
+        // propriétés spécifiques à GraphicCard
         ->setChipset("NVIDIA GeForce RTX 4080")
         ->setMemory("16Go "),
     (new GraphicCard())
-        // propriéte commune a tous les composants
+        // propriétés communes à tous les composants
         ->setName("Gainward GeForce RTX 4070 Ghost")
         ->setBrand("Gainward")
         ->setDescription($des3)
@@ -54,9 +54,9 @@ $graphicCards = [
         ->setMemory("12Go"),
 ];
 
-// on prepare l'insertion des propriétes communne dans la table parent
+// on prépare l'insertion des propriétés communnes dans la table parent
 $sqlParent = "INSERT INTO component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
-// on prepare l'insertion des propriétes spécifique dans la table enfant
+// on prepare l'insertion des propriétés spécifiques dans la table enfant
 $sqlChild = "INSERT INTO GraphicCard (idComponent,chipset,memory) VALUES (:idComponent,:chipset,:memory)";
 
 
@@ -69,16 +69,16 @@ foreach ($graphicCards as $graphicCard) {
     $statement->bindValue(":price", $graphicCard->getPrice());
     $statement->bindValue(":pcType", $graphicCard->getPrice());
     $statement->execute();
-    // insertion des propriétes communne dans la table parent
+    // insertion des propriétés communes dans la table parent
 
     $id = $db->lastInsertId();
-    // on recupert l'id du composant dans la table parent
+    // on recupère l'id du composant dans la table parent
     $id = intval($id);
     $statement = $db->prepare($sqlChild);
     $statement->bindValue(":idComponent", $id); //on utilise id du parent comme identifiant dans la table enfant
     $statement->bindValue(":chipset", $graphicCard->getChipset());
     $statement->bindValue(":memory", $graphicCard->getMemory());
     $statement->execute();
-    // insertion des propriétes spécifique dans la table enfant
+    // insertion des propriétés spécifique dans la table enfant
     $db->commit();
 }
