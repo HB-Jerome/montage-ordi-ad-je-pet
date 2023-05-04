@@ -19,7 +19,7 @@ $des3 = "Grâce au DLSS 3, au ray tracing à haute vitesse et aux performances a
 $graphicCards = [
     (new GraphicCard())
 
-        // propriéte commune a tous les composants
+        // propriètés communes a tous les composants
         ->setName("MSI GeForce RTX 3060 VENTUS 2X 12G OC LHR")
         ->setBrand("MSI")
         ->setDescription($des1)
@@ -31,7 +31,7 @@ $graphicCards = [
         ->setMemory("12Go"),
 
     (new GraphicCard())
-        // propriéte commune a tous les composants
+        // propriétes communes a tous les composants
         ->setName("Gigabyte GeForce RTX 4080 GAMING OC 16G")
         ->setBrand("Gigabyte")
         ->setDescription($des2)
@@ -42,7 +42,7 @@ $graphicCards = [
         ->setChipset("NVIDIA GeForce RTX 4080")
         ->setMemory("16Go "),
     (new GraphicCard())
-        // propriéte commune a tous les composants
+        // propriétes communes a tous les composants
         ->setName("Gainward GeForce RTX 4070 Ghost")
         ->setBrand("Gainward")
         ->setDescription($des3)
