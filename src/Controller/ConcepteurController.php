@@ -1,6 +1,7 @@
-<?
+<?php
 namespace Controller;
 
+use PDO;
 
 class ConcepteurController extends AbstractController
 {

@@ -30,20 +30,20 @@ class PagesHandler
         }
         // Cas variables get n'existe pas
 
-        // if (isset($_SESSION['user']) && $_SESSION['user']->getRole() == "concepteur") {
-        //     $pageName = "concepteur";
-        // } elseif (isset($_SESSION['user']) && $_SESSION['user']->getRole() == "monteur") {
-        //     $pageName = "monteur";
-        // } else {
-        //     // cas default 
-        //     $pageName = "login";
-        // }
-        $pageName = "test";
-        var_dump($pageName);
+        if (isset($_SESSION['user']) && ($_SESSION['user']->getRole() == "Concepteur")) {
+            $pageName = "concepteur";
+        } elseif (isset($_SESSION['user']) && ($_SESSION['user']->getRole() == "monteur")) {
+            $pageName = "monteur";
+        } else {
+            // cas default 
+            $pageName = "login";
+        }
         // on recupere l'objet page grace a pageName 
         foreach ($this->pages as $pageObject) {
             if ($pageObject->getFileName() == $pageName) {
-                return $currentPage = $pageObject;
+
+                $currentPage = $pageObject;
+                return $currentPage;
             }
         }
     }

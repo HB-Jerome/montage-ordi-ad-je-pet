@@ -1,7 +1,7 @@
 <?php
-
 namespace Controller;
 
+use PDO;
 
 class TestController extends AbstractController
 {

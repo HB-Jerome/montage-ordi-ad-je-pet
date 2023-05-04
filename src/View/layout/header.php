@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?php echo 'montage ordi' ?>
+        <?= $pageTitle ?>
     </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -27,7 +27,7 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-between">
                     <?php
-                    if (isset($_SESSION['user']) && $_SESSION['user'] == "Concepteur") {
+                    if (isset($_SESSION['user']) && ($_SESSION['user']->getRole() == "Concepteur")) {
                         ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#">list piece</a>
@@ -38,7 +38,7 @@
 
                     <?php }
 
-                    if (isset($_SESSION['user']) && $_SESSION['user'] == "monteur") {
+                    if (isset($_SESSION['user']) && $_SESSION['user']->getRole() == "monteur") {
                         ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#">commntairee</a>
@@ -49,9 +49,9 @@
                     <?php } ?>
 
                     <li class="nav-item">
-                        <?php if (isset($_SESSION['user']) && $_SESSION['user'] == "Concepteur" || isset($_SESSION['user']) && $_SESSION['user'] == "monteur") { ?>
+                        <?php if (isset($_SESSION['user'])) { ?>
                             <a class="nav-link active" aria-current="page" href="?page=login">
-                                <?= $_SESSION['user']; ?>
+                                <?= $_SESSION['user']->getUsername(); ?>
                             </a>
                         <?php } else { ?>
                             <a class="nav-link active" aria-current="page" href="?page=login">Login</a>
