@@ -60,7 +60,6 @@ class User
     public function saveSession()
     {
         $_SESSION['user'] = $this;
-
-
+        return $this;
     }
 }

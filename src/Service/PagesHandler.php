@@ -16,17 +16,35 @@ class PagesHandler
 
     public function getCurrent(array $getData): ?Page
     {
-        $page = 'home';
+        $currentPage = null;
+        $pageName = null;
+        // Cas variables $_GET existe
         if (!empty($getData['page'])) {
-            $page = $getData['page'];
+            $pageName = $getData['page'];
+            foreach ($this->pages as $pageObject) {
+                if ($pageObject->getFileName() == $pageName) {
+                    return $currentPage = $pageObject;
+                }
+            }
+            // si le foreach se ternmine sans trouver la page  $currentPage est toujour NULL
         }
+        // Cas variables get n'existe pas
 
-        foreach ($this->pages as $currentPage) {
-            if ($currentPage->getFileName() == $page) {
-                return $currentPage;
+        // if (isset($_SESSION['user']) && $_SESSION['user']->getRole() == "concepteur") {
+        //     $pageName = "concepteur";
+        // } elseif (isset($_SESSION['user']) && $_SESSION['user']->getRole() == "monteur") {
+        //     $pageName = "monteur";
+        // } else {
+        //     // cas default 
+        //     $pageName = "login";
+        // }
+        $pageName = "login";
+        var_dump($pageName);
+        // on recupere l'objet page grace a pageName 
+        foreach ($this->pages as $pageObject) {
+            if ($pageObject->getFileName() == $pageName) {
+                return $currentPage = $pageObject;
             }
         }
-
-        return null;
     }
 }

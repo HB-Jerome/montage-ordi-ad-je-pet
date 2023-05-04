@@ -27,7 +27,7 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-between">
                     <?php
-                    if (isset($_SESSION['role']) && $_SESSION['role'] == "Concepteur") {
+                    if (isset($_SESSION['user']) && $_SESSION['user'] == "Concepteur") {
                         ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#">list piece</a>
@@ -38,7 +38,7 @@
 
                     <?php }
 
-                    if (isset($_SESSION['role']) && $_SESSION['role'] == "monteur") {
+                    if (isset($_SESSION['user']) && $_SESSION['user'] == "monteur") {
                         ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#">commntairee</a>
@@ -48,17 +48,18 @@
                         </li>
                     <?php } ?>
 
-                        <li class="nav-item">
-                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] == "Concepteur" || isset($_SESSION['role']) && $_SESSION['role'] == "monteur") {?>
-                            <a class="nav-link active" aria-current="page" href="?page=login"><?= $_SESSION['username'];?>
-                           </a>
-                            <?php } else { ?> 
-                                <a class="nav-link active" aria-current="page" href="?page=login">Login</a>
-                            <?php } ?>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="?page=logout">Logout</a>
-                        </li>
+                    <li class="nav-item">
+                        <?php if (isset($_SESSION['user']) && $_SESSION['user'] == "Concepteur" || isset($_SESSION['user']) && $_SESSION['user'] == "monteur") { ?>
+                            <a class="nav-link active" aria-current="page" href="?page=login">
+                                <?= $_SESSION['user']; ?>
+                            </a>
+                        <?php } else { ?>
+                            <a class="nav-link active" aria-current="page" href="?page=login">Login</a>
+                        <?php } ?>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?page=logout">Logout</a>
+                    </li>
                 </ul>
             </div>
         </div>

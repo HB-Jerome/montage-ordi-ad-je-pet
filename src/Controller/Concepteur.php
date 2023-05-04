@@ -12,7 +12,7 @@ class Concepteur extends AbstractController
 
     public function getFileName(): string
     {
-        return 'Concepteur';
+        return 'concepteur';
     }
 
     public function getPageTitle(): string
