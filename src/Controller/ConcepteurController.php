@@ -2,7 +2,7 @@
 namespace Controller;
 
 
-class Concepteur extends AbstractController
+class ConcepteurController extends AbstractController
 {
     public function getContent(): array
     {

@@ -38,7 +38,7 @@ class PagesHandler
         //     // cas default 
         //     $pageName = "login";
         // }
-        $pageName = "login";
+        $pageName = "test";
         var_dump($pageName);
         // on recupere l'objet page grace a pageName 
         foreach ($this->pages as $pageObject) {

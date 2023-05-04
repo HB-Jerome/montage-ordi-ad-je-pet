@@ -1,8 +1,9 @@
-<?
+<?php
+
 namespace Controller;
 
 
-class Monteur extends AbstractController
+class TestController extends AbstractController
 {
     public function getContent(): array
     {
@@ -12,11 +13,11 @@ class Monteur extends AbstractController
 
     public function getFileName(): string
     {
-        return 'monteur';
+        return 'test';
     }
 
     public function getPageTitle(): string
     {
-        return 'Monteur !';
+        return 'Bienvenue !';
     }
 }
