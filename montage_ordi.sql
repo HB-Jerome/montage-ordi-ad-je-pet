@@ -66,8 +66,8 @@ CREATE TABLE IF NOT EXISTS `Component` (
 DROP TABLE IF EXISTS `GraphicCard`;
 CREATE TABLE IF NOT EXISTS `GraphicCard` (
   `idComponent` int NOT NULL,
-  `chipset` varchar(50) DEFAULT NULL,
-  `memory` varchar(50) DEFAULT NULL,
+  `chipset` varchar(250) DEFAULT NULL,
+  `memory` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `Keyboard` (
   `idComponent` int NOT NULL,
   `isWireless` tinyint(1) DEFAULT NULL,
   `withPad` tinyint(1) DEFAULT NULL,
-  `keyType` varchar(50) DEFAULT NULL,
+  `keyType` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
