@@ -1,9 +1,9 @@
 <?php
-
 namespace Controller;
 
+use PDO;
 
-class HomeController extends AbstractController
+class ConcepteurController extends AbstractController
 {
     public function getContent(): array
     {
@@ -13,11 +13,11 @@ class HomeController extends AbstractController
 
     public function getFileName(): string
     {
-        return 'home';
+        return 'concepteur';
     }
 
     public function getPageTitle(): string
     {
-        return 'Bienvenue !';
+        return 'Concepteur';
     }
 }

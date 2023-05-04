@@ -18,7 +18,6 @@ abstract class AbstractController
 
     public function render()
     {
-        session_start();
         ob_start();
 
         require_once 'includes/functions.php';

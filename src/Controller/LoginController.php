@@ -25,6 +25,7 @@ class LoginController extends AbstractController
             } else {
                 if (password_verify($login->getPassword(), $user->getPassword())) {
                     $user->saveSession();
+                    // var_dump($_SESSION);
                     header("Location: ?");
                 } else {
                     $login->addError("L'utilisateur et le mot de passe ne correspondent pas !");
