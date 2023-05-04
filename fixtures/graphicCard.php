@@ -19,7 +19,7 @@ $des3 = "Grâce au DLSS 3, au ray tracing à haute vitesse et aux performances a
 $graphicCards = [
     (new GraphicCard())
 
-        // propriété commune à tous les composants
+        // propriétés communes à tous les composants
         ->setName("MSI GeForce RTX 3060 VENTUS 2X 12G OC LHR")
         ->setBrand("MSI")
         ->setDescription($des1)
