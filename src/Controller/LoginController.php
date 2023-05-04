@@ -13,22 +13,23 @@ class LoginController extends AbstractController
         $login = new Login($_POST);
 
         if ($login->isValid() && $login->isSubmited()) {
-            $sql = 'SELECT * FROM users WHERE username=:username AND password=:password';
+            $sql = 'SELECT * FROM users WHERE username=:username';
             $statement = $this->db->prepare($sql);
             $statement->bindValue(':username', $login->getUsername(), PDO::PARAM_STR);
-            $statement->bindValue(':password', $login->getPassword(), PDO::PARAM_STR);
             $statement->setFetchMode(PDO::FETCH_CLASS, User::class);
 
             $statement->execute();
             $user = $statement->fetch();
             if (empty($user)) {
-                $login->addError("L'utilisateur ou le mot de passe est incorrect");
+                $login->addError("L'utilisateur n'existe pas !");
             } else {
-                $user->saveSession();
-                // header("Location: ?page=home&action=success");
+                if (password_verify($login->getPassword(), $user->getPassword())) {
+                    $user->saveSession();
+                    header("Location: ?");
+                } else {
+                    $login->addError("L'utilisateur et le mot de passe ne correspondent pas !");
+                }
             }
-
-
         }
 
 
