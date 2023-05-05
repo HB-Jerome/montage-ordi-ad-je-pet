@@ -6,7 +6,7 @@ class GraphicCard extends Component
     protected string $chipset;
     protected string $memory;
 
-//Méthodes (Set et Get)
+//Méthodes (Set et Get) 
 
 	public function getChipset(): string {
 		return $this->chipset;
