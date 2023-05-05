@@ -10,7 +10,7 @@ use Model\Component;
 
     public function __construct()
     {
-
+ 
     }
     
 	public function getIdComponent(): int {

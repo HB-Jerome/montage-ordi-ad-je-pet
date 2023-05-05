@@ -3,7 +3,6 @@ namespace Model;
 use Model\Component;
 // Création de la classe enfant processor extends Component
 class Processor extends Component {
-    protected  int $idComponent;	
     protected int $coreNumber;	
     protected string $compatibleChipset;	
     protected float $cpuFrequency; 
@@ -12,15 +11,6 @@ class Processor extends Component {
     {
     }
 
-
-	public function getidComponent() {
-		return $this->idComponent;
-	}
-
-	public function setidComponent($idComponent): self {
-		$this->idComponent = $idComponent;
-		return $this;
-	} 
 
     public function getCoreNumber() {
 		return $this->coreNumber;
