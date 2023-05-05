@@ -1,19 +1,16 @@
 <?php
-spl_autoload_register(function ($class) {
-    require_once "../src/$class.php";
-});
-include "../includes/config.inc.php";
+
 use Model\User;
 
 
 $Users = [
     (new User())
         ->setPassword("1234")
-        ->setRole('Concepteur')
+        ->setRole('concepteur')
         ->setUsername('Adel'),
     (new User())
         ->setPassword("1234")
-        ->setRole('Concepteur')
+        ->setRole('concepteur')
         ->setUsername('Peter'),
     (new User())
         ->setPassword("1234")
@@ -25,7 +22,7 @@ $Users = [
         ->setUsername('toto'),
 ];
 
-$sql = 'INSERT INTO users (username,password,role) VALUES (:username,:password,:role)';
+$sql = 'INSERT INTO Users (username,password,role) VALUES (:username,:password,:role)';
 
 $statement = $db->prepare($sql);
 

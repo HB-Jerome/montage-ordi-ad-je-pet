@@ -1,9 +1,4 @@
 <?php
-spl_autoload_register(function ($class) {
-    require_once "../src/$class.php";
-});
-include "../includes/config.inc.php";
-
 
 // on inclut la class MouseAndPad pour créer les objects
 use Model\MouseAndPad;
@@ -43,7 +38,7 @@ $mouseAndPads = [
         // propriétés spécifiques à MouseAndPad
         ->setIsWireless(true)
         ->setKeyType(3),
-        
+
     (new MouseAndPad())
         // propriétés communes à tous les composants
         ->setName("Souris ergonomique verticale USB (blanche)")
@@ -59,7 +54,7 @@ $mouseAndPads = [
 ];
 
 // on prépare l'insertion des propriétés communnes dans la table parent
-$sqlParent = "INSERT INTO component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
+$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
 // on prepare l'insertion des propriétés spécifiques dans la table enfant
 $sqlChild = "INSERT INTO MouseAndPad (idComponent,isWireless,keyType) VALUES (:idComponent,:isWireless,:keyType)";
 
@@ -67,11 +62,11 @@ $sqlChild = "INSERT INTO MouseAndPad (idComponent,isWireless,keyType) VALUES (:i
 foreach ($mouseAndPads as $hardDisc) {
     $db->beginTransaction();
     $statement = $db->prepare($sqlParent);
-    $statement->bindValue(":name", $hardDisc->getName(),PDO::PARAM_STR);
-    $statement->bindValue(":brand", $hardDisc->getBrand(),PDO::PARAM_STR);
-    $statement->bindValue(":description", $hardDisc->getDescription(),PDO::PARAM_STR);
+    $statement->bindValue(":name", $hardDisc->getName(), PDO::PARAM_STR);
+    $statement->bindValue(":brand", $hardDisc->getBrand(), PDO::PARAM_STR);
+    $statement->bindValue(":description", $hardDisc->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(":price", $hardDisc->getPrice());
-    $statement->bindValue(":pcType", $hardDisc->getPrice(),PDO::PARAM_STR);
+    $statement->bindValue(":pcType", $hardDisc->getPrice(), PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétés communes dans la table parent
 
@@ -80,8 +75,8 @@ foreach ($mouseAndPads as $hardDisc) {
     $id = intval($id);
     $statement = $db->prepare($sqlChild);
     $statement->bindValue(":idComponent", $id); //on utilise id du parent comme identifiant dans la table enfant
-    $statement->bindValue(":isWireless", $hardDisc->getIsWireless(),PDO::PARAM_BOOL);
-    $statement->bindValue(":keyType", $hardDisc->getKeyType(),PDO::PARAM_INT);
+    $statement->bindValue(":isWireless", $hardDisc->getIsWireless(), PDO::PARAM_BOOL);
+    $statement->bindValue(":keyType", $hardDisc->getKeyType(), PDO::PARAM_INT);
     $statement->execute();
     // insertion des propriétés spécifique dans la table enfant
     $db->commit();

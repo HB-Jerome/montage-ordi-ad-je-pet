@@ -30,7 +30,7 @@ class PagesHandler
         }
         // Cas variables get n'existe pas
 
-        if (isset($_SESSION['user']) && ($_SESSION['user']->getRole() == "Concepteur")) {
+        if (isset($_SESSION['user']) && ($_SESSION['user']->getRole() == "concepteur")) {
             $pageName = "concepteur";
         } elseif (isset($_SESSION['user']) && ($_SESSION['user']->getRole() == "monteur")) {
             $pageName = "monteur";

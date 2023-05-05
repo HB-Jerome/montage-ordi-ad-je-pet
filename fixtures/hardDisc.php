@@ -1,9 +1,4 @@
 <?php
-spl_autoload_register(function ($class) {
-    require_once "../src/$class.php";
-});
-include "../includes/config.inc.php";
-
 
 // on inclut la class HardDisc pour créer les objects
 use Model\HardDisc;
@@ -43,7 +38,7 @@ $hardDiscs = [
         // propriétés spécifiques à HardDisc
         ->setCapacity(4)
         ->setSsd(false),
-        
+
     (new HardDisc())
         // propriétés communes à tous les composants
         ->setName("Seagate BarraCuda 1 To (ST1000DM010)")
@@ -59,7 +54,7 @@ $hardDiscs = [
 ];
 
 // on prépare l'insertion des propriétés communnes dans la table parent
-$sqlParent = "INSERT INTO component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
+$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
 // on prepare l'insertion des propriétés spécifiques dans la table enfant
 $sqlChild = "INSERT INTO HardDisc (idComponent,capacity,ssd) VALUES (:idComponent,:capacity,:ssd)";
 
@@ -67,11 +62,11 @@ $sqlChild = "INSERT INTO HardDisc (idComponent,capacity,ssd) VALUES (:idComponen
 foreach ($hardDiscs as $hardDisc) {
     $db->beginTransaction();
     $statement = $db->prepare($sqlParent);
-    $statement->bindValue(":name", $hardDisc->getName(),PDO::PARAM_STR);
-    $statement->bindValue(":brand", $hardDisc->getBrand(),PDO::PARAM_STR);
-    $statement->bindValue(":description", $hardDisc->getDescription(),PDO::PARAM_STR);
+    $statement->bindValue(":name", $hardDisc->getName(), PDO::PARAM_STR);
+    $statement->bindValue(":brand", $hardDisc->getBrand(), PDO::PARAM_STR);
+    $statement->bindValue(":description", $hardDisc->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(":price", $hardDisc->getPrice());
-    $statement->bindValue(":pcType", $hardDisc->getPrice(),PDO::PARAM_STR);
+    $statement->bindValue(":pcType", $hardDisc->getPrice(), PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétés communes dans la table parent
 
@@ -80,8 +75,8 @@ foreach ($hardDiscs as $hardDisc) {
     $id = intval($id);
     $statement = $db->prepare($sqlChild);
     $statement->bindValue(":idComponent", $id); //on utilise id du parent comme identifiant dans la table enfant
-    $statement->bindValue(":capacity", $hardDisc->getCapacity(),PDO::PARAM_STR);
-    $statement->bindValue(":ssd", $hardDisc->getSsd(),PDO::PARAM_BOOL);
+    $statement->bindValue(":capacity", $hardDisc->getCapacity(), PDO::PARAM_STR);
+    $statement->bindValue(":ssd", $hardDisc->getSsd(), PDO::PARAM_BOOL);
     $statement->execute();
     // insertion des propriétés spécifique dans la table enfant
     $db->commit();

@@ -1,8 +1,4 @@
 <?php
-spl_autoload_register(function ($class) {
-    require_once "../src/$class.php";
-});
-include "../includes/config.inc.php";
 
 // on inclut la class processor pour créer les objects
 use Model\Processor;
@@ -54,7 +50,7 @@ $processors = [
         ->setCpuFrequency(4.5),
 ];
 // parent sql preparation
-$sqlProcessorParent = "INSERT INTO component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,:isArchived)";
+$sqlProcessorParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,:isArchived)";
 // child processor sql preparation
 $sqlProcessorChild = "INSERT INTO  processor (idComponent, coreNumber, compatibleChipset, cpuFrequency) VALUES (:idComponent, :coreNumber, :compatibleChipset, :cpuFrequency) ";
 

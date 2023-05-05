@@ -169,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `MouseAndPad` (
 DROP TABLE IF EXISTS `PowerSupply`;
 CREATE TABLE IF NOT EXISTS `PowerSupply` (
   `idComponent` int NOT NULL,
-  `_batteryPower` varchar(50) DEFAULT NULL,
+  `batteryPower` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

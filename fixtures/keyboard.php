@@ -1,12 +1,6 @@
 <?php
 use Model\Keyboard;
 
-spl_autoload_register(function ($class) {
-    require_once "../src/$class.php";
-});
-include "../includes/config.inc.php";
-
-
 // on inclut la class GraphicCard pour créer les objects
 
 $des1 = "Foncez vers la victoire avec le clavier ROCCAT Vulcan Pro. Ce clavier gaming est équipé de switch Titan Optical qui offrent un tout autre niveau de vitesse et réactivité. De plus, le design fin du clavier vous permet de poser à plat vos mains afin de réduire votre fatigue.";
@@ -60,7 +54,7 @@ $keyboards = [
 
 // on prepare l'insertion des propriétes communne dans la table parent
 
-$sqlParent = "INSERT INTO component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
+$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
 // on prepare l'insertion des propriétes spécifique dans la table enfant
 $sqlChild = "INSERT INTO keyboard (idComponent, isWireless, withPad, keyType) VALUES (:idComponent,:isWireless,:withPad,:keyType)";
 
