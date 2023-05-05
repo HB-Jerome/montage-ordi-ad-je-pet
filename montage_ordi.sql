@@ -54,6 +54,8 @@ CREATE TABLE IF NOT EXISTS `Component` (
   `price` decimal(15,2) DEFAULT NULL,
   `pcType` varchar(50) DEFAULT NULL,
   `isArchived` tinyint(1) DEFAULT NULL,
+  `category` varchar(250) DEFAULT NULL,
+
   PRIMARY KEY (`idComponent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

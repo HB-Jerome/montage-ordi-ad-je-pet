@@ -50,7 +50,7 @@ $processors = [
         ->setCpuFrequency(4.5),
 ];
 // parent sql preparation
-$sqlProcessorParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,:isArchived)";
+$sqlProcessorParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category) VALUES (:name,:brand,:description,:price,:pcType,false,:category)";
 // child processor sql preparation
 $sqlProcessorChild = "INSERT INTO  processor (idComponent, coreNumber, compatibleChipset, cpuFrequency) VALUES (:idComponent, :coreNumber, :compatibleChipset, :cpuFrequency) ";
 
@@ -64,7 +64,7 @@ foreach ($processors as $processor) {
     $statement->bindValue('description', $processor->getDescription(), PDO::PARAM_STR);
     $statement->bindValue('price', $processor->getPrice());
     $statement->bindValue('pcType', $processor->getPcType(), PDO::PARAM_STR);
-    $statement->bindValue('isArchived', $processor->getIsArchived(), PDO::PARAM_BOOL);
+    $statement->bindValue('category', $processor->GetCategory(), PDO::PARAM_STR);
     // execution de réquete
     $statement->execute();
 

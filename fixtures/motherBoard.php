@@ -54,7 +54,7 @@ $motherBoards = [
 ];
 
 // on prépare l'insertion des propriétés communnes dans la table parent
-$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
+$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category) VALUES (:name,:brand,:description,:price,:pcType,false,:category)";
 // on prepare l'insertion des propriétés spécifiques dans la table enfant
 $sqlChild = "INSERT INTO MotherBoard (idComponent,socket,format) VALUES (:idComponent,:socket,:format)";
 
@@ -67,6 +67,7 @@ foreach ($motherBoards as $motherBoard) {
     $statement->bindValue(":description", $motherBoard->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(":price", $motherBoard->getPrice());
     $statement->bindValue(":pcType", $motherBoard->getPrice(), PDO::PARAM_STR);
+    $statement->bindValue(":category", $motherBoard->GetCategory(), PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétés communes dans la table parent
 
