@@ -30,7 +30,7 @@
                     if (isset($_SESSION['user']) && ($_SESSION['user']->getRole() == "Concepteur")) {
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="?page=listPiece">list piece</a>
+                            <a class="nav-link" href="?page=listPiece">Liste des pièces</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">list model</a>
