@@ -7,6 +7,7 @@ use Controller\MonteurController;
 use Controller\TestController;
 use Model\Page;
 use Service\PagesHandler;
+use Controller\ListPieceController;
 
 
 $pagesHandler = new PagesHandler([
@@ -15,5 +16,6 @@ $pagesHandler = new PagesHandler([
     new Page('logout', LogoutController::class),
     new Page('concepteur', ConcepteurController::class),
     new Page('monteur', MonteurController::class),
-    new Page('test', TestController::class)
+    new Page('test', TestController::class),
+    new Page('listPiece', ListPieceController::class),
 ]);
