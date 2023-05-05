@@ -64,28 +64,25 @@ $sqlParent = "INSERT INTO component (name,brand,description,price,pcType,isArchi
 // on prepare l'insertion des propriétes spécifique dans la table enfant
 $sqlChild = "INSERT INTO keyboard (idComponent, isWireless, withPad, keyType) VALUES (:idComponent,:isWireless,:withPad,:keyType)";
 
-
-var_dump($keyboards);
 foreach ($keyboards as $keyboard) {
     $statement = $db->prepare($sqlParent);
-    $statement->bindValue(":name", $keyboard->getName());
-    $statement->bindValue(":brand", $keyboard->getBrand());
-    $statement->bindValue(":description", $keyboard->getDescription());
+    $statement->bindValue(":name", $keyboard->getName(), PDO::PARAM_STR);
+    $statement->bindValue(":brand", $keyboard->getBrand(), PDO::PARAM_STR);
+    $statement->bindValue(":description", $keyboard->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(":price", $keyboard->getPrice());
-    $statement->bindValue(":pcType", $keyboard->getPcType());
+    $statement->bindValue(":pcType", $keyboard->getPcType(), PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétes communne dans la table parent
 
     $id = $db->lastInsertId();
-    var_dump($id);
     // on recupert l'id du composant dans la table parent
     $id = intval($id);
     $statementChild = $db->prepare($sqlChild);
     $statementChild->bindValue(":idComponent", $id);
     //on utilise id du parent comme identifiant dans la table enfant
-    $statementChild->bindValue(":isWireless", $keyboard->getIsWireless());
-    $statementChild->bindValue(":withPad", $keyboard->getWithPad());
-    $statementChild->bindValue(":keyType", $keyboard->getKeyType());
+    $statementChild->bindValue(":isWireless", $keyboard->getIsWireless(), PDO::PARAM_BOOL);
+    $statementChild->bindValue(":withPad", $keyboard->getWithPad(), PDO::PARAM_BOOL);
+    $statementChild->bindValue(":keyType", $keyboard->getKeyType(), PDO::PARAM_STR);
     $statementChild->execute();
     // insertion des propriétes spécifique dans la table enfant
 }
