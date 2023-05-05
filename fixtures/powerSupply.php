@@ -44,7 +44,7 @@ $powersupplys = [
         ->setBatteryPower(240),
 ];
 // parent sql preparation
-$sqlPowerSupplyParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category) VALUES (:name,:brand,:description,:price,:pcType,false,:category)";
+$sqlPowerSupplyParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:pcType,false,:category,5)";
 // child sql preparation
 $sqlPowerSupplyChild = "INSERT INTO powersupply (idComponent, batteryPower) VALUES (:idComponent, :batteryPower)";
 

@@ -46,7 +46,7 @@ $rams = [
         ->setDescription('Kit Dual Channel 2 barrett PC5-44800'),
 ];
 // parent sql prépare
-$sqlRamParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category) VALUES (:name, :brand, :description, :price, :pcType,false,:category)";
+$sqlRamParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category,quantity) VALUES (:name, :brand, :description, :price, :pcType,false,:category,5)";
 
 // child sql prépare
 $sqlRamChild = "INSERT INTO ram (idComponent, capacity, numberOfBars, description) VALUES (:idComponent, :capacity, :numberOfBars, :description)";

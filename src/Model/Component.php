@@ -27,6 +27,8 @@ abstract class Component
 	protected string $name;
 	protected string $brand;
 	protected string $description;
+	protected int $quantity;
+
 	protected float $price;
 	protected string $pcType;
 	protected bool $isArchived;
@@ -112,6 +114,24 @@ abstract class Component
 	public function setIsArchived(bool $isArchived): self
 	{
 		$this->isArchived = $isArchived;
+		return $this;
+	}
+
+	/**
+	 * @return 
+	 */
+	public function getQuantity(): int
+	{
+		return $this->quantity;
+	}
+
+	/**
+	 * @param  $quantity 
+	 * @return self
+	 */
+	public function setQuantity(int $quantity): self
+	{
+		$this->quantity = $quantity;
 		return $this;
 	}
 }
