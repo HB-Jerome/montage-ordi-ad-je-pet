@@ -54,7 +54,7 @@ $hardDiscs = [
 ];
 
 // on prépare l'insertion des propriétés communnes dans la table parent
-$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
+$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category) VALUES (:name,:brand,:description,:price,:pcType,false,:category)";
 // on prepare l'insertion des propriétés spécifiques dans la table enfant
 $sqlChild = "INSERT INTO HardDisc (idComponent,capacity,ssd) VALUES (:idComponent,:capacity,:ssd)";
 
@@ -67,6 +67,7 @@ foreach ($hardDiscs as $hardDisc) {
     $statement->bindValue(":description", $hardDisc->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(":price", $hardDisc->getPrice());
     $statement->bindValue(":pcType", $hardDisc->getPrice(), PDO::PARAM_STR);
+    $statement->bindValue(":category", $hardDisc->GetCategory(), PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétés communes dans la table parent
 

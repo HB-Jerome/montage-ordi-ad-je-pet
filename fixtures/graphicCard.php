@@ -53,7 +53,7 @@ $graphicCards = [
 ];
 
 // on prepare l'insertion des propriétes communne dans la table parent
-$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
+$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category) VALUES (:name,:brand,:description,:price,:pcType,false,:category)";
 // on prepare l'insertion des propriétes spécifique dans la table enfant
 $sqlChild = "INSERT INTO GraphicCard (idComponent,chipset,memory) VALUES (:idComponent,:chipset,:memory)";
 
@@ -67,6 +67,7 @@ foreach ($graphicCards as $graphicCard) {
     $statementParent->bindValue(":description", $graphicCard->getDescription(), PDO::PARAM_STR);
     $statementParent->bindValue(":price", $graphicCard->getPrice());
     $statementParent->bindValue(":pcType", $graphicCard->getPrice(), PDO::PARAM_STR);
+    $statementParent->bindValue(":category", $graphicCard->GetCategory(), PDO::PARAM_STR);
     $statementParent->execute();
     // insertion des propriétes communne dans la table parent
 

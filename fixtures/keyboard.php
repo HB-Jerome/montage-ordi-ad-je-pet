@@ -54,7 +54,7 @@ $keyboards = [
 
 // on prepare l'insertion des propriétes communne dans la table parent
 
-$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
+$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category) VALUES (:name,:brand,:description,:price,:pcType,false,:category)";
 // on prepare l'insertion des propriétes spécifique dans la table enfant
 $sqlChild = "INSERT INTO keyboard (idComponent, isWireless, withPad, keyType) VALUES (:idComponent,:isWireless,:withPad,:keyType)";
 
@@ -65,6 +65,7 @@ foreach ($keyboards as $keyboard) {
     $statement->bindValue(":description", $keyboard->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(":price", $keyboard->getPrice());
     $statement->bindValue(":pcType", $keyboard->getPcType(), PDO::PARAM_STR);
+    $statement->bindValue(":category", $keyboard->getPcType(), PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétes communne dans la table parent
 

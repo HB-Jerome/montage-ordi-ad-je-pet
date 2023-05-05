@@ -44,7 +44,7 @@ $powersupplys = [
         ->setBatteryPower(240),
 ];
 // parent sql preparation
-$sqlPowerSupplyParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,:isArchived)";
+$sqlPowerSupplyParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category) VALUES (:name,:brand,:description,:price,:pcType,false,:category)";
 // child sql preparation
 $sqlPowerSupplyChild = "INSERT INTO powersupply (idComponent, batteryPower) VALUES (:idComponent, :batteryPower)";
 
@@ -58,7 +58,7 @@ foreach ($powersupplys as $powersupply) {
     $statement->bindValue(':description', $powersupply->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(':price', $powersupply->getPrice());
     $statement->bindValue(':pcType', $powersupply->getPcType(), PDO::PARAM_STR);
-    $statement->bindValue(':isArchived', $powersupply->getIsArchived(), PDO::PARAM_BOOL);
+    $statement->bindValue(':category', $powersupply->GetCategory(), PDO::PARAM_STR);
     // execution de réquete
     $statement->execute();
 

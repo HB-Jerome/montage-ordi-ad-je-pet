@@ -46,7 +46,7 @@ $rams = [
         ->setDescription('Kit Dual Channel 2 barrett PC5-44800'),
 ];
 // parent sql prépare
-$sqlRamParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name, :brand, :description, :price, :pcType,:isArchived)";
+$sqlRamParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category) VALUES (:name, :brand, :description, :price, :pcType,false,:category)";
 
 // child sql prépare
 $sqlRamChild = "INSERT INTO ram (idComponent, capacity, numberOfBars, description) VALUES (:idComponent, :capacity, :numberOfBars, :description)";
@@ -61,7 +61,7 @@ foreach ($rams as $ram) {
     $statement->bindValue(':description', $ram->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(':price', $ram->getPrice());
     $statement->bindValue(':pcType', $ram->getPcType(), PDO::PARAM_STR);
-    $statement->bindValue(':isArchived', $ram->getIsArchived(), PDO::PARAM_BOOL);
+    $statement->bindValue(':category', $ram->GetCategory(), PDO::PARAM_STR);
     // execution de réquete
     $statement->execute();
 

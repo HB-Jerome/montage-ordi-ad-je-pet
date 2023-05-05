@@ -4,6 +4,25 @@ namespace Model; // afin que l'autoload puisse retrouver notre classe. Model cor
 // Création de la classe parent Component
 abstract class Component
 {
+	const AVAILABLE_CATEGORIES = [
+		self::GRAPHIC_CARD,
+		self::HARD_DISC,
+		self::KEYBORD,
+		self::MOTHER_BOARD,
+		self::POWER_SUPPLY,
+		self::PROCESSOR,
+		self::RAM,
+		self::SCREEN,
+	];
+	const GRAPHIC_CARD = "GraphicCard";
+	const HARD_DISC = "HardDisc";
+	const KEYBORD = "Keyboard";
+	const MOTHER_BOARD = "MotherBoard";
+	const MOUSE_AND_PAD = "MouseAndPad";
+	const POWER_SUPPLY = "PowerSupply";
+	const PROCESSOR = "Processor";
+	const RAM = "Ram";
+	const SCREEN = "Screen";
 	protected int $idComponent;
 	protected string $name;
 	protected string $brand;
@@ -11,6 +30,7 @@ abstract class Component
 	protected float $price;
 	protected string $pcType;
 	protected bool $isArchived;
+	protected string $category;
 
 
 	public function getidComponent(): int

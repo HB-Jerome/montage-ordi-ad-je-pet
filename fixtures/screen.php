@@ -45,7 +45,7 @@ $screens = [
 ];
 
 // parent sql preparation
-$sqlScreenParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
+$sqlScreenParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category) VALUES (:name,:brand,:description,:price,:pcType,false,:category)";
 // child processor sql preparation
 $sqlScreenChild = "INSERT INTO screen (idComponent, size) VALUES (:idComponent, :size)";
 
@@ -59,6 +59,7 @@ foreach ($screens as $screen) {
     $statement->bindValue(":description", $screen->getDescription());
     $statement->bindValue(":price", $screen->getPrice());
     $statement->bindValue(":pcType", $screen->getPrice());
+    $statement->bindValue(":category", $screen->GetCategory());
     $statement->execute();
     // execution de réquete
     $statement->execute();
