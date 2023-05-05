@@ -20,10 +20,12 @@ class LoginController extends AbstractController
 
             $statement->execute();
             $user = $statement->fetch();
+            var_dump($user);
             if (empty($user)) {
                 $login->addError("L'utilisateur n'existe pas !");
             } else {
                 if (password_verify($login->getPassword(), $user->getPassword())) {
+                    var_dump("ok");
                     $user->saveSession();
                     // var_dump($_SESSION);
                     header("Location: ?");
