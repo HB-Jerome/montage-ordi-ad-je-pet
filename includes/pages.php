@@ -4,7 +4,7 @@ use Controller\HomeController;
 use Controller\LoginController;
 use Controller\LogoutController;
 use Controller\MonteurController;
-use Controller\TestController;
+use Controller\ModelController;
 use Model\Page;
 use Service\PagesHandler;
 
@@ -15,5 +15,5 @@ $pagesHandler = new PagesHandler([
     new Page('logout', LogoutController::class),
     new Page('concepteur', ConcepteurController::class),
     new Page('monteur', MonteurController::class),
-    new Page('test', TestController::class)
+    new Page('model', ModelController::class)
 ]);
