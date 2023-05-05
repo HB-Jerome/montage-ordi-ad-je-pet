@@ -1,8 +1,4 @@
 <?php
-spl_autoload_register(function ($class) {
-    require_once "../src/$class.php";
-});
-include "../includes/config.inc.php";
 
 // on inclut la class processor pour créer les objects
 use model\Screen;
@@ -49,7 +45,7 @@ $screens = [
 ];
 
 // parent sql preparation
-$sqlScreenParent = "INSERT INTO component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
+$sqlScreenParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
 // child processor sql preparation
 $sqlScreenChild = "INSERT INTO screen (idComponent, size) VALUES (:idComponent, :size)";
 

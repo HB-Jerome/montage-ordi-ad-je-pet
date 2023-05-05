@@ -3,8 +3,6 @@ spl_autoload_register(function ($class) {
     require_once "../src/$class.php";
 });
 include "../includes/config.inc.php";
-
-
 // on inclut la class GraphicCard pour créer les objects
 use Model\GraphicCard;
 
@@ -55,30 +53,31 @@ $graphicCards = [
 ];
 
 // on prepare l'insertion des propriétes communne dans la table parent
-$sqlParent = "INSERT INTO component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
+$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
 // on prepare l'insertion des propriétes spécifique dans la table enfant
 $sqlChild = "INSERT INTO GraphicCard (idComponent,chipset,memory) VALUES (:idComponent,:chipset,:memory)";
 
-
+$statementParent = $db->prepare($sqlParent);
+$statementChild = $db->prepare($sqlChild);
 foreach ($graphicCards as $graphicCard) {
     $db->beginTransaction();
-    $statement = $db->prepare($sqlParent);
-    $statement->bindValue(":name", $graphicCard->getName(),PDO::PARAM_STR);
-    $statement->bindValue(":brand", $graphicCard->getBrand(),PDO::PARAM_STR);
-    $statement->bindValue(":description", $graphicCard->getDescription(),PDO::PARAM_STR);
-    $statement->bindValue(":price", $graphicCard->getPrice());
-    $statement->bindValue(":pcType", $graphicCard->getPrice(),PDO::PARAM_STR);
-    $statement->execute();
+
+    $statementParent->bindValue(":name", $graphicCard->getName(), PDO::PARAM_STR);
+    $statementParent->bindValue(":brand", $graphicCard->getBrand(), PDO::PARAM_STR);
+    $statementParent->bindValue(":description", $graphicCard->getDescription(), PDO::PARAM_STR);
+    $statementParent->bindValue(":price", $graphicCard->getPrice());
+    $statementParent->bindValue(":pcType", $graphicCard->getPrice(), PDO::PARAM_STR);
+    $statementParent->execute();
     // insertion des propriétes communne dans la table parent
 
     $id = $db->lastInsertId();
     // on recupert l'id du composant dans la table parent
     $id = intval($id);
-    $statement = $db->prepare($sqlChild);
-    $statement->bindValue(":idComponent", $id); //on utilise id du parent comme identifiant dans la table enfant
-    $statement->bindValue(":chipset", $graphicCard->getChipset(),PDO::PARAM_STR);
-    $statement->bindValue(":memory", $graphicCard->getMemory(),PDO::PARAM_STR);
-    $statement->execute();
+
+    $statementChild->bindValue(":idComponent", $id); //on utilise id du parent comme identifiant dans la table enfant
+    $statementChild->bindValue(":chipset", $graphicCard->getChipset(), PDO::PARAM_STR);
+    $statementChild->bindValue(":memory", $graphicCard->getMemory(), PDO::PARAM_STR);
+    $statementChild->execute();
     // insertion des propriétes spécifique dans la table enfant
     $db->commit();
 }

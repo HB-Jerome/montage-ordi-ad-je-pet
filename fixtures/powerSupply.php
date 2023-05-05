@@ -1,10 +1,5 @@
 <?php
 
-spl_autoload_register(function ($class) {
-    require_once "../src/$class.php";
-});
-include "../includes/config.inc.php";
-
 // on inclut la class processor pour créer les objects
 use Model\PowerSupply;
 
@@ -26,7 +21,7 @@ $powersupplys = [
         // propriétés spécifiques
         ->setBatteryPower(220),
 
-        (new PowerSupply())
+    (new PowerSupply())
         // propriétés communes
         ->setName("MSI MPG A750GF 750W 80+ Gold")
         ->setBrand(" MSI")
@@ -37,7 +32,7 @@ $powersupplys = [
         // propriétés spécifiques
         ->setBatteryPower(220),
 
-        (new PowerSupply())
+    (new PowerSupply())
         // propriétés communes
         ->setName("ASUS ROG Strix 750W Gold Bloc alimentation")
         ->setBrand(" MSI")
@@ -49,8 +44,7 @@ $powersupplys = [
         ->setBatteryPower(240),
 ];
 // parent sql preparation
-$sqlPowerSupplyParent  = "INSERT INTO component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,:isArchived)";
-var_dump($sqlPowerSupplyParent);
+$sqlPowerSupplyParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,:isArchived)";
 // child sql preparation
 $sqlPowerSupplyChild = "INSERT INTO powersupply (idComponent, batteryPower) VALUES (:idComponent, :batteryPower)";
 
@@ -71,9 +65,9 @@ foreach ($powersupplys as $powersupply) {
     $id = $db->lastInsertId();
     // insert child propriétes
     $statementChild->bindValue(':idComponent', $id, PDO::PARAM_INT);
-    $statementChild->bindValue(':batteryPower', $powersupply-> getBatteryPower(), PDO::PARAM_STR);
-     // execution de réquete
-     $statementChild->execute();
+    $statementChild->bindValue(':batteryPower', $powersupply->getBatteryPower(), PDO::PARAM_STR);
+    // execution de réquete
+    $statementChild->execute();
 
 }
 ?>

@@ -1,9 +1,4 @@
 <?php
-spl_autoload_register(function ($class) {
-    require_once "../src/$class.php";
-});
-include "../includes/config.inc.php";
-
 
 // on inclut la class MotherBoard pour créer les objects
 use Model\MotherBoard;
@@ -59,7 +54,7 @@ $motherBoards = [
 ];
 
 // on prépare l'insertion des propriétés communnes dans la table parent
-$sqlParent = "INSERT INTO component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
+$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived) VALUES (:name,:brand,:description,:price,:pcType,false)";
 // on prepare l'insertion des propriétés spécifiques dans la table enfant
 $sqlChild = "INSERT INTO MotherBoard (idComponent,socket,format) VALUES (:idComponent,:socket,:format)";
 
@@ -67,11 +62,11 @@ $sqlChild = "INSERT INTO MotherBoard (idComponent,socket,format) VALUES (:idComp
 foreach ($motherBoards as $motherBoard) {
     $db->beginTransaction();
     $statement = $db->prepare($sqlParent);
-    $statement->bindValue(":name", $motherBoard->getName(),PDO::PARAM_STR);
-    $statement->bindValue(":brand", $motherBoard->getBrand(),PDO::PARAM_STR);
-    $statement->bindValue(":description", $motherBoard->getDescription(),PDO::PARAM_STR);
+    $statement->bindValue(":name", $motherBoard->getName(), PDO::PARAM_STR);
+    $statement->bindValue(":brand", $motherBoard->getBrand(), PDO::PARAM_STR);
+    $statement->bindValue(":description", $motherBoard->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(":price", $motherBoard->getPrice());
-    $statement->bindValue(":pcType", $motherBoard->getPrice(),PDO::PARAM_STR);
+    $statement->bindValue(":pcType", $motherBoard->getPrice(), PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétés communes dans la table parent
 
@@ -80,8 +75,8 @@ foreach ($motherBoards as $motherBoard) {
     $id = intval($id);
     $statement = $db->prepare($sqlChild);
     $statement->bindValue(":idComponent", $id); //on utilise id du parent comme identifiant dans la table enfant
-    $statement->bindValue(":socket", $motherBoard->getSocket(),PDO::PARAM_STR);
-    $statement->bindValue(":format", $motherBoard->getFormat(),PDO::PARAM_STR);
+    $statement->bindValue(":socket", $motherBoard->getSocket(), PDO::PARAM_STR);
+    $statement->bindValue(":format", $motherBoard->getFormat(), PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétés spécifiques dans la table enfant
     $db->commit();
