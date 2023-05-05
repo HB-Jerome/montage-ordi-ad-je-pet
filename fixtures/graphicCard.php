@@ -63,11 +63,11 @@ $sqlChild = "INSERT INTO GraphicCard (idComponent,chipset,memory) VALUES (:idCom
 foreach ($graphicCards as $graphicCard) {
     $db->beginTransaction();
     $statement = $db->prepare($sqlParent);
-    $statement->bindValue(":name", $graphicCard->getName());
-    $statement->bindValue(":brand", $graphicCard->getBrand());
-    $statement->bindValue(":description", $graphicCard->getDescription());
+    $statement->bindValue(":name", $graphicCard->getName(),PDO::PARAM_STR);
+    $statement->bindValue(":brand", $graphicCard->getBrand(),PDO::PARAM_STR);
+    $statement->bindValue(":description", $graphicCard->getDescription(),PDO::PARAM_STR);
     $statement->bindValue(":price", $graphicCard->getPrice());
-    $statement->bindValue(":pcType", $graphicCard->getPrice());
+    $statement->bindValue(":pcType", $graphicCard->getPrice(),PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétes communne dans la table parent
 
@@ -76,8 +76,8 @@ foreach ($graphicCards as $graphicCard) {
     $id = intval($id);
     $statement = $db->prepare($sqlChild);
     $statement->bindValue(":idComponent", $id); //on utilise id du parent comme identifiant dans la table enfant
-    $statement->bindValue(":chipset", $graphicCard->getChipset());
-    $statement->bindValue(":memory", $graphicCard->getMemory());
+    $statement->bindValue(":chipset", $graphicCard->getChipset(),PDO::PARAM_STR);
+    $statement->bindValue(":memory", $graphicCard->getMemory(),PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétes spécifique dans la table enfant
     $db->commit();
