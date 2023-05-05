@@ -45,7 +45,7 @@ $screens = [
 ];
 
 // parent sql preparation
-$sqlScreenParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category) VALUES (:name,:brand,:description,:price,:pcType,false,:category)";
+$sqlScreenParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:pcType,false,:category,5)";
 // child processor sql preparation
 $sqlScreenChild = "INSERT INTO screen (idComponent, size) VALUES (:idComponent, :size)";
 

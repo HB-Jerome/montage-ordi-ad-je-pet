@@ -54,7 +54,7 @@ $hardDiscs = [
 ];
 
 // on prépare l'insertion des propriétés communnes dans la table parent
-$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category) VALUES (:name,:brand,:description,:price,:pcType,false,:category)";
+$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:pcType,false,:category,26)";
 // on prepare l'insertion des propriétés spécifiques dans la table enfant
 $sqlChild = "INSERT INTO HardDisc (idComponent,capacity,ssd) VALUES (:idComponent,:capacity,:ssd)";
 

@@ -50,7 +50,7 @@ $processors = [
         ->setCpuFrequency(4.5),
 ];
 // parent sql preparation
-$sqlProcessorParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category) VALUES (:name,:brand,:description,:price,:pcType,false,:category)";
+$sqlProcessorParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:pcType,false,:category,5)";
 // child processor sql preparation
 $sqlProcessorChild = "INSERT INTO  processor (idComponent, coreNumber, compatibleChipset, cpuFrequency) VALUES (:idComponent, :coreNumber, :compatibleChipset, :cpuFrequency) ";
 

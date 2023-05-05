@@ -53,7 +53,7 @@ $graphicCards = [
 ];
 
 // on prepare l'insertion des propriétes communne dans la table parent
-$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category) VALUES (:name,:brand,:description,:price,:pcType,false,:category)";
+$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:pcType,false,:category,15)";
 // on prepare l'insertion des propriétes spécifique dans la table enfant
 $sqlChild = "INSERT INTO GraphicCard (idComponent,chipset,memory) VALUES (:idComponent,:chipset,:memory)";
 
