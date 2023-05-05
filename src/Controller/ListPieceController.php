@@ -3,7 +3,7 @@ namespace Controller;
 
 use PDO;
 
-class ListPiece extends AbstractController
+class ListPieceController extends AbstractController
 {
     public function getContent(): array
     {
