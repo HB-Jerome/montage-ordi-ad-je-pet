@@ -3,17 +3,18 @@
 namespace Controller;
 
 
-class ModelController extends AbstractController
+class ModelCreationController extends AbstractController
 {
     public function getContent(): array
     {
+
 
         return [];
     }
 
     public function getFileName(): string
     {
-        return 'model';
+        return 'ModelCreation';
     }
 
     public function getPageTitle(): string
