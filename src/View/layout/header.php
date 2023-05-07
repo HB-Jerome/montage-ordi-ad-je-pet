@@ -27,13 +27,16 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-between">
                     <?php
-                    if (isset($_SESSION['user']) && ($_SESSION['user']->getRole() == "Concepteur")) {
+                    if (isset($_SESSION['user']) && ($_SESSION['user']->getRole() == "concepteur")) {
                         ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#">list piece</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">list model</a>
+                            <a class="nav-link" href="#">list modele</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?page=modelCreation">Creation modele</a>
                         </li>
 
                     <?php }
