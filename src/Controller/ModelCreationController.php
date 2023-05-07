@@ -94,12 +94,3 @@ class ModelCreationController extends AbstractController
 
         $sqlIntermediaryTable = "INSERT INTO modelpc_component (idModel,idComponent,quantity) VALUES (:idModel,:idComponent, :quantity)";
         $statementTable = $this->db->prepare($sqlIntermediaryTable);
-
-        foreach ($modelPc->getConfiguration() as $composant) {
-            $statementTable->bindValue(":idComponent", $composant["id"]);
-            $statementTable->bindValue(":quantity", $composant["quantity"]);
-            $statementTable->bindValue(":idModel", $id);
-            $statementTable->execute();
-        }
-    }
-}
