@@ -7,7 +7,7 @@ abstract class Component
 	const AVAILABLE_CATEGORIES = [
 		self::GRAPHIC_CARD,
 		self::HARD_DISC,
-		self::KEYBORD,
+		self::KEYBOARD,
 		self::MOTHER_BOARD,
 		self::POWER_SUPPLY,
 		self::PROCESSOR,
@@ -16,7 +16,7 @@ abstract class Component
 	];
 	const GRAPHIC_CARD = "GraphicCard";
 	const HARD_DISC = "HardDisc";
-	const KEYBORD = "Keyboard";
+	const KEYBOARD = "Keyboard";
 	const MOTHER_BOARD = "MotherBoard";
 	const MOUSE_AND_PAD = "MouseAndPad";
 	const POWER_SUPPLY = "PowerSupply";
@@ -117,21 +117,17 @@ abstract class Component
 		return $this;
 	}
 
-	/**
-	 * @return 
-	 */
 	public function getQuantity(): int
 	{
 		return $this->quantity;
 	}
-
-	/**
-	 * @param  $quantity 
-	 * @return self
-	 */
 	public function setQuantity(int $quantity): self
 	{
 		$this->quantity = $quantity;
 		return $this;
+	}
+	public function GetAVAILABLE_CATEGORIES(): array
+	{
+		return self::AVAILABLE_CATEGORIES;
 	}
 }

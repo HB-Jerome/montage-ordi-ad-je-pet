@@ -66,8 +66,8 @@ foreach ($mouseAndPads as $hardDisc) {
     $statement->bindValue(":brand", $hardDisc->getBrand(), PDO::PARAM_STR);
     $statement->bindValue(":description", $hardDisc->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(":price", $hardDisc->getPrice());
-    $statement->bindValue(":pcType", $hardDisc->getPrice(), PDO::PARAM_STR);
-    $statement->bindValue(":category", $hardDisc->getPrice(), PDO::PARAM_STR);
+    $statement->bindValue(":pcType", $hardDisc->getPcType(), PDO::PARAM_STR);
+    $statement->bindValue(":category", $hardDisc->GetCategory(), PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétés communes dans la table parent
 

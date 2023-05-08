@@ -6,7 +6,6 @@ include_once "hardDisc.php";
 include_once "keyboard.php";
 include_once "motherBoard.php";
 include_once "mouseAndPad.php";
-include_once "graphicCard.php";
 include_once "powerSupply.php";
 include_once "processor.php";
 include_once "ram.php";

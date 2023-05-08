@@ -63,7 +63,7 @@ class Keyboard extends Component
 
 	public function GetCategory()
 	{
-		return self::KEYBORD;
+		return self::KEYBOARD;
 	}
 
 }

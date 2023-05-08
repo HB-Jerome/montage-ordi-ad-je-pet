@@ -58,11 +58,11 @@ foreach ($screens as $screen) {
     $statement->bindValue(":brand", $screen->getBrand());
     $statement->bindValue(":description", $screen->getDescription());
     $statement->bindValue(":price", $screen->getPrice());
-    $statement->bindValue(":pcType", $screen->getPrice());
+    $statement->bindValue(":pcType", $screen->getPcType());
     $statement->bindValue(":category", $screen->GetCategory());
     $statement->execute();
     // execution de réquete
-    $statement->execute();
+
 
     $id = $db->lastInsertId();
     // insert child propriétes
