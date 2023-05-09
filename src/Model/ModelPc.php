@@ -6,8 +6,6 @@ class ModelPc
 {
     protected int $idModel;
     protected string $name;
-    protected string $pcNumber;
-    protected float $price;
     protected int $quantity;
     protected $addDate;
     protected bool $isArchived;

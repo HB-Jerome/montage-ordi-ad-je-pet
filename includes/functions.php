@@ -1,6 +1,6 @@
 <?php
 
-function displayOptions(?array $components, $category)
+function displayOptions(?array $components, $category, $curentComponentId)
 {
     ?>
     <option value=> </option>
@@ -11,7 +11,9 @@ function displayOptions(?array $components, $category)
     });
     foreach ($options as $option) {
         ?>
-        <option value=<?= $option->getidComponent() ?>> <?= $option->getName() ?></option>
+        <option <?php if ($curentComponentId == $option->getidComponent()) {
+            echo "selected";
+        } ?> value=<?= $option->getidComponent() ?>> <?= $option->getName() ?></option>
         <?php
     }
 }
