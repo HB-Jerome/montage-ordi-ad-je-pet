@@ -29,12 +29,14 @@ class ModelCreationController extends AbstractController
 
     public function getContent(): array
     {
-        $ModelHandler = new ModelHandler($_POST, $this->db);
-        if ($ModelHandler->isSubmitted()) {
-            if ($ModelHandler->modelIsValid()) {
-                $modelPc = $ModelHandler->factory();
-                $this->insertModelBDD($modelPc);
-            }
+
+        $ModelHandler = new ModelHandler($_POST);
+        var_dump($ModelHandler);
+        var_dump($ModelHandler->modelIsValid());
+        if ($ModelHandler->isSubmitted() && $ModelHandler->modelIsValid()) {
+            $modelPc = $ModelHandler->factory();
+            $this->insertModelBDD($modelPc);
+
         }
         $Components = $this->getComponents();
         return ["Components" => $Components, "ModelHandler" => $ModelHandler];
@@ -79,11 +81,9 @@ class ModelCreationController extends AbstractController
 
     public function insertModelBDD(ModelPc $modelPc)
     {
-        $sqlModel = "INSERT INTO Model (name,pcNumber,price,quantity,addDate,isArchived) VALUES (:name,:pcNumber,:price,:quantity,:addDate,:isArchived)";
+        $sqlModel = "INSERT INTO ModelPc (name,quantity,addDate,isArchived) VALUES (:name,:quantity,:addDate,:isArchived)";
         $statementModel = $this->db->prepare($sqlModel);
         $statementModel->bindValue(":name", $modelPc->getName());
-        $statementModel->bindValue(":pcNumber", $modelPc->getPcNumber());
-        $statementModel->bindValue(":price", $modelPc->getPrice());
         $statementModel->bindValue(":quantity", $modelPc->getQuantity());
         $statementModel->bindValue(":addDate", $modelPc->getAddDate());
         $statementModel->bindValue(":isArchived", $modelPc->getIsArchived());
@@ -92,11 +92,12 @@ class ModelCreationController extends AbstractController
         $id = $this->db->lastInsertId();
         $id = intval($id);
 
-        $sqlIntermediaryTable = "INSERT INTO modelcomponent (idModel,idComponent) VALUES (:idModel,:idComponent)";
+        $sqlIntermediaryTable = "INSERT INTO modelpc_component (idModel,idComponent,quantity) VALUES (:idModel,:idComponent, :quantity)";
         $statementTable = $this->db->prepare($sqlIntermediaryTable);
 
         foreach ($modelPc->getConfiguration() as $composant) {
-            $statementTable->bindValue(":idComponent", $composant->getIdComponent());
+            $statementTable->bindValue(":idComponent", $composant["id"]);
+            $statementTable->bindValue(":quantity", $composant["quantity"]);
             $statementTable->bindValue(":idModel", $id);
             $statementTable->execute();
         }
