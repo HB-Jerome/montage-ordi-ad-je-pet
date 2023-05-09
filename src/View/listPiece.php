@@ -5,7 +5,7 @@
     <!-- filtre -->
     <div class=" d-md-flex align-item-center gap-3 ">
         <div>
-            <form action="" method="post" class="">
+            <form action="" method="post" class="position-fixed">
                 <!-- category filter -->
                 <select id="filter-from" class="form-select mb-4" name="category">
                     <option value="">Choisir une catégorie</option>
@@ -16,7 +16,8 @@
                 <!-- brand/marque filter -->
                 <select id="filter-from" class="form-select mt-4" name="brand">
                     <option value="" selected>Choisir une Marque</option>
-                    <?php foreach ($brandResults as $brand) { ?>
+                    <?php foreach ($brandResults as $brand) {
+                        ?>
                         <option value="<?= $brand['brand']; ?>">
                             <?= $brand['brand']; ?>
                         </option>
@@ -31,12 +32,13 @@
 
                 <!-- price min -->
                 <div class="mt-4 rounded-2">
-                    <input name="minPrice" placeholder="MinPrice ">
+                    <?php // var_dump($filters, $brandResults); ?>
+                    <input name="minPrice" placeholder="MinPrice" value="<?= $filters->getMinPrice(); ?>">
                 </div>
 
                 <!-- price max -->
                 <div class="mt-4 rounded-2">
-                    <input name="maxPrice" placeholder="maxPrice">
+                    <input name="maxPrice" placeholder="maxPrice" value="<?= $filters->getMaxPrice(); ?>">
                 </div>
                 <div class="ms-4 mt-3">
                     <input type="submit" value="submit" class="btn btn-primary">
