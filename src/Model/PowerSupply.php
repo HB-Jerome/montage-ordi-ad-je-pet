@@ -36,7 +36,7 @@ class PowerSupply extends Component
 		$this->batteryPower = $batteryPower;
 		return $this;
 	}
-	public function GetCategory()
+	public function GetCategory(): string
 	{
 		return self::POWER_SUPPLY;
 	}

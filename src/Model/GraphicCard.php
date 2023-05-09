@@ -30,7 +30,7 @@ class GraphicCard extends Component
 		return $this;
 	}
 
-	public function GetCategory()
+	public function GetCategory(): string
 	{
 		return self::GRAPHIC_CARD;
 	}

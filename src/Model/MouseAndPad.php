@@ -29,7 +29,7 @@ class MouseAndPad extends Component
 		$this->keyType = $keyType;
 		return $this;
 	}
-	public function GetCategory()
+	public function GetCategory(): string
 	{
 		return self::MOUSE_AND_PAD;
 	}
