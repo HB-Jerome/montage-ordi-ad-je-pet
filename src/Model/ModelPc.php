@@ -22,17 +22,6 @@ class ModelPc
         return $this;
     }
 
-    public function getPcNumber(): string
-    {
-        return $this->pcNumber;
-    }
-
-    public function setPcNumber(string $pcNumber): self
-    {
-        $this->pcNumber = $pcNumber;
-        return $this;
-    }
-
     public function getName(): string
     {
         return $this->name;
@@ -41,17 +30,6 @@ class ModelPc
     public function setName(string $name): self
     {
         $this->name = $name;
-        return $this;
-    }
-
-    public function getPrice(): float
-    {
-        return $this->price;
-    }
-
-    public function setPrice(float $price): self
-    {
-        $this->price = $price;
         return $this;
     }
 
