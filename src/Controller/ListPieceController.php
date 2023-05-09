@@ -24,15 +24,18 @@ class ListPieceController extends AbstractController
         if (!empty($filters->getBrand())) {
             $criterias[] = 'brand = :brand';
             $params[':brand'] = $filters->getBrand(); // brand params 
-
         }
         if (!empty($filters->getCategory())) {
             $criterias[] = 'category = :category';
             $params[':category'] = $filters->getCategory(); //category params 
         }
         if (!empty($filters->getMinPrice())) {
-            $criterias[] = 'price >= :minprice';
+            $criterias[] = 'price <= :minprice';
             $params[':minprice'] = $filters->getMinPrice(); //minprice params 
+        }
+        if (!empty($filters->getMaxPrice())) {
+            $criterias[] = 'price >= :maxprice';
+            $params[':maxprice'] = $filters->getMaxPrice(); //maxprice params 
         }
 
         if (!empty($criterias)) {
@@ -44,13 +47,13 @@ class ListPieceController extends AbstractController
         $statement = $this->db->prepare($sql);
         $statement->execute($params);
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($results);
 
         return [
             "results" => $results,
             "catResults" => Component::AVAILABLE_CATEGORIES,
             // fetching the consts category in database
             "brandResults" => $brandResults,
+            "filters" => $filters,
         ];
     }
 
