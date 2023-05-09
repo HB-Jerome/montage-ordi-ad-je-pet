@@ -3,7 +3,7 @@
 namespace Controller;
 
 use Model\ModelPc;
-use Service\ModelFactory;
+use Service\ModelHandler;
 use Model\GraphicCard;
 use Model\HardDisc;
 use Model\Keyboard;
@@ -17,22 +17,6 @@ use PDO;
 
 class ModelCreationController extends AbstractController
 {
-
-    public function getContent(): array
-    {
-
-        $ModelFactory = new ModelFactory($_POST, $this->db);
-        if ($ModelFactory->modelIsValid()) {
-            $modelPc = $ModelFactory->handleData();
-            $this->insertModelBDD($modelPc);
-        }
-
-        $Components = $this->getComponents();
-
-
-        return ["Components" => $Components, "ModelFactory" => $ModelFactory];
-    }
-
     public function getFileName(): string
     {
         return 'ModelCreation';
@@ -42,6 +26,20 @@ class ModelCreationController extends AbstractController
     {
         return 'Creation modèle !';
     }
+
+    public function getContent(): array
+    {
+        $ModelHandler = new ModelHandler($_POST, $this->db);
+        if ($ModelHandler->isSubmitted()) {
+            if ($ModelHandler->modelIsValid()) {
+                $modelPc = $ModelHandler->factory();
+                $this->insertModelBDD($modelPc);
+            }
+        }
+        $Components = $this->getComponents();
+        return ["Components" => $Components, "ModelHandler" => $ModelHandler];
+    }
+
 
     public function getComponents()
     {
@@ -70,9 +68,7 @@ class ModelCreationController extends AbstractController
             $sqlClass = 'SELECT * FROM Component as c 
                             INNER JOIN ' . $TableName . '  AS g ON c.idComponent = g.idComponent WHERE c.idComponent=' . $id;
             $statementClass = $this->db->prepare($sqlClass);
-            // $statementClass->bindValue(":id", $id);
             $statementClass->setFetchMode(PDO::FETCH_CLASS, $class);
-
             $statementClass->execute();
             $Component = $statementClass->fetch();
             $Components[] = $Component;
@@ -95,13 +91,11 @@ class ModelCreationController extends AbstractController
 
         $id = $this->db->lastInsertId();
         $id = intval($id);
-        var_dump($id);
 
         $sqlIntermediaryTable = "INSERT INTO modelcomponent (idModel,idComponent) VALUES (:idModel,:idComponent)";
         $statementTable = $this->db->prepare($sqlIntermediaryTable);
 
         foreach ($modelPc->getConfiguration() as $composant) {
-            var_dump($composant->getIdComponent());
             $statementTable->bindValue(":idComponent", $composant->getIdComponent());
             $statementTable->bindValue(":idModel", $id);
             $statementTable->execute();

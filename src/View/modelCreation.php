@@ -1,19 +1,23 @@
 <?php
-if (empty($ModelFactory->getErrors())) {
-    ?>
-    <div class="alert alert-success" role="alert">
-        This is a success !
-    </div>
-    <?php
-} else {
-    foreach ($ModelFactory->getErrors() as $error) {
+
+if ($ModelHandler->isSubmitted()) {
+    if (empty($ModelHandler->getErrors())) {
         ?>
-        <div class="alert alert-danger" role="alert">
-            <?= $error ?>
+        <div class="alert alert-success" role="alert">
+            This is a success !
         </div>
         <?php
+    } else {
+        foreach ($ModelHandler->getErrors() as $error) {
+            ?>
+            <div class="alert alert-danger" role="alert">
+                <?= $error ?>
+            </div>
+            <?php
+        }
     }
 }
+
 
 
 ?>
