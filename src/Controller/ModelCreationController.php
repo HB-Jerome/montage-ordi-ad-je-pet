@@ -31,8 +31,6 @@ class ModelCreationController extends AbstractController
     {
 
         $ModelHandler = new ModelHandler($_POST);
-        var_dump($ModelHandler);
-        var_dump($ModelHandler->modelIsValid());
         if ($ModelHandler->isSubmitted() && $ModelHandler->modelIsValid()) {
             $modelPc = $ModelHandler->factory();
             $this->insertModelBDD($modelPc);
@@ -92,5 +90,18 @@ class ModelCreationController extends AbstractController
         $id = $this->db->lastInsertId();
         $id = intval($id);
 
-        $sqlIntermediaryTable = "INSERT INTO modelpc_component (idModel,idComponent,quantity) VALUES (:idModel,:idComponent, :quantity)";
+        $sqlIntermediaryTable = "INSERT INTO modelpc_component (idComponent,idModel,quantity) VALUES (:idComponent,:idModel,:quantity)";
         $statementTable = $this->db->prepare($sqlIntermediaryTable);
+        foreach ($modelPc->getConfiguration() as $component) {
+
+            $statementTable->bindValue(":idComponent", $component["id"]);
+            $statementTable->bindValue(":quantity", $component["quantity"]);
+            $statementTable->bindValue(":idModel", $id);
+
+            $statementTable->execute();
+        }
+        ;
+
+
+    }
+}

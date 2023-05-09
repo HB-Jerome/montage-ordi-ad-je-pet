@@ -16,12 +16,6 @@ $pagesHandler = new PagesHandler([
     new Page('logout', LogoutController::class),
     new Page('concepteur', ConcepteurController::class),
     new Page('monteur', MonteurController::class),
-<<<<<<< HEAD
-    new Page('listPiece', ListPieceController::class),
-    new Page('model', ModelController::class),
-    new Page('modelCreation', ModelCreationController::class),
-=======
     new Page('modelCreation', ModelCreationController::class),
     new Page('listPiece', ListPieceController::class),
->>>>>>> 21e96b9 (for git pull)
 ]);

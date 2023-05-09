@@ -166,16 +166,7 @@ class ModelHandler
         }
 
     }
-    // public function fetchComponent($id, $table, $class)
-    // {
-    //     $sqlClass = 'SELECT * FROM Component as c 
-    //         INNER JOIN ' . $table . '  AS g ON c.idComponent = g.idComponent WHERE c.idComponent=' . $id;
-    //     $statementClass = $this->db->prepare($sqlClass);
-    //     $statementClass->setFetchMode(PDO::FETCH_CLASS, $class);
-    //     $statementClass->execute();
-    //     $obj = $statementClass->fetch();
-    //     $this->ModelContent[$table] = $obj;
-    // }
+
 
     public function factory()
     {
