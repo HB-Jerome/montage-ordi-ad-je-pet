@@ -35,7 +35,7 @@ class Screen extends Component
 		$this->size = $size;
 		return $this;
 	}
-	public function GetCategory()
+	public function GetCategory(): string
 	{
 		return self::SCREEN;
 	}

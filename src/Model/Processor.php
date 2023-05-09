@@ -48,7 +48,7 @@ class Processor extends Component
 		$this->cpuFrequency = $cpuFrequency;
 		return $this;
 	}
-	public function GetCategory()
+	public function GetCategory(): string
 	{
 		return self::PROCESSOR;
 	}

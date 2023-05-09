@@ -13,7 +13,7 @@ $powersupplys = [
     (new PowerSupply())
         // propriétés communes
         ->setName("Alimentation PC RS PRO, 850W, 5 → 12V c.c.")
-        ->setBrand(" MSI")
+        ->setBrand("MSI")
         ->setDescription($description1)
         ->setPrice(140)
         ->setPcType("fixe")
@@ -24,7 +24,7 @@ $powersupplys = [
     (new PowerSupply())
         // propriétés communes
         ->setName("MSI MPG A750GF 750W 80+ Gold")
-        ->setBrand(" MSI")
+        ->setBrand("MSI")
         ->setDescription($description2)
         ->setPrice(211)
         ->setPcType("fixe")
@@ -35,7 +35,7 @@ $powersupplys = [
     (new PowerSupply())
         // propriétés communes
         ->setName("ASUS ROG Strix 750W Gold Bloc alimentation")
-        ->setBrand(" MSI")
+        ->setBrand("MSI")
         ->setDescription($description3)
         ->setPrice(92)
         ->setPcType("fixe")

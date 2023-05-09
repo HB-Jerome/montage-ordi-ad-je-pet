@@ -29,7 +29,7 @@ class MotherBoard extends Component
 		$this->format = $format;
 		return $this;
 	}
-	public function GetCategory()
+	public function GetCategory(): string
 	{
 		return self::MOTHER_BOARD;
 	}
