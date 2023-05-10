@@ -55,6 +55,7 @@ class ListPieceController extends AbstractController
             "brandResults" => $brandResults,
             "filters" => $filters,
         ];
+        
     }
 
     public function getFileName(): string

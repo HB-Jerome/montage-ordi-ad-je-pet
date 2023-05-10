@@ -41,7 +41,7 @@
                     <input name="maxPrice" placeholder="maxPrice" value="<?= $filters->getMaxPrice(); ?>">
                 </div>
                 <div class="ms-4 mt-3">
-                    <input type="submit" value="submit" class="btn btn-primary">
+                    <input name="quantity" type="submit" value="submit" class="btn btn-primary">
                 </div>
             </form>
         </div>
