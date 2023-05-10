@@ -55,7 +55,7 @@
                     <th scope="col">Type de Pc</th>
                     <th scope="col">Categorie</th>
                     <th scope="col">Disponibilité</th>
-                    <th scope="col">Ajouter</th>
+                    <th scope="col">Plus de Détails</th>
                     <!-- <th scope="col">Disponibilité</th> -->
                 </tr>
             </thead>
@@ -88,9 +88,9 @@
                             <?= $result['isArchived']; ?>
                         </td>
                         <td class="col-1">
-                            <a type="submit" class="btn btn-primary">Add</a>
+                            <a type="submit" class="btn btn-primary">Détail</a>
                         </td>
-                    </tr>
+                    </tr>s
 
                     <?php
                 } ?>
