@@ -1,75 +1,102 @@
 <section>
+    <!-- add the filtre of items per category
+         -->
     <h2 class="text-center p-4">Liste des pièces</h2>
     <!-- filtre -->
-    <div>
-        <!-- <aside class="col 12 col-md-2">
-            <form>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    <div class=" d-md-flex align-item-center gap-3 ">
+        <div>
+            <form action="" method="post" class="position-fixed">
+                <!-- category filter -->
+                <select id="filter-from" class="form-select mb-4" name="category">
+                    <option value="">Choisir une catégorie</option>
+                    <?php foreach ($catResults as $cat) { ?>
+                        <option value="<?= $cat; ?>"><?= $cat; ?></option>
+                    <?php } ?>
+                </select>
+                <!-- brand/marque filter -->
+                <select id="filter-from" class="form-select mt-4" name="brand">
+                    <option value="" selected>Choisir une Marque</option>
+                    <?php foreach ($brandResults as $brand) {
+                        ?>
+                        <option value="<?= $brand['brand']; ?>">
+                            <?= $brand['brand']; ?>
+                        </option>
+                    <?php } ?>
+
+                </select>
+                <!-- isArchived filter -->
+                <select id="filter-from" class="form-select mt-4" name="isArchived">
+                    <option value="0" selected>Non archivé</option>
+                    <option value="1">Archivé</option>
+                </select>
+
+                <!-- price min -->
+                <div class="mt-4 rounded-2">
+                    <?php // var_dump($filters, $brandResults); ?>
+                    <input name="minPrice" placeholder="MinPrice" value="<?= $filters->getMinPrice(); ?>">
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+
+                <!-- price max -->
+                <div class="mt-4 rounded-2">
+                    <input name="maxPrice" placeholder="maxPrice" value="<?= $filters->getMaxPrice(); ?>">
                 </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                <div class="ms-4 mt-3">
+                    <input name="quantity" type="submit" value="submit" class="btn btn-primary">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-        </aside> -->
-        <div class="col 12 col-md-10">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Marque</th>
-                        <th scope="col">Déscription</th>
-                        <th scope="col">Prix</th>
-                        <th scope="col">Type de Pc</th>
-                        <th scope="col">Disponibilité</th>
-                    </tr>
-                </thead>
-                <?php
-                // select itemes from database
-                // var_dump($results);
-                ?>
-                <tbody>
-                    <!-- show items on the page -->
-                    <?php foreach ($results as $result) { ?>
-                        <tr>
-                            <th scope="row">
-                                <?= $result["idComponent"]; ?>
-                            </th>
-                            <td>
-                                <?= $result['name']; ?>
-                            </td>
-                            <td>
-                                <?= $result['brand']; ?>
-                            </td>
-                            <td>
-                                <?= $result['description']; ?>
-                            </td>
-                            <td>
-                                <?= $result['price']; ?>
-                            </td>
-                            <td>
-                                <?= $result['pcType']; ?>
-                            </td>
-                            <td>
-                                <?= $result['isArchived']; ?>
-                            </td>
-                        </tr>
-
-                        <?php
-                    } ?>
-
-                </tbody>
-            </table>
         </div>
+        <!-- table Liste -->
+        <table id="tableList" style="margin-left: 220px;" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Marque</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Type de Pc</th>
+                    <th scope="col">Categorie</th>
+                    <th scope="col">Disponibilité</th>
+                    <th scope="col">Ajouter</th>
+                    <!-- <th scope="col">Disponibilité</th> -->
+                </tr>
+            </thead>
+            <?php
+            // select itemes from database
+            ?>
+            <tbody>
+                <!-- show items on the page -->
+                <?php
+
+                foreach ($results as $result) { ?>
+                    <tr>
+                        <td class="col-3">
+                            <?= $result['name']; ?>
+                        </td>
+                        <td class="col-1">
+                            <?= $result['brand']; ?>
+                        </td>
+                        <td class="col-1">
+                            <?= $result['price']; ?>
+                        </td>
+                        <td class="col-1">
+                            <?= $result['pcType']; ?>
+                        </td>
+
+                        <td class="col-1">
+                            <?= $result['category']; ?>
+                        </td>
+                        <td class="col-1">
+                            <?= $result['isArchived']; ?>
+                        </td>
+                        <td class="col-1">
+                            <a type="submit" class="btn btn-primary">Add</a>
+                        </td>
+                    </tr>
+
+                    <?php
+                } ?>
+
+            </tbody>
+        </table>
     </div>
 
 </section>

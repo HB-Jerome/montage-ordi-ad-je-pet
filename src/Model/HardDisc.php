@@ -29,7 +29,7 @@ class HardDisc extends Component
 		$this->ssd = $ssd;
 		return $this;
 	}
-	public function GetCategory()
+	public function GetCategory(): string
 	{
 		return self::HARD_DISC;
 	}

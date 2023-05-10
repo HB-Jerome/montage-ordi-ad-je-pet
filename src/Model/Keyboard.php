@@ -61,7 +61,7 @@ class Keyboard extends Component
 		return $this;
 	}
 
-	public function GetCategory()
+	public function GetCategory(): string
 	{
 		return self::KEYBOARD;
 	}

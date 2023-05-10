@@ -9,6 +9,7 @@ abstract class Component
 		self::HARD_DISC,
 		self::KEYBOARD,
 		self::MOTHER_BOARD,
+		self::MOUSE_AND_PAD,
 		self::POWER_SUPPLY,
 		self::PROCESSOR,
 		self::RAM,
@@ -33,6 +34,7 @@ abstract class Component
 	protected string $pcType;
 	protected bool $isArchived;
 	protected string $category;
+	protected array $categoryFilter = [];
 
 
 	public function getidComponent(): int
@@ -130,4 +132,13 @@ abstract class Component
 	{
 		return self::AVAILABLE_CATEGORIES;
 	}
+	public function getCategory(): string {
+		return $this->category;
+	}
+	
+	public function setCategory(string $category): self {
+		$this->category = $category;
+		return $this;
+	}
+
 }
