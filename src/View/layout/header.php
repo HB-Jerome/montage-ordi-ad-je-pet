@@ -33,7 +33,7 @@
                             <a class="nav-link" href="?page=listPiece">Liste des pièces</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">list modele</a>
+                            <a class="nav-link" href="?page=listModel">list modele</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="?page=modelCreation">Creation modele</a>
