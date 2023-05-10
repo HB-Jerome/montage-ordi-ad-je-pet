@@ -66,7 +66,7 @@ foreach ($graphicCards as $graphicCard) {
     $statementParent->bindValue(":brand", $graphicCard->getBrand(), PDO::PARAM_STR);
     $statementParent->bindValue(":description", $graphicCard->getDescription(), PDO::PARAM_STR);
     $statementParent->bindValue(":price", $graphicCard->getPrice());
-    $statementParent->bindValue(":pcType", $graphicCard->getPrice(), PDO::PARAM_STR);
+    $statementParent->bindValue(":pcType", $graphicCard->getPcType(), PDO::PARAM_STR);
     $statementParent->bindValue(":category", $graphicCard->GetCategory(), PDO::PARAM_STR);
     $statementParent->execute();
     // insertion des propriétes communne dans la table parent

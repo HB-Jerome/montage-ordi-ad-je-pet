@@ -65,7 +65,7 @@ foreach ($keyboards as $keyboard) {
     $statement->bindValue(":description", $keyboard->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(":price", $keyboard->getPrice());
     $statement->bindValue(":pcType", $keyboard->getPcType(), PDO::PARAM_STR);
-    $statement->bindValue(":category", $keyboard->getPcType(), PDO::PARAM_STR);
+    $statement->bindValue(":category", $keyboard->GetCategory(), PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétes communne dans la table parent
 

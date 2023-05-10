@@ -66,7 +66,7 @@ foreach ($motherBoards as $motherBoard) {
     $statement->bindValue(":brand", $motherBoard->getBrand(), PDO::PARAM_STR);
     $statement->bindValue(":description", $motherBoard->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(":price", $motherBoard->getPrice());
-    $statement->bindValue(":pcType", $motherBoard->getPrice(), PDO::PARAM_STR);
+    $statement->bindValue(":pcType", $motherBoard->getPcType(), PDO::PARAM_STR);
     $statement->bindValue(":category", $motherBoard->GetCategory(), PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétés communes dans la table parent
