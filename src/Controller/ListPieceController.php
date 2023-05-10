@@ -30,11 +30,11 @@ class ListPieceController extends AbstractController
             $params[':category'] = $filters->getCategory(); //category params 
         }
         if (!empty($filters->getMinPrice())) {
-            $criterias[] = 'price <= :minprice';
+            $criterias[] = 'price >= :minprice';
             $params[':minprice'] = $filters->getMinPrice(); //minprice params 
         }
         if (!empty($filters->getMaxPrice())) {
-            $criterias[] = 'price >= :maxprice';
+            $criterias[] = 'price <= :maxprice';
             $params[':maxprice'] = $filters->getMaxPrice(); //maxprice params 
         }
 
