@@ -14,6 +14,18 @@ abstract class Component
 		self::PROCESSOR,
 		self::RAM,
 		self::SCREEN,
+
+	];
+	const AVAILABLE_CLASSES = [
+		self::GRAPHIC_CARD => GraphicCard::class,
+		self::HARD_DISC => HardDisc::class,
+		self::KEYBOARD => Keyboard::class,
+		self::MOTHER_BOARD => MotherBoard::class,
+		self::POWER_SUPPLY => PowerSupply::class,
+		self::MOUSE_AND_PAD => MouseAndPad::class,
+		self::PROCESSOR => PowerSupply::class,
+		self::RAM => Processor::class,
+		self::SCREEN => HardDisc::class,
 	];
 	const GRAPHIC_CARD = "GraphicCard";
 	const HARD_DISC = "HardDisc";
