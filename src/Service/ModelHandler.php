@@ -173,7 +173,7 @@ class ModelHandler
         $model = new ModelPc();
         $model
             ->setName($this->name)
-            ->setAddDate(date("m.d.y , G:i:s "))
+            ->setAddDate(date("y/m/d H:i"))
             ->setQuantity(0)
             ->setIsArchived(false)
             ->setConfiguration(

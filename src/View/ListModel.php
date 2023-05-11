@@ -1,28 +1,40 @@
 <main>
-    <h1>Liste des modeles</h1>
+    <h1 class="text-center">Liste des modeles</h1>
 
-    <div class="row">
+    <div class="row my-5 gap-5">
         <?php foreach ($models as $model) {
             ?>
 
 
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
+            <div class="card " style="width: 25rem;">
+                <div class="card-body mx-auto">
                     <h5 class="card-title">
                         <?= $model->getName() ?>
                     </h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
+                    <p class="card-text">
+                    </p>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
+                <ul class="list-group list-group-flush  mx-auto">
+                    <li class="list-group-item">quantity:
+                        <?= $model->getQuantity() ?>
+                    </li>
+                    <li class="list-group-item">price:
+                        <?= $model->getPrice() ?> €
+                    </li>
+                    <li class="list-group-item">isArchived:
+                        <?php if ($model->getIsArchived()) {
+                            echo "true";
+                        } else {
+                            echo "false";
+                        } ?>
+                    </li>
+                    <li class="list-group-item">date d'ajout:
+                        <?= $model->getAddDate() ?>
+                    </li>
                 </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                <div class="card-body  mx-auto">
+                    <a href="?modificationModel&idModel=<?= $model->getIdModel() ?>" class="card-link">modifier</a>
+                    <a href="?detailModel&idModel=<?= $model->getIdModel() ?>" class="card-link">details</a>
                 </div>
             </div>
             <?php

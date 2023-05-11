@@ -6,7 +6,6 @@ use Model\Component;
 // Creation class enfant Keyboard which extends Component
 class Keyboard extends Component
 {
-	protected int $idComponent;
 	protected bool $isWireless;
 	protected bool $withPad;
 	protected string $keyType;

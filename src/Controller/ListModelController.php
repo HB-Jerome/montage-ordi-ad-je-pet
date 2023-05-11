@@ -3,6 +3,7 @@
 namespace Controller;
 
 use PDO;
+use Model\Component;
 use Model\ModelPc;
 
 
@@ -10,7 +11,6 @@ class ListModelController extends AbstractController
 {
     public function getContent(): array
     {
-
         $models = $this->getModels();
 
         return ["models" => $models];
@@ -35,7 +35,6 @@ class ListModelController extends AbstractController
         $statement->setFetchMode(PDO::FETCH_CLASS, ModelPc::class);
         $statement->execute();
         $models = $statement->fetchAll();
-        var_dump($models);
         return $models;
     }
 

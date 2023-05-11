@@ -6,7 +6,6 @@ use Model\Component;
 // Creation class enfant RAM which extends Component
 class Ram extends Component
 {
-	protected int $idComponent;
 	protected int $capacity;
 	protected int $numberOfBars;
 	protected string $description;

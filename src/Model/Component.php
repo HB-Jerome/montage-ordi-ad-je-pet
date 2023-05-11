@@ -2,8 +2,17 @@
 namespace Model; // afin que l'autoload puisse retrouver notre classe. Model correspond au nom du dossier
 
 // Création de la classe parent Component
-abstract class Component
+class Component
 {
+	const GRAPHIC_CARD = "GraphicCard";
+	const HARD_DISC = "HardDisc";
+	const KEYBOARD = "Keyboard";
+	const MOTHER_BOARD = "MotherBoard";
+	const MOUSE_AND_PAD = "MouseAndPad";
+	const POWER_SUPPLY = "PowerSupply";
+	const PROCESSOR = "Processor";
+	const RAM = "Ram";
+	const SCREEN = "Screen";
 	const AVAILABLE_CATEGORIES = [
 		self::GRAPHIC_CARD,
 		self::HARD_DISC,
@@ -23,30 +32,20 @@ abstract class Component
 		self::MOTHER_BOARD => MotherBoard::class,
 		self::POWER_SUPPLY => PowerSupply::class,
 		self::MOUSE_AND_PAD => MouseAndPad::class,
-		self::PROCESSOR => PowerSupply::class,
-		self::RAM => Processor::class,
-		self::SCREEN => HardDisc::class,
+		self::PROCESSOR => Processor::class,
+		self::RAM => Ram::class,
+		self::SCREEN => Screen::class,
 	];
-	const GRAPHIC_CARD = "GraphicCard";
-	const HARD_DISC = "HardDisc";
-	const KEYBOARD = "Keyboard";
-	const MOTHER_BOARD = "MotherBoard";
-	const MOUSE_AND_PAD = "MouseAndPad";
-	const POWER_SUPPLY = "PowerSupply";
-	const PROCESSOR = "Processor";
-	const RAM = "Ram";
-	const SCREEN = "Screen";
+
 	protected int $idComponent;
 	protected string $name;
 	protected string $brand;
 	protected string $description;
 	protected int $quantity;
-
 	protected float $price;
 	protected string $pcType;
 	protected bool $isArchived;
 	protected string $category;
-	protected array $categoryFilter = [];
 
 
 	public function getidComponent(): int
@@ -144,11 +143,13 @@ abstract class Component
 	{
 		return self::AVAILABLE_CATEGORIES;
 	}
-	public function getCategory(): string {
+	public function getCategory(): string
+	{
 		return $this->category;
 	}
-	
-	public function setCategory(string $category): self {
+
+	public function setCategory(string $category): self
+	{
 		$this->category = $category;
 		return $this;
 	}

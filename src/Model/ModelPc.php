@@ -7,6 +7,8 @@ class ModelPc
     protected int $idModel;
     protected string $name;
     protected int $quantity;
+
+    protected int $pcNumber;
     protected float $price;
     protected $addDate;
     protected bool $isArchived;
@@ -75,6 +77,39 @@ class ModelPc
     public function setConfiguration(array $configuration): self
     {
         $this->configuration = $configuration;
+        return $this;
+    }
+
+
+    public function getPrice(): float
+    {
+        return $this->price;
+    }
+
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
+        return $this;
+    }
+
+
+
+    /**
+     * @return 
+     */
+    public function getPcNumber(): int
+    {
+        return $this->pcNumber;
+    }
+
+    /**
+     * @param  $pcNumber 
+     * @return self
+     */
+    public function setPcNumber(int $pcNumber): self
+    {
+        $this->pcNumber = $pcNumber;
         return $this;
     }
 }
