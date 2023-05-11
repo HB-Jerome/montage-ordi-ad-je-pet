@@ -27,6 +27,7 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-between">
                     <?php
+                    // - - - - - - NAV CONCEPTEUR - - - - - -
                     if (isset($_SESSION['user']) && ($_SESSION['user']->getRole() == "concepteur")) {
                         ?>
                         <li class="nav-item">
@@ -40,7 +41,7 @@
                         </li>
 
                     <?php }
-
+                    // - - - - - - NAV MONTEUR - - - - - -
                     if (isset($_SESSION['user']) && $_SESSION['user']->getRole() == "monteur") {
                         ?>
                         <li class="nav-item">
@@ -50,7 +51,7 @@
                             <a class="nav-link" href="#">historiques</a>
                         </li>
                     <?php } ?>
-
+                    <!-- - - - - - - NAV UTILISATEUR NON CONNECTE - - - - - - -->
                     <li class="nav-item">
                         <?php if (isset($_SESSION['user'])) { ?>
                             <a class="nav-link active" aria-current="page" href="?page=login">
