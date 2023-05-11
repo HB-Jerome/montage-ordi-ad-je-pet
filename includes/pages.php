@@ -10,6 +10,7 @@ use Model\Page;
 use Service\PagesHandler;
 use Controller\ListPieceController;
 use Controller\ListModelController;
+use Controller\DetailsProduitController;
 
 
 $pagesHandler = new PagesHandler([
@@ -22,4 +23,5 @@ $pagesHandler = new PagesHandler([
     new Page('modificationPiece', ModificationPieceController::class),
     new Page('listPiece', ListPieceController::class),
     new Page('listModel', ListModelController::class),
+    new Page('detailsProduit', DetailsProduitController::class),
 ]);
