@@ -9,7 +9,7 @@ class ListPieceController extends AbstractController
 {
     public function getContent(): array
     {
-        // var_dump($_POST);
+        // var_dump($trierResults);
         // brand sql
         $sqlBrand = "SELECT brand FROM component GROUP BY brand ORDER BY brand ASC";
         $brandStatement = $this->db->prepare($sqlBrand);
@@ -42,7 +42,21 @@ class ListPieceController extends AbstractController
             $sql .= ' WHERE ' . implode(' AND ', $criterias);
         }
 
-        $sql .= ' ORDER BY price ASC';
+        // tout trier  
+        // if (isset($_POST['trier'])) { 
+        //     $tri = $_POST['trier'];
+
+        //     // $sql = $sql . " ORDER BY " . $tri;   // SECOND OPTION OF SORTING
+        //     $sql .= " ORDER BY " . $tri;
+        // } else {
+        //     $sql .= ' ORDER BY price ASC';
+        // }
+        if ($filters->getSortBy()) {
+            // $sql = $sql . " ORDER BY " . $filters->getSortBy();
+            $sql .= " ORDER BY " . $filters->getSortBy();
+        } else {
+            $sql .= ' ORDER BY price ASC';
+        }
 
         $statement = $this->db->prepare($sql);
         $statement->execute($params);
@@ -55,7 +69,7 @@ class ListPieceController extends AbstractController
             "brandResults" => $brandResults,
             "filters" => $filters,
         ];
-        
+
     }
 
     public function getFileName(): string
