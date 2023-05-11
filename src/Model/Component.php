@@ -4,7 +4,7 @@ namespace Model;
 // use DateTime; // afin que l'autoload puisse retrouver notre classe. Model correspond au nom du dossier
 
 // Création de la classe parent Component
-abstract class Component
+class Component
 {
 	const AVAILABLE_CATEGORIES = [
 		self::GRAPHIC_CARD,
@@ -18,21 +18,21 @@ abstract class Component
 		self::SCREEN,
 	];
 
-// Classes associées aux catégories
+	// Classes associées aux catégories
 
-const AVAILABLE_CLASSES = [
-        self::GRAPHIC_CARD => GraphicCard::class,
-        self::HARD_DISC => HardDisc::class,
-        self::KEYBOARD => Keyboard::class,
-        self::MOTHER_BOARD => MotherBoard::class,
-        self::POWER_SUPPLY => PowerSupply::class,
-        self::MOUSE_AND_PAD => MouseAndPad::class,
-        self::PROCESSOR => PowerSupply::class,
-        self::RAM => Processor::class,
-        self::SCREEN => HardDisc::class,
-    ];
+	const AVAILABLE_CLASSES = [
+		self::GRAPHIC_CARD => GraphicCard::class,
+		self::HARD_DISC => HardDisc::class,
+		self::KEYBOARD => Keyboard::class,
+		self::MOTHER_BOARD => MotherBoard::class,
+		self::POWER_SUPPLY => PowerSupply::class,
+		self::MOUSE_AND_PAD => MouseAndPad::class,
+		self::PROCESSOR => PowerSupply::class,
+		self::RAM => Processor::class,
+		self::SCREEN => HardDisc::class,
+	];
 
-// Constantes
+	// Constantes
 	const GRAPHIC_CARD = "GraphicCard";
 	const HARD_DISC = "HardDisc";
 	const KEYBOARD = "Keyboard";
@@ -54,7 +54,7 @@ const AVAILABLE_CLASSES = [
 	protected string $category;
 	protected string $addDate;
 
-// Fonctions
+	// Fonctions
 
 	public function getidComponent(): int
 	{
@@ -112,9 +112,6 @@ const AVAILABLE_CLASSES = [
 
 	public function setPrice(float $price): self
 	{
-		if ($price) {
-			$price= number_format($price, 2, '.', '') . '00';
-		}
 		$this->price = $price;
 		return $this;
 	}
@@ -154,11 +151,13 @@ const AVAILABLE_CLASSES = [
 	{
 		return self::AVAILABLE_CATEGORIES;
 	}
-	public function getCategory(): string {
+	public function getCategory(): string
+	{
 		return $this->category;
 	}
-	
-	public function setCategory(string $category): self {
+
+	public function setCategory(string $category): self
+	{
 		$this->category = $category;
 		return $this;
 	}
@@ -180,4 +179,5 @@ const AVAILABLE_CLASSES = [
 		$this->addDate = $addDate;
 		return $this;
 	}
+
 }

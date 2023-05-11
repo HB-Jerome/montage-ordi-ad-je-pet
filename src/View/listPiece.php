@@ -67,7 +67,7 @@
                 <th scope="col">Plus de Détails</th>
                 <th scope="col">Modifications</th>
                 <!-- <th scope="col">Disponibilité</th> -->
-                <th scope="col">Supprimer une Piéce</th>
+                <th scope="col">Suppression et Archivage des piéces</th>
             </tr>
         </thead>
         <?php
@@ -107,7 +107,8 @@
                     </td>
                     
                     <td class="col-1">
-                        <a href="" type="submit" class="btn btn-primary">Suppression</a>
+                        <a href="" type="submit" class="btn btn-primary"><small>Suppression/
+                            archivage</a>
                     </td>
                 </tr>
 
