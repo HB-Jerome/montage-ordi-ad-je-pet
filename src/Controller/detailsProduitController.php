@@ -8,7 +8,8 @@ use Model\Component;
 class DetailsProduitController extends AbstractController
 {
     public function getContent(): array
-    { 
+    {
+    $componentIsValid = false;
     if (isset($_GET ['idComponent'])){
     // (Requêtes préparées) 
        // Requête category
@@ -29,8 +30,15 @@ class DetailsProduitController extends AbstractController
         $statement->execute();
         $component = $statement->fetch();
         var_dump($component);
+        // Redirection et message d'erreur
+        if(!empty($component)){
+            $componentIsValid = true;
+        }
+        // - - - - - -
+        return ['details'=>$component, 'componentIsValid'=>$componentIsValid ]; // affiche dans la vue
     }
-    return ['details'=>$component]; // affiche dans la vue
+    return ['componentIsValid'=>$componentIsValid];
+   
     }
     public function getFileName(): string
     { 
