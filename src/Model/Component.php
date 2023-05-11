@@ -1,5 +1,7 @@
 <?php
-namespace Model; // afin que l'autoload puisse retrouver notre classe. Model correspond au nom du dossier
+namespace Model;
+
+// use DateTime; // afin que l'autoload puisse retrouver notre classe. Model correspond au nom du dossier
 
 // Création de la classe parent Component
 abstract class Component
@@ -50,6 +52,7 @@ const AVAILABLE_CLASSES = [
 	protected string $pcType;
 	protected bool $isArchived;
 	protected string $category;
+	protected string $addDate;
 
 // Fonctions
 
@@ -109,6 +112,9 @@ const AVAILABLE_CLASSES = [
 
 	public function setPrice(float $price): self
 	{
+		if ($price) {
+			$price= number_format($price, 2, '.', '') . '00';
+		}
 		$this->price = $price;
 		return $this;
 	}
@@ -157,4 +163,21 @@ const AVAILABLE_CLASSES = [
 		return $this;
 	}
 
+	/**
+	 * @return string
+	 */
+	public function getAddDate(): string
+	{
+		return $this->addDate;
+	}
+
+	/**
+	 * @param string $addDate 
+	 * @return self
+	 */
+	public function setAddDate(string $addDate): self
+	{
+		$this->addDate = $addDate;
+		return $this;
+	}
 }

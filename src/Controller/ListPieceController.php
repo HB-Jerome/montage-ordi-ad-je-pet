@@ -60,7 +60,8 @@ class ListPieceController extends AbstractController
 
         $statement = $this->db->prepare($sql);
         $statement->execute($params);
-        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $statement->setFetchMode(PDO::FETCH_CLASS, Component::class);
+        $results = $statement->fetchAll();
 
         return [
             "results" => $results,

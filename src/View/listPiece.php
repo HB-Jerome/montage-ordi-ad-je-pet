@@ -58,6 +58,7 @@
         <thead>
             <tr>
                 <th scope="col">Nom</th>
+                <th scope="col">Date Ajouter</th>
                 <th scope="col">Marque</th>
                 <th scope="col">Prix</th>
                 <th scope="col">Quantité en Stock</th>
@@ -66,7 +67,7 @@
                 <th scope="col">Plus de Détails</th>
                 <th scope="col">Modifications</th>
                 <!-- <th scope="col">Disponibilité</th> -->
-                <th scope="col">Supprimer</th>
+                <th scope="col">Supprimer une Piéce</th>
             </tr>
         </thead>
         <?php
@@ -79,20 +80,24 @@
             foreach ($results as $result) { ?>
                 <tr>
                     <td class="col-3">
-                        <?= $result['name']; ?>
+                        <?= $result->getName(); ?>
+                        
+                    <td class="col-1">
+                        <?= $result->getAddDate(); ?>
+                    </td>
                     </td>
                     <td class="col-1">
-                        <?= $result['brand']; ?>
+                        <?= $result->getBrand(); ?>
                     </td>
                     <td class="col-1">
-                        <?= $result['price']; ?>
+                        <?= $result->getPrice(); ?>
                     </td>
                     <td class="col-1">
-                        <?= $result['quantity']; ?>
+                        <?= $result->getQuantity(); ?>
                     </td>
 
                     <td class="col-1">
-                        <?= $result['category']; ?>
+                        <?= $result->getCategory(); ?>
                     </td>
                     <td class="col-1">
                         <a href="?page=detailsProduit" type="submit" class="btn btn-primary">Détails</a>
