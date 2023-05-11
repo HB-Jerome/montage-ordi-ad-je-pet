@@ -39,7 +39,6 @@
                 <option value="1">Archivé</option>
             </select>
 
-<<<<<<< HEAD
             <!-- price min -->
             <div class="mt-4 rounded-2">
                 <?php // var_dump($filters, $brandResults); ?>
@@ -75,32 +74,6 @@
         ?>
         <tbody>
             <!-- show items on the page -->
-=======
-                <!-- price max -->
-                <div class="mt-4 rounded-2">
-                    <input name="maxPrice" placeholder="maxPrice" value="<?= $filters->getMaxPrice(); ?>">
-                </div>
-                <div class="ms-4 mt-3">
-                    <input name="quantity" type="submit" value="submit" class="btn btn-primary">
-                </div>
-            </form>
-        </div>
-        <!-- table Liste -->
-        <table id="tableList" style="margin-left: 220px;" class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Marque</th>
-                    <th scope="col">Prix</th>
-                    <th scope="col">Type de Pc</th>
-                    <th scope="col">Categorie</th>
-                    <th scope="col">Disponibilité</th>
-                    <th scope="col">Ajouter</th>
-                    <th scope="col">Détails</th>
-                    <!-- <th scope="col">Disponibilité</th> -->
-                </tr>
-            </thead>
->>>>>>> 9b063ea (page détails produit terminée)
             <?php
 
             foreach ($results as $result) { ?>
@@ -136,43 +109,7 @@
                 <?php
             } ?>
 
-<<<<<<< HEAD
         </tbody>
-=======
-                foreach ($results as $result) { ?>
-                    <tr>
-                        <td class="col-3">
-                            <?= $result['name']; ?>
-                        </td>
-                        <td class="col-1">
-                            <?= $result['brand']; ?>
-                        </td>
-                        <td class="col-1">
-                            <?= $result['price']; ?>
-                        </td>
-                        <td class="col-1">
-                            <?= $result['pcType']; ?>
-                        </td>
-
-                        <td class="col-1">
-                            <?= $result['category']; ?>
-                        </td>
-                        <td class="col-1">
-                            <?= $result['isArchived']; ?>
-                        </td>
-                        <td class="col-1">
-                            <a href="?page=detailsProduit&idComponent=<?=$result['idComponent']?>" class="btn btn-primary">Add</a>
-                        </td>
-                        <td class="col-1">
-                            <a href="?page=detailsProduit&idComponent=<?=$result['idComponent']?>" class="btn btn-primary">Détails</a>
-                        </td>
-                    </tr>
-
-                    <?php
-                } ?>
-
-            </tbody>
->>>>>>> 9b063ea (page détails produit terminée)
         </table>
     </div>
 
