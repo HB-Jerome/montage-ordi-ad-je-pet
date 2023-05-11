@@ -1,10 +1,12 @@
+/* ***** listpiece****** */
 #tableList {
-    margin-left: 100px;
+    margin-left: 250px;
 }
+/* #listPiece-form{
+    position: sticky;
+    top: 0;
+} */
 
-nav {
-    width: 100vw;
-}
 #filter-from {
     background-color: rgba(8, 112, 76, 0.308);
 }

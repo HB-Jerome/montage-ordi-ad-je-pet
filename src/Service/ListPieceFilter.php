@@ -9,6 +9,9 @@ class ListPieceFilter
 	protected float $maxPrice = 0;
 	protected string $category = "";
 	protected string $brand = "";
+	protected int $quantity = 0;
+	protected int $numberOfModelePerPiece = 0;
+	protected ?string $sortBy = null;
 
 	public function __construct(array $postData)
 	{
@@ -23,6 +26,15 @@ class ListPieceFilter
 		}
 		if (!empty($postData['brand'])) {
 			$this->setBrand($postData['brand']);
+		}
+		if (!empty($postData['quantity '])) {
+			$this->setQuantity($postData['quantity ']);
+		}
+		if (!empty($postData['numberOfModelePerPiece'])) {
+			$this->setNumberOfModelePerPiece($postData['numberOfModelePerPiece']);
+		}
+		if (!empty($postData['trier'])) {
+			$this->setSortBy($postData['trier']);
 		}
 	}
 
@@ -69,6 +81,46 @@ class ListPieceFilter
 	public function setBrand(string $brand): self
 	{
 		$this->brand = $brand;
+		return $this;
+	}
+
+	public function getQuantity(): int
+	{
+		return $this->quantity;
+	}
+
+	public function setQuantity(int $quantity): self
+	{
+		$this->quantity = $quantity;
+		return $this;
+	}
+
+	public function getNumberOfModelePerPiece(): int
+	{
+		return $this->numberOfModelePerPiece;
+	}
+
+	public function setNumberOfModelePerPiece(int $numberOfModelePerPiece): self
+	{
+		$this->numberOfModelePerPiece = $numberOfModelePerPiece;
+		return $this;
+	}
+
+	/**
+	 * @return 
+	 */
+	public function getSortBy(): ?string
+	{
+		return $this->sortBy;
+	}
+
+	/**
+	 * @param  $sortBy 
+	 * @return self
+	 */
+	public function setSortBy(?string $sortBy): self
+	{
+		$this->sortBy = $sortBy;
 		return $this;
 	}
 }
