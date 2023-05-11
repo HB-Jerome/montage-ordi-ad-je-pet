@@ -5,9 +5,11 @@ use Controller\LoginController;
 use Controller\LogoutController;
 use Controller\MonteurController;
 use Controller\ModelCreationController;
+use Controller\ModificationPieceController;
 use Model\Page;
 use Service\PagesHandler;
 use Controller\ListPieceController;
+use Controller\ListModelController;
 
 
 $pagesHandler = new PagesHandler([
@@ -17,5 +19,7 @@ $pagesHandler = new PagesHandler([
     new Page('concepteur', ConcepteurController::class),
     new Page('monteur', MonteurController::class),
     new Page('modelCreation', ModelCreationController::class),
+    new Page('modificationPiece', ModificationPieceController::class),
     new Page('listPiece', ListPieceController::class),
+    new Page('listModel', ListModelController::class),
 ]);

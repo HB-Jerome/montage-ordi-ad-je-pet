@@ -7,7 +7,7 @@ use Model\Component;
 class PowerSupply extends Component
 {
 
-	protected int $idComponent;
+
 	protected string $batteryPower;
 
 	public function __construct()

@@ -1,5 +1,6 @@
 <?php
 
+
 if ($ModelHandler->isSubmitted()) {
     if (empty($ModelHandler->getErrors())) {
         ?>
@@ -8,6 +9,7 @@ if ($ModelHandler->isSubmitted()) {
         </div>
         <?php
     } else {
+
         foreach ($ModelHandler->getErrors() as $error) {
             ?>
             <div class="alert alert-danger" role="alert">
@@ -15,6 +17,7 @@ if ($ModelHandler->isSubmitted()) {
             </div>
             <?php
         }
+
     }
 }
 

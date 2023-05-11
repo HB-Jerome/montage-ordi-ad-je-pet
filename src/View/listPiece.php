@@ -90,7 +90,7 @@
                         <td class="col-1">
                             <a type="submit" class="btn btn-primary">Détail</a>
                         </td>
-                    </tr>s
+                    </tr>
 
                     <?php
                 } ?>
