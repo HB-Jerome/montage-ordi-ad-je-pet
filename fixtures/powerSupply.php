@@ -27,7 +27,7 @@ $powersupplys = [
         ->setBrand("MSI")
         ->setDescription($description2)
         ->setPrice(211)
-        ->setComponentType("fixe")
+        ->setComponentType("laptop")
         ->setIsArchived(false)
         // propriétés spécifiques
         ->setBatteryPower(220),

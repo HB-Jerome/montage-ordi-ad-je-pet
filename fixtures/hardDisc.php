@@ -44,7 +44,7 @@ $hardDiscs = [
         ->setBrand("Seagate Technology")
         ->setDescription($des3)
         ->setPrice(49)
-        ->setComponentType("fixe")
+        ->setComponentType("laptop")
         ->setIsArchived(false)
 
         // propriétés spécifiques à HardDisc

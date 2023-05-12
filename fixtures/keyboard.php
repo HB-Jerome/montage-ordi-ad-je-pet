@@ -45,7 +45,7 @@ $keyboards = [
         ->setBrand("Gainward")
         ->setDescription($des3)
         ->setPrice(119)
-        ->setComponentType("fixe")
+        ->setComponentType("laptop")
         ->setIsArchived(false)
         // propriètés specifiques au composant
 

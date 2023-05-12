@@ -24,11 +24,8 @@ class ModelCreationController extends AbstractController
         if ($ModelHandler->isSubmitted() && $ModelHandler->postIsValid()) {
             $typeIsValid = $this->verifyData($ModelHandler, $this->db);
 
-            var_dump($typeIsValid);
             if ($typeIsValid) {
-                var_dump('ok');
                 $modelPc = $ModelHandler->factory();
-                var_dump($modelPc);
                 $this->insertModelBDD($modelPc, $ModelHandler->getConfiguration());
             }
         }

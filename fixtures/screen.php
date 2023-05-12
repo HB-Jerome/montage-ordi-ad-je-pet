@@ -27,7 +27,7 @@ $screens = [
         ->setBrand("LED")
         ->setDescription($description2)
         ->setPrice(514.20)
-        ->setComponentType("fixe")
+        ->setComponentType("laptop")
         ->setIsArchived(false)
         // propriétés spécifiques
         ->setSize(49),

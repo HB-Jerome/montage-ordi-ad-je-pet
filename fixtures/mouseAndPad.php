@@ -32,7 +32,7 @@ $mouseAndPads = [
         ->setBrand("INOVU")
         ->setDescription($des1)
         ->setPrice(9)
-        ->setComponentType("fixe")
+        ->setComponentType("laptop")
         ->setIsArchived(false)
 
         // propriétés spécifiques à MouseAndPad

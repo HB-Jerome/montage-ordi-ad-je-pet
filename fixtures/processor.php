@@ -16,7 +16,7 @@ $processors = [
         ->setBrand("AMD")
         ->setDescription($description1)
         ->setPrice(942)
-        ->setComponentType("fixe")
+        ->setComponentType("laptop")
         ->setIsArchived(false)
         // propriétés spécifiques
         ->setCoreNumber(9)

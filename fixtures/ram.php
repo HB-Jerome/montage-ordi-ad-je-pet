@@ -38,7 +38,7 @@ $rams = [
         ->setBrand("Kingstone")
         ->setDescription($description3)
         ->setPrice(62.23)
-        ->setComponentType("fixe")
+        ->setComponentType("laptop")
         ->setIsArchived(false)
         // propriétés spécifiques
         ->setRamCapacity(42)

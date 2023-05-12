@@ -19,7 +19,7 @@ $motherBoards = [
         ->setBrand("ASUS")
         ->setDescription($des1)
         ->setPrice(159)
-        ->setComponentType("fixe")
+        ->setComponentType("laptop")
         ->setIsArchived(false)
 
         // propriétés spécifiques à MotherBoard
