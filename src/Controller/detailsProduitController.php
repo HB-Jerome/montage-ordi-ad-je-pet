@@ -29,7 +29,7 @@ class DetailsProduitController extends AbstractController
         var_dump($class);
         $statement->execute();
         $component = $statement->fetch();
-        var_dump($component);
+        // var_dump($component);
         // Redirection et message d'erreur
         if(!empty($component)){
             $componentIsValid = true;

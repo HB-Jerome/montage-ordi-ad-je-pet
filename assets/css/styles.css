@@ -2,11 +2,29 @@
 #tableList {
     margin-left: 250px;
 }
-/* #listPiece-form{
-    position: sticky;
-    top: 0;
-} */
+#listPiece-form{
+    position: fixed;
+    top: 100px
+}
 
 #filter-from {
-    background-color: rgba(8, 112, 76, 0.308);
+    background-color: rgba(8, 112, 76, 0.479);
 }
+#h {
+    border: 3px solid rgb(0, 0, 0);
+}
+/************* RESPONSIVE *************/
+@media only screen and (max-width: 600px) {
+    #listPiece-form {
+        position: relative;
+        top: 10px;
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+    #tableList {
+        margin-top: 20px;
+        margin-left: 0;
+    }
+  }
