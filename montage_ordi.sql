@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `component` (
   `category` varchar(50) DEFAULT NULL,
   `quantity` int DEFAULT NULL,
   `price` decimal(15,2) DEFAULT NULL,
-  `pcType` varchar(50) DEFAULT NULL,
+  `componentType` varchar(50) DEFAULT NULL,
   `isArchived` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `graphiccard` (
 DROP TABLE IF EXISTS `harddisc`;
 CREATE TABLE IF NOT EXISTS `harddisc` (
   `idComponent` int NOT NULL,
-  `capacity` int DEFAULT NULL,
+  `discCapacity` int DEFAULT NULL,
   `ssd` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `harddisc` (
 DROP TABLE IF EXISTS `keyboard`;
 CREATE TABLE IF NOT EXISTS `keyboard` (
   `idComponent` int NOT NULL,
-  `isWireless` tinyint(1) DEFAULT NULL,
+  `keybordIsWireless` tinyint(1) DEFAULT NULL,
   `withPad` tinyint(1) DEFAULT NULL,
   `keyType` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
@@ -112,6 +112,8 @@ DROP TABLE IF EXISTS `modelpc`;
 CREATE TABLE IF NOT EXISTS `modelpc` (
   `idModel` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
+  `descriptionModel` varchar(250) DEFAULT NULL,
+  `modelType` varchar(50) DEFAULT NULL,
   `quantity` int DEFAULT NULL,
   `addDate` datetime DEFAULT NULL,
   `isArchived` tinyint(1) DEFAULT NULL,
@@ -156,8 +158,8 @@ CREATE TABLE IF NOT EXISTS `motherboard` (
 DROP TABLE IF EXISTS `mouseandpad`;
 CREATE TABLE IF NOT EXISTS `mouseandpad` (
   `idComponent` int NOT NULL,
-  `isWireless` tinyint(1) DEFAULT NULL,
-  `keyType` varchar(50) DEFAULT NULL,
+  `mouseIsWireless` tinyint(1) DEFAULT NULL,
+  `numberOfKey` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -198,9 +200,9 @@ CREATE TABLE IF NOT EXISTS `processor` (
 DROP TABLE IF EXISTS `ram`;
 CREATE TABLE IF NOT EXISTS `ram` (
   `idComponent` int NOT NULL,
-  `capacity` int DEFAULT NULL,
+  `ramCapacity` int DEFAULT NULL,
   `numberOfBars` int DEFAULT NULL,
-  `description` varchar(250) DEFAULT NULL,
+  `detail` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`idComponent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

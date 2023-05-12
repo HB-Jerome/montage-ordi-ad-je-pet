@@ -19,7 +19,7 @@ $motherBoards = [
         ->setBrand("ASUS")
         ->setDescription($des1)
         ->setPrice(159)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
 
         // propriétés spécifiques à MotherBoard
@@ -32,7 +32,7 @@ $motherBoards = [
         ->setBrand("ASUS")
         ->setDescription($des2)
         ->setPrice(219)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
 
         // propriétés spécifiques à MotherBoard
@@ -45,7 +45,7 @@ $motherBoards = [
         ->setBrand("ASUS")
         ->setDescription($des3)
         ->setPrice(286)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
 
         // propriétés spécifiques à MotherBoard
@@ -54,7 +54,7 @@ $motherBoards = [
 ];
 
 // on prépare l'insertion des propriétés communnes dans la table parent
-$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:pcType,false,:category,5)";
+$sqlParent = "INSERT INTO Component (name,brand,description,price,componentType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:componentType,false,:category,5)";
 // on prepare l'insertion des propriétés spécifiques dans la table enfant
 $sqlChild = "INSERT INTO MotherBoard (idComponent,socket,format) VALUES (:idComponent,:socket,:format)";
 
@@ -66,7 +66,7 @@ foreach ($motherBoards as $motherBoard) {
     $statement->bindValue(":brand", $motherBoard->getBrand(), PDO::PARAM_STR);
     $statement->bindValue(":description", $motherBoard->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(":price", $motherBoard->getPrice());
-    $statement->bindValue(":pcType", $motherBoard->getPcType(), PDO::PARAM_STR);
+    $statement->bindValue(":componentType", $motherBoard->getComponentType(), PDO::PARAM_STR);
     $statement->bindValue(":category", $motherBoard->GetCategory(), PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétés communes dans la table parent

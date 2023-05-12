@@ -1,19 +1,9 @@
 <?php
-
 namespace Controller;
 
-use Model\Component;
 use Model\ModelPc;
 use Service\ModelHandler;
-use Model\GraphicCard;
-use Model\HardDisc;
-use Model\Keyboard;
-use Model\MouseAndPad;
-use Model\PowerSupply;
-use Model\Processor;
-use Model\Ram;
-use Model\Screen;
-use Model\MotherBoard;
+
 use PDO;
 
 class ModelCreationController extends AbstractController
@@ -30,49 +20,30 @@ class ModelCreationController extends AbstractController
 
     public function getContent(): array
     {
-
-
         $ModelHandler = new ModelHandler($_POST);
-        if ($ModelHandler->isSubmitted() && $ModelHandler->modelIsValid()) {
-            $modelPc = $ModelHandler->factory();
-            $this->insertModelBDD($modelPc);
+        if ($ModelHandler->isSubmitted() && $ModelHandler->postIsValid()) {
+            $typeIsValid = $this->verifyData($ModelHandler, $this->db);
 
+            var_dump($typeIsValid);
+            if ($typeIsValid) {
+                var_dump('ok');
+                $modelPc = $ModelHandler->factory();
+                var_dump($modelPc);
+                $this->insertModelBDD($modelPc, $ModelHandler->getConfiguration());
+            }
         }
-        $Components = $this->getComponents();
-        return ["Components" => $Components, "ModelHandler" => $ModelHandler];
+        $components = getAllComponents($this->db);
+        return ["components" => $components, "ModelHandler" => $ModelHandler];
     }
 
-
-    public function getComponents()
+    public function insertModelBDD(ModelPc $modelPc, array $configuration)
     {
-        $sql = "SELECT  c.idComponent, category FROM component as c
-    ";
-        $statement = $this->db->prepare($sql);
-        $statement->execute();
-        $results = $statement->fetchAll();
-        foreach ($results as $result) {
-
-            $category = $result["category"];
-            $class = Component::AVAILABLE_CLASSES[$category];
-            $id = $result["idComponent"];
-            $sqlClass = 'SELECT * FROM Component as c 
-                            INNER JOIN ' . $category . '  AS g ON c.idComponent = g.idComponent WHERE c.idComponent=' . $id;
-            $statementClass = $this->db->prepare($sqlClass);
-            $statementClass->setFetchMode(PDO::FETCH_CLASS, $class);
-            $statementClass->execute();
-            $Component = $statementClass->fetch();
-            $Components[] = $Component;
-
-        }
-        return $Components;
-    }
-
-    public function insertModelBDD(ModelPc $modelPc)
-    {
-        $sqlModel = "INSERT INTO ModelPc (name,quantity,addDate,isArchived) VALUES (:name,:quantity,:addDate,:isArchived)";
+        $sqlModel = "INSERT INTO ModelPc (name,quantity,descriptionModel,modelType,addDate,isArchived) VALUES (:name,:quantity,:descriptionModel,:modelType,:addDate,:isArchived)";
         $statementModel = $this->db->prepare($sqlModel);
         $statementModel->bindValue(":name", $modelPc->getName());
         $statementModel->bindValue(":quantity", $modelPc->getQuantity());
+        $statementModel->bindValue(":modelType", $modelPc->getModelType());
+        $statementModel->bindValue(":descriptionModel", $modelPc->getDescriptionModel());
         $statementModel->bindValue(":addDate", $modelPc->getAddDate());
         $statementModel->bindValue(":isArchived", $modelPc->getIsArchived());
         $statementModel->execute();
@@ -82,7 +53,8 @@ class ModelCreationController extends AbstractController
 
         $sqlIntermediaryTable = "INSERT INTO modelpc_component (idComponent,idModel,quantity) VALUES (:idComponent,:idModel,:quantity)";
         $statementTable = $this->db->prepare($sqlIntermediaryTable);
-        foreach ($modelPc->getConfiguration() as $component) {
+
+        foreach ($configuration as $component) {
 
             $statementTable->bindValue(":idComponent", $component["id"]);
             $statementTable->bindValue(":quantity", $component["quantity"]);
@@ -90,8 +62,26 @@ class ModelCreationController extends AbstractController
 
             $statementTable->execute();
         }
-        ;
+        return true;
+    }
+    public function verifyData(ModelHandler $modelHandler, $db)
+    {
+        $valid = true;
+        $type = $modelHandler->getModelType();
+        $components = [];
+        $array = $modelHandler->getConfiguration();
+        foreach ($array as $component) {
+            $id = $component['id'];
+            $components[] = getComponentById($id, $db);
+        }
+        foreach ($components as $component) {
+            $componentType = $component->getComponentType();
 
-
+            if (!($componentType == $type)) {
+                $modelHandler->addError("Tous les types ne corresponde pas");
+                return false;
+            }
+        }
+        return $valid;
     }
 }

@@ -1,8 +1,5 @@
 <?php
-spl_autoload_register(function ($class) {
-    require_once "../src/$class.php";
-});
-include "../includes/config.inc.php";
+
 // on inclut la class GraphicCard pour créer les objects
 use Model\GraphicCard;
 
@@ -22,7 +19,7 @@ $graphicCards = [
         ->setBrand("MSI")
         ->setDescription($des1)
         ->setPrice(399)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
         // proprièté spécifique a GraphicCard
         ->setChipset("NVIDIA GeForce RTX 3060")
@@ -34,7 +31,7 @@ $graphicCards = [
         ->setBrand("Gigabyte")
         ->setDescription($des2)
         ->setPrice(1249)
-        ->setPcType("fixe")
+        ->setComponentType("laptop")
         ->setIsArchived(false)
         // proprièté spécifique a GraphicCard
         ->setChipset("NVIDIA GeForce RTX 4080")
@@ -45,7 +42,7 @@ $graphicCards = [
         ->setBrand("Gainward")
         ->setDescription($des3)
         ->setPrice(649)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
         // proprièté spécifique a GraphicCard
         ->setChipset("NVIDIA GeForce RTX 4070")
@@ -53,7 +50,7 @@ $graphicCards = [
 ];
 
 // on prepare l'insertion des propriétes communne dans la table parent
-$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:pcType,false,:category,15)";
+$sqlParent = "INSERT INTO Component (name,brand,description,price,componentType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:componentType,false,:category,15)";
 // on prepare l'insertion des propriétes spécifique dans la table enfant
 $sqlChild = "INSERT INTO GraphicCard (idComponent,chipset,memory) VALUES (:idComponent,:chipset,:memory)";
 
@@ -66,7 +63,7 @@ foreach ($graphicCards as $graphicCard) {
     $statementParent->bindValue(":brand", $graphicCard->getBrand(), PDO::PARAM_STR);
     $statementParent->bindValue(":description", $graphicCard->getDescription(), PDO::PARAM_STR);
     $statementParent->bindValue(":price", $graphicCard->getPrice());
-    $statementParent->bindValue(":pcType", $graphicCard->getPcType(), PDO::PARAM_STR);
+    $statementParent->bindValue(":componentType", $graphicCard->getComponentType(), PDO::PARAM_STR);
     $statementParent->bindValue(":category", $graphicCard->GetCategory(), PDO::PARAM_STR);
     $statementParent->execute();
     // insertion des propriétes communne dans la table parent
