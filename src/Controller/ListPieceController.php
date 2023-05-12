@@ -3,7 +3,7 @@ namespace Controller;
 
 use Model\Component;
 use PDO;
-use Service\ListPieceFilter;
+use Service\ListPieceHandler;
 
 class ListPieceController extends AbstractController
 {
@@ -16,11 +16,12 @@ class ListPieceController extends AbstractController
         $brandStatement->execute();
         $brandResults = $brandStatement->fetchAll(PDO::FETCH_ASSOC);
 
-        // all components s
+        // all components 
         $sql = "SELECT * FROM component";
-        $params = []; // to add security avoiding database manipulation by users
-        $criterias = []; // to add security avoiding database manipulation by users
-        $filters = new ListPieceFilter($_POST);
+        $params = []; //  avoid SQL injection attacks
+        $criterias = []; //  avoid SQL injection attacks
+        $filters = new ListPieceHandler($_POST);
+        // var_dump($_POST);
         if (!empty($filters->getBrand())) {
             $criterias[] = 'brand = :brand';
             $params[':brand'] = $filters->getBrand(); // brand params 
@@ -36,6 +37,9 @@ class ListPieceController extends AbstractController
         if (!empty($filters->getMaxPrice())) {
             $criterias[] = 'price <= :maxprice';
             $params[':maxprice'] = $filters->getMaxPrice(); //maxprice params 
+        }
+        if ($filters->getQuantity() > 0) {
+            $criterias[] = 'quantity >= 1';
         }
 
         if (!empty($criterias)) {
@@ -57,7 +61,7 @@ class ListPieceController extends AbstractController
         } else {
             $sql .= ' ORDER BY price ASC';
         }
-
+        // trier par stock
         $statement = $this->db->prepare($sql);
         $statement->execute($params);
         $statement->setFetchMode(PDO::FETCH_CLASS, Component::class);

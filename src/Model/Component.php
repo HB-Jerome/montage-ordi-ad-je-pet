@@ -1,7 +1,7 @@
 <?php
-namespace Model;
+namespace Model; // afin que l'autoload puisse retrouver notre classe. Model correspond au nom du dossier
 
-// use DateTime; // afin que l'autoload puisse retrouver notre classe. Model correspond au nom du dossier
+// use DateTime;
 
 // Création de la classe parent Component
 class Component
@@ -162,18 +162,11 @@ class Component
 		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getAddDate(): string
 	{
 		return $this->addDate;
 	}
 
-	/**
-	 * @param string $addDate 
-	 * @return self
-	 */
 	public function setAddDate(string $addDate): self
 	{
 		$this->addDate = $addDate;

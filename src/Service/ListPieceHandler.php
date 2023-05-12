@@ -3,7 +3,7 @@ namespace Service;
 
 use PDO;
 
-class ListPieceFilter
+class ListPieceHandler
 {
 	protected float $minPrice = 0;
 	protected float $maxPrice = 0;
@@ -27,8 +27,8 @@ class ListPieceFilter
 		if (!empty($postData['brand'])) {
 			$this->setBrand($postData['brand']);
 		}
-		if (!empty($postData['quantity '])) {
-			$this->setQuantity($postData['quantity ']);
+		if (isset($postData['quantity'])) {
+			$this->setQuantity($postData['quantity']);
 		}
 		if (!empty($postData['numberOfModelePerPiece'])) {
 			$this->setNumberOfModelePerPiece($postData['numberOfModelePerPiece']);
@@ -84,16 +84,6 @@ class ListPieceFilter
 		return $this;
 	}
 
-	public function getQuantity(): int
-	{
-		return $this->quantity;
-	}
-
-	public function setQuantity(int $quantity): self
-	{
-		$this->quantity = $quantity;
-		return $this;
-	}
 
 	public function getNumberOfModelePerPiece(): int
 	{
@@ -106,21 +96,25 @@ class ListPieceFilter
 		return $this;
 	}
 
-	/**
-	 * @return 
-	 */
 	public function getSortBy(): ?string
 	{
 		return $this->sortBy;
 	}
 
-	/**
-	 * @param  $sortBy 
-	 * @return self
-	 */
 	public function setSortBy(?string $sortBy): self
 	{
 		$this->sortBy = $sortBy;
+		return $this;
+	}
+
+	public function getQuantity(): int
+	{
+		return $this->quantity;
+	}
+
+	public function setQuantity(int $quantity): self
+	{
+		$this->quantity = $quantity;
 		return $this;
 	}
 }
