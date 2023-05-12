@@ -27,9 +27,9 @@ class Component
 		self::MOTHER_BOARD => MotherBoard::class,
 		self::POWER_SUPPLY => PowerSupply::class,
 		self::MOUSE_AND_PAD => MouseAndPad::class,
-		self::PROCESSOR => PowerSupply::class,
-		self::RAM => Processor::class,
-		self::SCREEN => HardDisc::class,
+		self::PROCESSOR => Processor::class,
+		self::RAM => Ram::class,
+		self::SCREEN => Screen::class,
 	];
 
 	// Constantes
