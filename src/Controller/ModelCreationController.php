@@ -76,7 +76,7 @@ class ModelCreationController extends AbstractController
             $componentType = $component->getComponentType();
 
             if (!($componentType == $type)) {
-                $modelHandler->addError("Tous les types ne corresponde pas");
+                $modelHandler->addError("Tous les types ne correspondent pas");
                 return false;
             }
         }

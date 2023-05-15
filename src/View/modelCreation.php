@@ -28,9 +28,9 @@ if ($modelHandler->isSubmitted()) {
 
 <main class="container">
     <div class=" mx-auto w-75">
-        <h1 class="d-flex">Creation Modele</h1>
+        <h1 class="d-flex">Création d'un modèle</h1>
 
-        <h2>liste composants :</h2>
+        <h2>liste des composants :</h2>
     </div>
 
     <div class="row">

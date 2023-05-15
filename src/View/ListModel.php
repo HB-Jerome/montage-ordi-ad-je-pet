@@ -1,5 +1,5 @@
 <main>
-    <h1 class="text-center">Liste des modeles</h1>
+    <h1 class="text-center">Liste des modèles</h1>
 
     <div class="row my-5 gap-5">
         <?php foreach ($models as $model) {
