@@ -36,8 +36,8 @@
                     </li>
                 </ul>
                 <div class="card-body mx-auto">
-                    <a href="?modificationModel&idModel=<?= $model->getIdModel() ?>" class="card-link">modifier</a>
-                    <a href="?detailModel&idModel=<?= $model->getIdModel() ?>" class="card-link">details</a>
+                    <a href="?page=updateModel&idModel=<?= $model->getIdModel() ?>" class="card-link">modifier</a>
+                    <a href="?page=detailModel&idModel=<?= $model->getIdModel() ?>" class="card-link">details</a>
                 </div>
             </div>
             <?php

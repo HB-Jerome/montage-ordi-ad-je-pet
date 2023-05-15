@@ -5,6 +5,7 @@ use Controller\LoginController;
 use Controller\LogoutController;
 use Controller\MonteurController;
 use Controller\ModelCreationController;
+use Controller\UpdateModelController;
 use Controller\ModificationPieceController;
 use Model\Page;
 use Service\PagesHandler;
@@ -24,4 +25,5 @@ $pagesHandler = new PagesHandler([
     new Page('listPiece', ListPieceController::class),
     new Page('listModel', ListModelController::class),
     new Page('detailsProduit', DetailsProduitController::class),
+    new Page('updateModel', UpdateModelController::class),
 ]);

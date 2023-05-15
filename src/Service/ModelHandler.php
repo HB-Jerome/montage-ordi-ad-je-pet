@@ -3,10 +3,13 @@ namespace Service;
 
 use Model\ModelPc;
 use Model\Component;
+use PDO;
 
 class ModelHandler
 {
+    protected ?int $idModel = null;
     protected ?string $name = null;
+    protected ?int $modelQuantity = null;
     protected ?string $descriptionModel = null;
     protected ?array $configuration = [];
     protected ?string $modelType = null;
@@ -31,11 +34,43 @@ class ModelHandler
     protected ?int $ProcessorQty = null;
     protected ?array $errors = [];
 
-    public function __construct($postData)
+    public function handleGet($getData, $db)
+    {
+        if (isset($getData['idModel'])) {
+            $this->idModel = $getData['idModel'];
+            $model = $this->fetchModel($this->idModel, $db);
+            if (!empty($model)) {
+                $this->name = $model->getName();
+                $this->descriptionModel = $model->getDescriptionModel();
+                $this->name = $model->getName();
+                $this->name = $model->getName();
+
+
+            }
+        }
+    }
+    protected function fetchModel($idModel, $db)
+    {
+        $sqlModel = 'SELECT * FROM ModelPc WHERE idModel= :idModel';
+        $statement = $db->prepare($sqlModel);
+        $statement->setFetchMode(PDO::FETCH_CLASS, ModelPc::class);
+        $statement->execute();
+        $model = $statement->fetch();
+        return $model;
+    }
+
+
+    public function handlePost($postData)
     {
         $complete = true;
         if (isset($postData['name'])) {
             $this->setName($postData['name']);
+            $this->isSubmitted = true;
+        } else {
+            $complete = false;
+        }
+        if (isset($postData['modelQuantity'])) {
+            $this->setModelQuantity(intval($postData['modelQuantity']));
             $this->isSubmitted = true;
         } else {
             $complete = false;
@@ -190,7 +225,7 @@ class ModelHandler
         $model
             ->setName($this->name)
             ->setAddDate(date("y/m/d H:i"))
-            ->setQuantity(0)
+            ->setModelQuantity($this->modelQuantity)
             ->setDescriptionModel($this->getDescriptionModel())
             ->setModelType($this->modelType)
             ->setIsArchived(false);
@@ -497,5 +532,23 @@ class ModelHandler
     public function getConfiguration(): ?array
     {
         return $this->configuration;
+    }
+
+    /**
+     * @return 
+     */
+    public function getModelQuantity(): ?int
+    {
+        return $this->modelQuantity;
+    }
+
+    /**
+     * @param  $modelQuantity 
+     * @return self
+     */
+    public function setModelQuantity(?int $modelQuantity): self
+    {
+        $this->modelQuantity = $modelQuantity;
+        return $this;
     }
 }

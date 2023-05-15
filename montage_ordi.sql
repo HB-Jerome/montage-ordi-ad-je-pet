@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `modelpc` (
   `name` varchar(50) DEFAULT NULL,
   `descriptionModel` varchar(250) DEFAULT NULL,
   `modelType` varchar(50) DEFAULT NULL,
-  `quantity` int DEFAULT NULL,
+  `modelQuantity` int DEFAULT NULL,
   `addDate` datetime DEFAULT NULL,
   `isArchived` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idModel`)

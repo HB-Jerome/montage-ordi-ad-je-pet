@@ -28,7 +28,7 @@ if ($ModelHandler->isSubmitted()) {
 
 <main class="container">
     <div class=" mx-auto w-75">
-        <h1 class="d-flex">Creation Modele</h1>
+        <h1 class="d-flex">modification Modele</h1>
 
         <h2>liste composants :</h2>
     </div>
@@ -50,6 +50,8 @@ if ($ModelHandler->isSubmitted()) {
                         value="<?= $ModelHandler->getModelQuantity() ?>">
                 </div>
             </div>
+
+
             <div class="form-group col-md-10 ">
                 <label for="Modeltype">Type</label>
                 <select id="Modeltype" name="Modeltype" class="form-control">
@@ -181,5 +183,8 @@ if ($ModelHandler->isSubmitted()) {
 
 
         </form>
+    </div>
+    <div>
+
     </div>
 </main>

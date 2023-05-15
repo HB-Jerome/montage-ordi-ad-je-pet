@@ -6,22 +6,24 @@ use Service\ModelHandler;
 
 use PDO;
 
-class ModelCreationController extends AbstractController
+class UpdateModelController extends AbstractController
 {
     public function getFileName(): string
     {
-        return 'ModelCreation';
+        return 'updateModel';
     }
 
     public function getPageTitle(): string
     {
-        return 'Creation modèle !';
+        return 'Modification modèle !';
     }
 
     public function getContent(): array
     {
         $ModelHandler = new ModelHandler();
+        $ModelHandler->handleGet($_GET, $this->db);
         $ModelHandler->handlePost($_POST);
+
         if ($ModelHandler->isSubmitted() && $ModelHandler->postIsValid()) {
             $typeIsValid = $this->verifyData($ModelHandler, $this->db);
 
@@ -39,7 +41,7 @@ class ModelCreationController extends AbstractController
         $sqlModel = "INSERT INTO ModelPc (name,quantity,descriptionModel,modelType,addDate,isArchived) VALUES (:name,:quantity,:descriptionModel,:modelType,:addDate,:isArchived)";
         $statementModel = $this->db->prepare($sqlModel);
         $statementModel->bindValue(":name", $modelPc->getName());
-        $statementModel->bindValue(":quantity", $modelPc->getModelQuantity());
+        $statementModel->bindValue(":quantity", $modelPc->getQuantity());
         $statementModel->bindValue(":modelType", $modelPc->getModelType());
         $statementModel->bindValue(":descriptionModel", $modelPc->getDescriptionModel());
         $statementModel->bindValue(":addDate", $modelPc->getAddDate());
@@ -82,4 +84,5 @@ class ModelCreationController extends AbstractController
         }
         return $valid;
     }
+
 }
