@@ -16,7 +16,7 @@ use Model\Screen;
 
 class ModelPc
 {
-    protected int $idModel;
+    protected ?int $idModel;
     protected string $name;
     protected ?string $descriptionModel;
     protected int $modelQuantity;
@@ -49,7 +49,7 @@ class ModelPc
         return $this->idModel;
     }
 
-    public function setIdModel(int $idModel): self
+    public function setIdModel(?int $idModel): self
     {
         $this->idModel = $idModel;
         return $this;

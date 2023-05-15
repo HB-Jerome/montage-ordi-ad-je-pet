@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `component` (
   `price` decimal(15,2) DEFAULT NULL,
   `componentType` varchar(50) DEFAULT NULL,
   `isArchived` tinyint(1) DEFAULT NULL,
+  `addDate` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idComponent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

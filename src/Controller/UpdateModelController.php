@@ -20,38 +20,47 @@ class UpdateModelController extends AbstractController
 
     public function getContent(): array
     {
-        $ModelHandler = new ModelHandler();
-        $ModelHandler->handleGet($_GET, $this->db);
-        $ModelHandler->handlePost($_POST);
+        $modelHandler = new ModelHandler();
+        $modelHandler->handleGet($_GET, $this->db);
+        var_dump($modelHandler);
+        $modelHandler->handlePost($_POST);
 
-        if ($ModelHandler->isSubmitted() && $ModelHandler->postIsValid()) {
-            $typeIsValid = $this->verifyData($ModelHandler, $this->db);
+        if ($modelHandler->isSubmitted() && $modelHandler->postIsValid()) {
+            $typeIsValid = $this->verifyData($modelHandler, $this->db);
 
             if ($typeIsValid) {
-                $modelPc = $ModelHandler->factory();
-                $this->insertModelBDD($modelPc, $ModelHandler->getConfiguration());
+                $modelPc = $modelHandler->factory();
+                $updateModel = $this->updateModelBDD(
+                    $modelPc, $modelHandler->getConfiguration()
+                );
+                if ($updateModel) {
+                    header('Location: ?page=listModel&update=true');
+                }
             }
+
         }
         $components = getAllComponents($this->db);
-        return ["components" => $components, "ModelHandler" => $ModelHandler];
+        return ["components" => $components, "modelHandler" => $modelHandler];
     }
 
-    public function insertModelBDD(ModelPc $modelPc, array $configuration)
+    public function updateModelBDD(ModelPc $modelPc, array $configuration)
     {
-        $sqlModel = "INSERT INTO ModelPc (name,quantity,descriptionModel,modelType,addDate,isArchived) VALUES (:name,:quantity,:descriptionModel,:modelType,:addDate,:isArchived)";
+        $sqlModel = "UPDATE ModelPc 
+        SET `name`=:name,modelQuantity=:modelQuantity,descriptionModel=:descriptionModel,modelType=:modelType
+        WHERE idModel=:idModel";
         $statementModel = $this->db->prepare($sqlModel);
+
+        $statementModel->bindValue(":idModel", $modelPc->getIdModel());
         $statementModel->bindValue(":name", $modelPc->getName());
-        $statementModel->bindValue(":quantity", $modelPc->getQuantity());
+        $statementModel->bindValue(":modelQuantity", $modelPc->getModelQuantity());
         $statementModel->bindValue(":modelType", $modelPc->getModelType());
         $statementModel->bindValue(":descriptionModel", $modelPc->getDescriptionModel());
-        $statementModel->bindValue(":addDate", $modelPc->getAddDate());
-        $statementModel->bindValue(":isArchived", $modelPc->getIsArchived());
         $statementModel->execute();
 
-        $id = $this->db->lastInsertId();
-        $id = intval($id);
+        $id = $modelPc->getIdModel();
 
-        $sqlIntermediaryTable = "INSERT INTO modelpc_component (idComponent,idModel,quantity) VALUES (:idComponent,:idModel,:quantity)";
+        $sqlIntermediaryTable = "UPDATE modelpc_component SET idComponent=:idComponent,quantity=:quantity
+        WHERE idModel=:idModel AND idComponent=:idComponent";
         $statementTable = $this->db->prepare($sqlIntermediaryTable);
 
         foreach ($configuration as $component) {

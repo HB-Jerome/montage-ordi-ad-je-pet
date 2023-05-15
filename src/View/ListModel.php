@@ -19,7 +19,7 @@
                         <?= $model->getModelType() ?>
                     </li>
                     <li class="list-group-item">quantity:
-                        <?= $model->getQuantity() ?>
+                        <?= $model->getModelQuantity() ?>
                     </li>
                     <li class="list-group-item">price:
                         <?= $model->getPrice() ?> €

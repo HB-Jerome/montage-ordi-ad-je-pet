@@ -42,8 +42,8 @@ class ModelHandler
             if (!empty($model)) {
                 $this->name = $model->getName();
                 $this->descriptionModel = $model->getDescriptionModel();
-                $this->name = $model->getName();
-                $this->name = $model->getName();
+                $this->modelQuantity = $model->getModelQuantity();
+                $this->modelType = $model->getModelType();
 
 
             }
@@ -53,6 +53,7 @@ class ModelHandler
     {
         $sqlModel = 'SELECT * FROM ModelPc WHERE idModel= :idModel';
         $statement = $db->prepare($sqlModel);
+        $statement->bindValue(':idModel', $idModel, PDO::PARAM_INT);
         $statement->setFetchMode(PDO::FETCH_CLASS, ModelPc::class);
         $statement->execute();
         $model = $statement->fetch();
@@ -223,6 +224,7 @@ class ModelHandler
     {
         $model = new ModelPc();
         $model
+            ->setIdModel($this->idModel)
             ->setName($this->name)
             ->setAddDate(date("y/m/d H:i"))
             ->setModelQuantity($this->modelQuantity)
@@ -549,6 +551,24 @@ class ModelHandler
     public function setModelQuantity(?int $modelQuantity): self
     {
         $this->modelQuantity = $modelQuantity;
+        return $this;
+    }
+
+    /**
+     * @return 
+     */
+    public function getIdModel(): ?int
+    {
+        return $this->idModel;
+    }
+
+    /**
+     * @param  $idModel 
+     * @return self
+     */
+    public function setIdModel(?int $idModel): self
+    {
+        $this->idModel = $idModel;
         return $this;
     }
 }

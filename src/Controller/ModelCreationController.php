@@ -20,26 +20,26 @@ class ModelCreationController extends AbstractController
 
     public function getContent(): array
     {
-        $ModelHandler = new ModelHandler();
-        $ModelHandler->handlePost($_POST);
-        if ($ModelHandler->isSubmitted() && $ModelHandler->postIsValid()) {
-            $typeIsValid = $this->verifyData($ModelHandler, $this->db);
+        $modelHandler = new ModelHandler();
+        $modelHandler->handlePost($_POST);
+        if ($modelHandler->isSubmitted() && $modelHandler->postIsValid()) {
+            $typeIsValid = $this->verifyData($modelHandler, $this->db);
 
             if ($typeIsValid) {
-                $modelPc = $ModelHandler->factory();
-                $this->insertModelBDD($modelPc, $ModelHandler->getConfiguration());
+                $modelPc = $modelHandler->factory();
+                $this->insertModelBDD($modelPc, $modelHandler->getConfiguration());
             }
         }
         $components = getAllComponents($this->db);
-        return ["components" => $components, "ModelHandler" => $ModelHandler];
+        return ["components" => $components, "modelHandler" => $modelHandler];
     }
 
     public function insertModelBDD(ModelPc $modelPc, array $configuration)
     {
-        $sqlModel = "INSERT INTO ModelPc (name,quantity,descriptionModel,modelType,addDate,isArchived) VALUES (:name,:quantity,:descriptionModel,:modelType,:addDate,:isArchived)";
+        $sqlModel = "INSERT INTO ModelPc (name,modelQuantity,descriptionModel,modelType,addDate,isArchived) VALUES (:name,:modelQuantity,:descriptionModel,:modelType,:addDate,:isArchived)";
         $statementModel = $this->db->prepare($sqlModel);
         $statementModel->bindValue(":name", $modelPc->getName());
-        $statementModel->bindValue(":quantity", $modelPc->getModelQuantity());
+        $statementModel->bindValue(":modelQuantity", $modelPc->getModelQuantity());
         $statementModel->bindValue(":modelType", $modelPc->getModelType());
         $statementModel->bindValue(":descriptionModel", $modelPc->getDescriptionModel());
         $statementModel->bindValue(":addDate", $modelPc->getAddDate());
