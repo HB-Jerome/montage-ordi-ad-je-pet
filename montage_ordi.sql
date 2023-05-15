@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `component` (
   `price` decimal(15,2) DEFAULT NULL,
   `componentType` varchar(50) DEFAULT NULL,
   `isArchived` tinyint(1) DEFAULT NULL,
+  `addDate` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idComponent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -114,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `modelpc` (
   `name` varchar(50) DEFAULT NULL,
   `descriptionModel` varchar(250) DEFAULT NULL,
   `modelType` varchar(50) DEFAULT NULL,
-  `quantity` int DEFAULT NULL,
+  `modelQuantity` int DEFAULT NULL,
   `addDate` datetime DEFAULT NULL,
   `isArchived` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idModel`)

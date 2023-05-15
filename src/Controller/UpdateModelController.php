@@ -6,50 +6,61 @@ use Service\ModelHandler;
 
 use PDO;
 
-class ModelCreationController extends AbstractController
+class UpdateModelController extends AbstractController
 {
     public function getFileName(): string
     {
-        return 'ModelCreation';
+        return 'updateModel';
     }
 
     public function getPageTitle(): string
     {
-        return 'Creation modèle !';
+        return 'Modification modèle !';
     }
 
     public function getContent(): array
     {
         $modelHandler = new ModelHandler();
+        $modelHandler->handleGet($_GET, $this->db);
+        var_dump($modelHandler);
         $modelHandler->handlePost($_POST);
+
         if ($modelHandler->isSubmitted() && $modelHandler->postIsValid()) {
             $typeIsValid = $this->verifyData($modelHandler, $this->db);
 
             if ($typeIsValid) {
                 $modelPc = $modelHandler->factory();
-                $this->insertModelBDD($modelPc, $modelHandler->getConfiguration());
+                $updateModel = $this->updateModelBDD(
+                    $modelPc, $modelHandler->getConfiguration()
+                );
+                if ($updateModel) {
+                    header('Location: ?page=listModel&update=true');
+                }
             }
+
         }
         $components = getAllComponents($this->db);
         return ["components" => $components, "modelHandler" => $modelHandler];
     }
 
-    public function insertModelBDD(ModelPc $modelPc, array $configuration)
+    public function updateModelBDD(ModelPc $modelPc, array $configuration)
     {
-        $sqlModel = "INSERT INTO ModelPc (name,modelQuantity,descriptionModel,modelType,addDate,isArchived) VALUES (:name,:modelQuantity,:descriptionModel,:modelType,:addDate,:isArchived)";
+        $sqlModel = "UPDATE ModelPc 
+        SET `name`=:name,modelQuantity=:modelQuantity,descriptionModel=:descriptionModel,modelType=:modelType
+        WHERE idModel=:idModel";
         $statementModel = $this->db->prepare($sqlModel);
+
+        $statementModel->bindValue(":idModel", $modelPc->getIdModel());
         $statementModel->bindValue(":name", $modelPc->getName());
         $statementModel->bindValue(":modelQuantity", $modelPc->getModelQuantity());
         $statementModel->bindValue(":modelType", $modelPc->getModelType());
         $statementModel->bindValue(":descriptionModel", $modelPc->getDescriptionModel());
-        $statementModel->bindValue(":addDate", $modelPc->getAddDate());
-        $statementModel->bindValue(":isArchived", $modelPc->getIsArchived());
         $statementModel->execute();
 
-        $id = $this->db->lastInsertId();
-        $id = intval($id);
+        $id = $modelPc->getIdModel();
 
-        $sqlIntermediaryTable = "INSERT INTO modelpc_component (idComponent,idModel,quantity) VALUES (:idComponent,:idModel,:quantity)";
+        $sqlIntermediaryTable = "UPDATE modelpc_component SET idComponent=:idComponent,quantity=:quantity
+        WHERE idModel=:idModel AND idComponent=:idComponent";
         $statementTable = $this->db->prepare($sqlIntermediaryTable);
 
         foreach ($configuration as $component) {
@@ -82,4 +93,5 @@ class ModelCreationController extends AbstractController
         }
         return $valid;
     }
+
 }

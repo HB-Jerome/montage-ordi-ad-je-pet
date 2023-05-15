@@ -28,9 +28,7 @@ if ($modelHandler->isSubmitted()) {
 
 <main class="container">
     <div class=" mx-auto w-75">
-        <h1 class="d-flex">Creation Modele</h1>
-
-        <h2>liste composants :</h2>
+        <h1 class="d-flex">modification Modele</h1>
     </div>
 
     <div class="row">
@@ -50,6 +48,8 @@ if ($modelHandler->isSubmitted()) {
                         value="<?= $modelHandler->getModelQuantity() ?>">
                 </div>
             </div>
+
+
             <div class="form-group col-md-10 ">
                 <label for="Modeltype">Type</label>
                 <select id="Modeltype" name="Modeltype" class="form-control">
@@ -65,6 +65,7 @@ if ($modelHandler->isSubmitted()) {
                         rows="3"><?= $modelHandler->getDescriptionModel() ?></textarea>
                 </div>
             </div>
+            <h2>liste composants :</h2>
             <div class="row">
                 <div class="form-group col-md-10 ">
                     <label for="graphicCard">CartGraphic</label>
@@ -176,10 +177,13 @@ if ($modelHandler->isSubmitted()) {
             </div>
 
             <div class="py-5 text-center">
-                <button class="btn btn-primary" type="submit">Create model</button>
+                <button class="btn btn-primary" type="submit">Update model</button>
             </div>
 
 
         </form>
+    </div>
+    <div>
+
     </div>
 </main>
