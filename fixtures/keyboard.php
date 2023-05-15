@@ -19,12 +19,12 @@ $keyboards = [
         ->setBrand("ROCCAT")
         ->setDescription($des1)
         ->setPrice(119)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
         // propriètés specifiques au composant
-        ->setIsWireless(true)
         ->setWithPad(true)
-        ->setKeyType("Optique"),
+        ->setKeyType("Optique")
+        ->setKeybordIsWireless(true),
 
     (new Keyboard())
         // propriétes communes a tous les composants
@@ -32,31 +32,34 @@ $keyboards = [
         ->setBrand("Logitech G")
         ->setDescription($des2)
         ->setPrice(54)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
         // propriètés specifiques au composant
-        ->setIsWireless(false)
+        ->setKeybordIsWireless(false)
         ->setWithPad(false)
-        ->setKeyType("membrane"),
+        ->setKeyType("membrane")
+    ,
     (new Keyboard())
         // propriétes communes a tous les composants
         ->setName("Logitech MX Keys (Graphite)")
         ->setBrand("Gainward")
         ->setDescription($des3)
         ->setPrice(119)
-        ->setPcType("fixe")
+        ->setComponentType("laptop")
         ->setIsArchived(false)
         // propriètés specifiques au composant
-        ->setIsWireless(true)
-        ->setWithPad(false)
+
+        ->setKeybordIsWireless(true)
         ->setKeyType("Chiclet")
+        ->setWithPad(false)
+
 ];
 
 // on prepare l'insertion des propriétes communne dans la table parent
 
-$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:pcType,false,:category,5)";
+$sqlParent = "INSERT INTO Component (name,brand,description,price,componentType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:componentType,false,:category,5)";
 // on prepare l'insertion des propriétes spécifique dans la table enfant
-$sqlChild = "INSERT INTO keyboard (idComponent, isWireless, withPad, keyType) VALUES (:idComponent,:isWireless,:withPad,:keyType)";
+$sqlChild = "INSERT INTO keyboard (idComponent, keybordIsWireless, withPad, keyType) VALUES (:idComponent,:keybordIsWireless,:withPad,:keyType)";
 
 foreach ($keyboards as $keyboard) {
     $statement = $db->prepare($sqlParent);
@@ -64,7 +67,7 @@ foreach ($keyboards as $keyboard) {
     $statement->bindValue(":brand", $keyboard->getBrand(), PDO::PARAM_STR);
     $statement->bindValue(":description", $keyboard->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(":price", $keyboard->getPrice());
-    $statement->bindValue(":pcType", $keyboard->getPcType(), PDO::PARAM_STR);
+    $statement->bindValue(":componentType", $keyboard->getComponentType(), PDO::PARAM_STR);
     $statement->bindValue(":category", $keyboard->GetCategory(), PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétes communne dans la table parent
@@ -75,7 +78,7 @@ foreach ($keyboards as $keyboard) {
     $statementChild = $db->prepare($sqlChild);
     $statementChild->bindValue(":idComponent", $id);
     //on utilise id du parent comme identifiant dans la table enfant
-    $statementChild->bindValue(":isWireless", $keyboard->getIsWireless(), PDO::PARAM_BOOL);
+    $statementChild->bindValue(":keybordIsWireless", $keyboard->getKeybordIsWireless(), PDO::PARAM_BOOL);
     $statementChild->bindValue(":withPad", $keyboard->getWithPad(), PDO::PARAM_BOOL);
     $statementChild->bindValue(":keyType", $keyboard->getKeyType(), PDO::PARAM_STR);
     $statementChild->execute();

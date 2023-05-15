@@ -13,24 +13,24 @@ $rams = [
         ->setBrand("Kingstone")
         ->setDescription($description1)
         ->setPrice(90.12)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
         // propriétés spécifiques
-        ->setCapacity(32)
+        ->setRamCapacity(32)
         ->setNumberOfBars(2)
-        ->setDescription('Kit Dual Channel 2 barrettes de RAM DDR5 PC5-44800'),
+        ->setDetail('Kit Dual Channel 2 barrettes de RAM DDR5 PC5-44800'),
     (new Ram())
         // propriétés communes
         ->setName("Corsair Vengeance LPX Series Low Profile 32 Go (2x 16 Go) DDR4 3200 MHz CL16 ")
         ->setBrand("Kingstone")
         ->setDescription($description2)
         ->setPrice(58)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
         // propriétés spécifiques
-        ->setCapacity(32)
+        ->setRamCapacity(32)
         ->setNumberOfBars(2)
-        ->setDescription('Corsair Vengeance RGB RS 16 Go (2 x 8 Go) DDR4 3200 MHz CL16 '),
+        ->setDetail('Corsair Vengeance RGB RS 16 Go (2 x 8 Go) DDR4 3200 MHz CL16 '),
 
     (new Ram())
         // propriétés communes
@@ -38,18 +38,18 @@ $rams = [
         ->setBrand("Kingstone")
         ->setDescription($description3)
         ->setPrice(62.23)
-        ->setPcType("fixe")
+        ->setComponentType("laptop")
         ->setIsArchived(false)
         // propriétés spécifiques
-        ->setCapacity(42)
+        ->setRamCapacity(42)
         ->setNumberOfBars(3)
-        ->setDescription('Kit Dual Channel 2 barrett PC5-44800'),
+        ->setDetail('Kit Dual Channel 2 barrett PC5-44800'),
 ];
 // parent sql prépare
-$sqlRamParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category,quantity) VALUES (:name, :brand, :description, :price, :pcType,false,:category,5)";
+$sqlRamParent = "INSERT INTO Component (name,brand,description,price,componentType,isArchived,category,quantity) VALUES (:name, :brand, :description, :price, :componentType,false,:category,5)";
 
 // child sql prépare
-$sqlRamChild = "INSERT INTO ram (idComponent, capacity, numberOfBars, description) VALUES (:idComponent, :capacity, :numberOfBars, :description)";
+$sqlRamChild = "INSERT INTO ram (idComponent, ramCapacity, numberOfBars, detail) VALUES (:idComponent, :ramCapacity, :numberOfBars, :detail)";
 
 $statement = $db->prepare($sqlRamParent);
 $statementChild = $db->prepare($sqlRamChild);
@@ -60,7 +60,7 @@ foreach ($rams as $ram) {
     $statement->bindValue(':brand', $ram->getBrand(), PDO::PARAM_STR);
     $statement->bindValue(':description', $ram->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(':price', $ram->getPrice());
-    $statement->bindValue(':pcType', $ram->getPcType(), PDO::PARAM_STR);
+    $statement->bindValue(':componentType', $ram->getComponentType(), PDO::PARAM_STR);
     $statement->bindValue(':category', $ram->GetCategory(), PDO::PARAM_STR);
     // execution de réquete
     $statement->execute();
@@ -68,9 +68,9 @@ foreach ($rams as $ram) {
     $id = $db->lastInsertId();
     // insert child propriétes
     $statementChild->bindValue(':idComponent', $id, PDO::PARAM_INT);
-    $statementChild->bindValue(':capacity', $ram->getCapacity(), PDO::PARAM_INT);
+    $statementChild->bindValue(':ramCapacity', $ram->getRamCapacity(), PDO::PARAM_INT);
     $statementChild->bindValue(':numberOfBars', $ram->getNumberOfBars(), PDO::PARAM_STR);
-    $statementChild->bindValue(':description', $ram->getDescription());
+    $statementChild->bindValue(':detail', $ram->getDetail());
     // execution de réquete
     $statementChild->execute();
 

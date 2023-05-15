@@ -6,36 +6,12 @@ use Model\Component;
 // Creation class enfant Keyboard which extends Component
 class Keyboard extends Component
 {
-	protected bool $isWireless;
+	protected bool $keybordIsWireless;
 	protected bool $withPad;
 	protected string $keyType;
 
-	public function __construct()
-	{
-	}
 
 
-	public function getIdComponent(): int
-	{
-		return $this->idComponent;
-	}
-
-	public function setIdComponent(int $idComponent): self
-	{
-		$this->idComponent = $idComponent;
-		return $this;
-	}
-
-	public function getIsWireless(): bool
-	{
-		return $this->isWireless;
-	}
-
-	public function setIsWireless(bool $isWireless): self
-	{
-		$this->isWireless = $isWireless;
-		return $this;
-	}
 
 	public function getWithPad(): bool
 	{
@@ -65,5 +41,22 @@ class Keyboard extends Component
 		return self::KEYBOARD;
 	}
 
+	/**
+	 * @return 
+	 */
+	public function getKeybordIsWireless(): bool
+	{
+		return $this->keybordIsWireless;
+	}
+
+	/**
+	 * @param  $keybordIsWireless 
+	 * @return self
+	 */
+	public function setKeybordIsWireless(bool $keybordIsWireless): self
+	{
+		$this->keybordIsWireless = $keybordIsWireless;
+		return $this;
+	}
 }
 ?>

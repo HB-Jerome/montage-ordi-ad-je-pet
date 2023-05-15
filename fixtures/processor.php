@@ -16,7 +16,7 @@ $processors = [
         ->setBrand("AMD")
         ->setDescription($description1)
         ->setPrice(942)
-        ->setPcType("fixe")
+        ->setComponentType("laptop")
         ->setIsArchived(false)
         // propriétés spécifiques
         ->setCoreNumber(9)
@@ -29,7 +29,7 @@ $processors = [
         ->setBrand("AMD")
         ->setDescription($description2)
         ->setPrice(312)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
         // propriétés spécifiques
         ->setCoreNumber(6)
@@ -42,7 +42,7 @@ $processors = [
         ->setBrand("AMD")
         ->setDescription($description3)
         ->setPrice(650)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
         // propriétés spécifiques
         ->setCoreNumber(8)
@@ -50,7 +50,7 @@ $processors = [
         ->setCpuFrequency(4.5),
 ];
 // parent sql preparation
-$sqlProcessorParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:pcType,false,:category,5)";
+$sqlProcessorParent = "INSERT INTO Component (name,brand,description,price,componentType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:componentType,false,:category,5)";
 // child processor sql preparation
 $sqlProcessorChild = "INSERT INTO  processor (idComponent, coreNumber, compatibleChipset, cpuFrequency) VALUES (:idComponent, :coreNumber, :compatibleChipset, :cpuFrequency) ";
 
@@ -63,7 +63,7 @@ foreach ($processors as $processor) {
     $statement->bindValue('brand', $processor->getBrand(), PDO::PARAM_STR);
     $statement->bindValue('description', $processor->getDescription(), PDO::PARAM_STR);
     $statement->bindValue('price', $processor->getPrice());
-    $statement->bindValue('pcType', $processor->getPcType(), PDO::PARAM_STR);
+    $statement->bindValue('componentType', $processor->getComponentType(), PDO::PARAM_STR);
     $statement->bindValue('category', $processor->GetCategory(), PDO::PARAM_STR);
     // execution de réquete
     $statement->execute();

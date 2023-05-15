@@ -15,17 +15,6 @@ class PowerSupply extends Component
 
 	}
 
-	public function getIdComponent(): int
-	{
-		return $this->idComponent;
-	}
-
-	public function setIdComponent(int $idComponent): self
-	{
-		$this->idComponent = $idComponent;
-		return $this;
-	}
-
 	public function getBatteryPower(): string
 	{
 		return $this->batteryPower;

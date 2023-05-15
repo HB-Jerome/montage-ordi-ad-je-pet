@@ -3,34 +3,41 @@ namespace Model; // afin que l'autoload puisse retrouver notre classe. Model cor
 
 class MouseAndPad extends Component
 {
-	protected bool $isWireless;
-	protected string $keyType;
+	protected bool $MouseIsWireless;
+	protected string $numberOfKey;
 
 	//Méthodes (Set et Get)
 
-	public function getIsWireless(): bool
+	public function getNumberOfKey(): string
 	{
-		return $this->isWireless;
+		return $this->numberOfKey;
 	}
 
-	public function setIsWireless(bool $isWireless): self
+	public function setNumberOfKey(string $keyType): self
 	{
-		$this->isWireless = $isWireless;
-		return $this;
-	}
-
-	public function getKeyType(): string
-	{
-		return $this->keyType;
-	}
-
-	public function setKeyType(string $keyType): self
-	{
-		$this->keyType = $keyType;
+		$this->numberOfKey = $keyType;
 		return $this;
 	}
 	public function GetCategory(): string
 	{
 		return self::MOUSE_AND_PAD;
+	}
+
+	/**
+	 * @return 
+	 */
+	public function getMouseIsWireless(): bool
+	{
+		return $this->MouseIsWireless;
+	}
+
+	/**
+	 * @param  $MouseIsWireless 
+	 * @return self
+	 */
+	public function setMouseIsWireless(bool $MouseIsWireless): self
+	{
+		$this->MouseIsWireless = $MouseIsWireless;
+		return $this;
 	}
 }

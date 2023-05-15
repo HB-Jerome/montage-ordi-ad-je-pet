@@ -27,9 +27,9 @@ class Component
 		self::MOTHER_BOARD => MotherBoard::class,
 		self::POWER_SUPPLY => PowerSupply::class,
 		self::MOUSE_AND_PAD => MouseAndPad::class,
-		self::PROCESSOR => PowerSupply::class,
-		self::RAM => Processor::class,
-		self::SCREEN => HardDisc::class,
+		self::PROCESSOR => Processor::class,
+		self::RAM => Ram::class,
+		self::SCREEN => Screen::class,
 	];
 
 	// Constantes
@@ -42,6 +42,14 @@ class Component
 	const PROCESSOR = "Processor";
 	const RAM = "Ram";
 	const SCREEN = "Screen";
+	const TYPES = [
+		self::FIXE,
+		self::LAPTOP,
+	];
+
+	const FIXE = "fixe";
+	const LAPTOP = "laptop";
+
 	protected int $idComponent;
 	protected string $name;
 	protected string $brand;
@@ -49,95 +57,65 @@ class Component
 	protected int $quantity;
 
 	protected float $price;
-	protected string $pcType;
+	protected string $componentType;
 	protected bool $isArchived;
 	protected string $category;
 	protected string $addDate;
 
-	// Fonctions
-
-	public function getidComponent(): int
+	public function getIdComponent(): int
 	{
 		return $this->idComponent;
 	}
-
-	public function setidComponent(int $idComponent): self
+	public function setIdComponent(int $idComponent): self
 	{
 		$this->idComponent = $idComponent;
 		return $this;
 	}
-
-
 	public function getName(): string
 	{
 		return $this->name;
 	}
-
-
 	public function setName(string $name): self
 	{
 		$this->name = $name;
 		return $this;
 	}
-
-
 	public function getBrand(): string
 	{
 		return $this->brand;
 	}
-
-
 	public function setBrand(string $brand): self
 	{
 		$this->brand = $brand;
 		return $this;
 	}
-
-
 	public function getDescription(): string
 	{
 		return $this->description;
 	}
-
 	public function setDescription(string $description): self
 	{
 		$this->description = $description;
 		return $this;
 	}
-
 	public function getPrice(): float
 	{
 		return $this->price;
 	}
-
 	public function setPrice(float $price): self
 	{
 		$this->price = $price;
 		return $this;
 	}
-
-	public function getPcType(): string
-	{
-		return $this->pcType;
-	}
-
-	public function setPcType(string $pcType): self
-	{
-		$this->pcType = $pcType;
-		return $this;
-	}
-
 	public function getIsArchived(): bool
 	{
 		return $this->isArchived;
 	}
-
 	public function setIsArchived(bool $isArchived): self
 	{
 		$this->isArchived = $isArchived;
 		return $this;
 	}
-
 	public function getQuantity(): int
 	{
 		return $this->quantity;
@@ -161,7 +139,15 @@ class Component
 		$this->category = $category;
 		return $this;
 	}
-
+	public function getComponentType(): string
+	{
+		return $this->componentType;
+	}
+	public function setComponentType(string $componentType): self
+	{
+		$this->componentType = $componentType;
+		return $this;
+	}
 	public function getAddDate(): string
 	{
 		return $this->addDate;

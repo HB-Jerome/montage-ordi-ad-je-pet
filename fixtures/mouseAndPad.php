@@ -19,12 +19,12 @@ $mouseAndPads = [
         ->setBrand("INOVU")
         ->setDescription($des1)
         ->setPrice(7)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
 
         // propriétés spécifiques à MouseAndPad
-        ->setIsWireless(false)
-        ->setKeyType(3),
+        ->setMouseIsWireless(false)
+        ->setNumberOfKey(3),
 
     (new MouseAndPad())
         // propriétés communes à tous les composants
@@ -32,12 +32,12 @@ $mouseAndPads = [
         ->setBrand("INOVU")
         ->setDescription($des1)
         ->setPrice(9)
-        ->setPcType("fixe")
+        ->setComponentType("laptop")
         ->setIsArchived(false)
 
         // propriétés spécifiques à MouseAndPad
-        ->setIsWireless(true)
-        ->setKeyType(3),
+        ->setMouseIsWireless(true)
+        ->setNumberOfKey(3),
 
     (new MouseAndPad())
         // propriétés communes à tous les composants
@@ -45,18 +45,18 @@ $mouseAndPads = [
         ->setBrand("Générique")
         ->setDescription($des3)
         ->setPrice(29)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
 
         // propriétés spécifiques à MouseAndPad
-        ->setIsWireless(true)
-        ->setKeyType(5),
+        ->setMouseIsWireless(true)
+        ->setNumberOfKey(5),
 ];
 
 // on prépare l'insertion des propriétés communnes dans la table parent
-$sqlParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:pcType,false,:category,5)";
+$sqlParent = "INSERT INTO Component (name,brand,description,price,componentType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:componentType,false,:category,5)";
 // on prepare l'insertion des propriétés spécifiques dans la table enfant
-$sqlChild = "INSERT INTO MouseAndPad (idComponent,isWireless,keyType) VALUES (:idComponent,:isWireless,:keyType)";
+$sqlChild = "INSERT INTO MouseAndPad (idComponent,mouseIsWireless,numberOfKey) VALUES (:idComponent,:mouseIsWireless,:numberOfKey)";
 
 
 foreach ($mouseAndPads as $hardDisc) {
@@ -66,7 +66,7 @@ foreach ($mouseAndPads as $hardDisc) {
     $statement->bindValue(":brand", $hardDisc->getBrand(), PDO::PARAM_STR);
     $statement->bindValue(":description", $hardDisc->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(":price", $hardDisc->getPrice());
-    $statement->bindValue(":pcType", $hardDisc->getPcType(), PDO::PARAM_STR);
+    $statement->bindValue(":componentType", $hardDisc->getComponentType(), PDO::PARAM_STR);
     $statement->bindValue(":category", $hardDisc->GetCategory(), PDO::PARAM_STR);
     $statement->execute();
     // insertion des propriétés communes dans la table parent
@@ -76,8 +76,8 @@ foreach ($mouseAndPads as $hardDisc) {
     $id = intval($id);
     $statement = $db->prepare($sqlChild);
     $statement->bindValue(":idComponent", $id); //on utilise id du parent comme identifiant dans la table enfant
-    $statement->bindValue(":isWireless", $hardDisc->getIsWireless(), PDO::PARAM_BOOL);
-    $statement->bindValue(":keyType", $hardDisc->getKeyType(), PDO::PARAM_INT);
+    $statement->bindValue(":mouseIsWireless", $hardDisc->getMouseIsWireless(), PDO::PARAM_BOOL);
+    $statement->bindValue(":numberOfKey", $hardDisc->getNumberOfKey(), PDO::PARAM_INT);
     $statement->execute();
     // insertion des propriétés spécifique dans la table enfant
     $db->commit();

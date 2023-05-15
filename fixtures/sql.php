@@ -1,5 +1,8 @@
 <?php
-
+spl_autoload_register(function ($class) {
+    require_once "../src/$class.php";
+});
+include "../includes/config.inc.php";
 
 include_once "graphicCard.php";
 include_once "hardDisc.php";

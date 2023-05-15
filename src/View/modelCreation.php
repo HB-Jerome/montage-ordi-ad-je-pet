@@ -1,4 +1,5 @@
 <?php
+use Model\Component;
 
 
 if ($ModelHandler->isSubmitted()) {
@@ -26,24 +27,42 @@ if ($ModelHandler->isSubmitted()) {
 ?>
 
 <main class="container">
-    <h1 class="d-flex">Creation Modele</h1>
+    <div class=" mx-auto w-75">
+        <h1 class="d-flex">Creation Modele</h1>
 
-    <h2>liste composants :</h2>
+        <h2>liste composants :</h2>
+    </div>
+
     <div class="row">
-        <form method="POST">
+        <form method="POST" class="mx-auto w-75">
 
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-10">
                     <label for="name">name</label>
                     <input type="text" class="form-control" name="name" id="name"
                         value="<?= $ModelHandler->getName() ?>">
                 </div>
             </div>
+            <div class="form-group col-md-10 ">
+                <label for="Modeltype">Type</label>
+                <select id="Modeltype" name="Modeltype" class="form-control">
+                    <?php displayType(Component::TYPES, $ModelHandler->getModelType()); ?>
+                </select>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-10">
+                    <label for="description">
+                        Description
+                    </label>
+                    <textarea class="form-control" id="description" name="description"
+                        rows="3"><?= $ModelHandler->getDescriptionModel() ?></textarea>
+                </div>
+            </div>
             <div class="row">
-                <div class="form-group col-md-8 ">
+                <div class="form-group col-md-10 ">
                     <label for="graphicCard">CartGraphic</label>
                     <select id="graphicCard" name="graphicCard" class="form-control">
-                        <?php displayOptions($Components, "GraphicCard", $ModelHandler->getGraphicCard()); ?>
+                        <?php displayOptions($components, "GraphicCard", $ModelHandler->getGraphicCard()); ?>
                     </select>
                 </div>
                 <div class="form-group col-md-2">
@@ -53,10 +72,10 @@ if ($ModelHandler->isSubmitted()) {
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-8 ">
+                <div class="form-group col-md-10 ">
                     <label for="hardDisc">hardDisc</label>
                     <select id="hardDisc" name="hardDisc" class="form-control">
-                        <?php displayOptions($Components, "HardDisc", $ModelHandler->getHardDisc()); ?>
+                        <?php displayOptions($components, "HardDisc", $ModelHandler->getHardDisc()); ?>
                     </select>
                 </div>
                 <div class="form-group col-md-2">
@@ -65,10 +84,10 @@ if ($ModelHandler->isSubmitted()) {
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-8 ">
+                <div class="form-group col-md-10 ">
                     <label for="keyboard">keyboard</label>
                     <select id="keyboard" name="keyboard" class="form-control">
-                        <?php displayOptions($Components, "Keyboard", $ModelHandler->getKeyboard()); ?>
+                        <?php displayOptions($components, "Keyboard", $ModelHandler->getKeyboard()); ?>
                     </select>
                 </div>
                 <div class="form-group col-md-2">
@@ -77,10 +96,10 @@ if ($ModelHandler->isSubmitted()) {
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-8 ">
+                <div class="form-group col-md-10 ">
                     <label for="motherBoard">motherBoard</label>
                     <select id="motherBoard" name="motherBoard" class="form-control">
-                        <?php displayOptions($Components, "MotherBoard", $ModelHandler->getMotherBoard()); ?>
+                        <?php displayOptions($components, "MotherBoard", $ModelHandler->getMotherBoard()); ?>
                     </select>
                 </div>
                 <div class="form-group col-md-2">
@@ -89,10 +108,10 @@ if ($ModelHandler->isSubmitted()) {
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-8 ">
+                <div class="form-group col-md-10 ">
                     <label for="mouseAndPad">mouseAndPad</label>
                     <select id="mouseAndPad" name="mouseAndPad" class="form-control">
-                        <?php displayOptions($Components, "MouseAndPad", $ModelHandler->getMouseAndPad()); ?>
+                        <?php displayOptions($components, "MouseAndPad", $ModelHandler->getMouseAndPad()); ?>
                     </select>
                 </div>
                 <div class="form-group col-md-2">
@@ -101,10 +120,10 @@ if ($ModelHandler->isSubmitted()) {
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-8 ">
+                <div class="form-group col-md-10 ">
                     <label for="powerSupply">powerSupply</label>
                     <select id="powerSupply" name="powerSupply" class="form-control">
-                        <?php displayOptions($Components, "PowerSupply", $ModelHandler->getPowerSupply()); ?>
+                        <?php displayOptions($components, "PowerSupply", $ModelHandler->getPowerSupply()); ?>
                     </select>
                 </div>
                 <div class="form-group col-md-2">
@@ -113,10 +132,10 @@ if ($ModelHandler->isSubmitted()) {
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-8 ">
+                <div class="form-group col-md-10 ">
                     <label for="processor">processor</label>
                     <select id="processor" name="processor" class="form-control">
-                        <?php displayOptions($Components, "Processor", $ModelHandler->getProcessor()); ?>
+                        <?php displayOptions($components, "Processor", $ModelHandler->getProcessor()); ?>
                     </select>
                 </div>
                 <div class="form-group col-md-2">
@@ -125,10 +144,10 @@ if ($ModelHandler->isSubmitted()) {
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-8 ">
+                <div class="form-group col-md-10 ">
                     <label for="ram">ram</label>
                     <select id="ram" name="ram" class="form-control">
-                        <?php displayOptions($Components, "Ram", $ModelHandler->getRam()); ?>
+                        <?php displayOptions($components, "Ram", $ModelHandler->getRam()); ?>
                     </select>
                 </div>
                 <div class="form-group col-md-2">
@@ -137,10 +156,10 @@ if ($ModelHandler->isSubmitted()) {
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-8 ">
+                <div class="form-group col-md-10 ">
                     <label for="screen">screen</label>
                     <select id="screen" name="screen" class="form-control">
-                        <?php displayOptions($Components, "Screen", $ModelHandler->getScreen()); ?>
+                        <?php displayOptions($components, "Screen", $ModelHandler->getScreen()); ?>
                     </select>
                 </div>
                 <div class="form-group col-md-2">

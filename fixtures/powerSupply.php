@@ -16,7 +16,7 @@ $powersupplys = [
         ->setBrand("MSI")
         ->setDescription($description1)
         ->setPrice(140)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
         // propriétés spécifiques
         ->setBatteryPower(220),
@@ -27,7 +27,7 @@ $powersupplys = [
         ->setBrand("MSI")
         ->setDescription($description2)
         ->setPrice(211)
-        ->setPcType("fixe")
+        ->setComponentType("laptop")
         ->setIsArchived(false)
         // propriétés spécifiques
         ->setBatteryPower(220),
@@ -38,13 +38,13 @@ $powersupplys = [
         ->setBrand("MSI")
         ->setDescription($description3)
         ->setPrice(92)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
         // propriétés spécifiques
         ->setBatteryPower(240),
 ];
 // parent sql preparation
-$sqlPowerSupplyParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:pcType,false,:category,5)";
+$sqlPowerSupplyParent = "INSERT INTO Component (name,brand,description,price,componentType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:componentType,false,:category,5)";
 // child sql preparation
 $sqlPowerSupplyChild = "INSERT INTO powersupply (idComponent, batteryPower) VALUES (:idComponent, :batteryPower)";
 
@@ -57,7 +57,7 @@ foreach ($powersupplys as $powersupply) {
     $statement->bindValue(':brand', $powersupply->getBrand(), PDO::PARAM_STR);
     $statement->bindValue(':description', $powersupply->getDescription(), PDO::PARAM_STR);
     $statement->bindValue(':price', $powersupply->getPrice());
-    $statement->bindValue(':pcType', $powersupply->getPcType(), PDO::PARAM_STR);
+    $statement->bindValue(':componentType', $powersupply->getComponentType(), PDO::PARAM_STR);
     $statement->bindValue(':category', $powersupply->GetCategory(), PDO::PARAM_STR);
     // execution de réquete
     $statement->execute();

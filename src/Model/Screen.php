@@ -6,7 +6,6 @@ use Model\Component;
 // Creation de class PowerSupply extends Componen
 class Screen extends Component
 {
-	protected int $idComponent;
 	protected float $size;
 
 

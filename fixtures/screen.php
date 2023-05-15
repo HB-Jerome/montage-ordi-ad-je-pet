@@ -16,7 +16,7 @@ $screens = [
         ->setBrand("LED")
         ->setDescription($description1)
         ->setPrice(154.20)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
         // propriétés spécifiques
         ->setSize(38),
@@ -27,7 +27,7 @@ $screens = [
         ->setBrand("LED")
         ->setDescription($description2)
         ->setPrice(514.20)
-        ->setPcType("fixe")
+        ->setComponentType("laptop")
         ->setIsArchived(false)
         // propriétés spécifiques
         ->setSize(49),
@@ -38,14 +38,14 @@ $screens = [
         ->setBrand("LED")
         ->setDescription($description3)
         ->setPrice(300.20)
-        ->setPcType("fixe")
+        ->setComponentType("fixe")
         ->setIsArchived(false)
         // propriétés spécifiques
         ->setSize(42),
 ];
 
 // parent sql preparation
-$sqlScreenParent = "INSERT INTO Component (name,brand,description,price,pcType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:pcType,false,:category,5)";
+$sqlScreenParent = "INSERT INTO Component (name,brand,description,price,componentType,isArchived,category,quantity) VALUES (:name,:brand,:description,:price,:componentType,false,:category,5)";
 // child processor sql preparation
 $sqlScreenChild = "INSERT INTO screen (idComponent, size) VALUES (:idComponent, :size)";
 
@@ -58,7 +58,7 @@ foreach ($screens as $screen) {
     $statement->bindValue(":brand", $screen->getBrand());
     $statement->bindValue(":description", $screen->getDescription());
     $statement->bindValue(":price", $screen->getPrice());
-    $statement->bindValue(":pcType", $screen->getPcType());
+    $statement->bindValue(":componentType", $screen->getComponentType());
     $statement->bindValue(":category", $screen->GetCategory());
     $statement->execute();
     // execution de réquete

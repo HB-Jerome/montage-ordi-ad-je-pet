@@ -3,22 +3,8 @@ namespace Model; // afin que l'autoload puisse retrouver notre classe. Model cor
 
 class HardDisc extends Component
 {
-	protected int $capacity;
+	protected int $discCapacity;
 	protected bool $ssd;
-
-	public function getCapacity(): int
-	{
-		return $this->capacity;
-	}
-
-	//Méthodes (Set et Get)
-
-	public function setCapacity(int $capacity): self
-	{
-		$this->capacity = $capacity;
-		return $this;
-	}
-
 	public function getSsd(): bool
 	{
 		return $this->ssd;
@@ -32,5 +18,24 @@ class HardDisc extends Component
 	public function GetCategory(): string
 	{
 		return self::HARD_DISC;
+	}
+
+
+	/**
+	 * @return 
+	 */
+	public function getDiscCapacity(): int
+	{
+		return $this->discCapacity;
+	}
+
+	/**
+	 * @param  $discCapacity 
+	 * @return self
+	 */
+	public function setDiscCapacity(int $discCapacity): self
+	{
+		$this->discCapacity = $discCapacity;
+		return $this;
 	}
 }
