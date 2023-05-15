@@ -119,7 +119,7 @@
                             <?= $result->getCategory(); ?>
                         </td>
                         <td class="col-1">
-                            <a href="page=detailsProduit&idComponent?=<?= $result->getIdComponent(); ?>" type="submit"
+                            <a href="?page=detailsProduit&idComponent?=<?= $result->getIdComponent(); ?>" type="submit"
                                 class="btn btn-primary">Détails</a>
                         </td>
                         <td class="col-1">

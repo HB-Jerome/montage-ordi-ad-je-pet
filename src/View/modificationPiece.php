@@ -1,10 +1,10 @@
 <section>
-    <div id="pieceModifs" class="d-flex  align-items-center gap-5">
-        <p>Photos des Piéces à Modifier</p>
-        <div class="d-block">
+    <div id="pieceModifs" class="d-flex  align-items-center gap-5 text-center">
+        <aside class="">
+        <h3>Photos des Piéces à Modifier</h3>
+        <img width="200px" height="200px" src="..." class="rounded float-start" alt="..."><br>
         <img width="200px" height="200px" src="..." class="rounded float-start" alt="...">
-        <img width="200px" height="200px" src="..." class="rounded float-start" alt="...">
-        </div>
+</aside>
         <!-- form pieceModification -->
         <form method="POST">
 
