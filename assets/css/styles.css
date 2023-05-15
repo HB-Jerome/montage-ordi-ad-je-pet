@@ -13,6 +13,17 @@
 #h {
     border: 3px solid rgb(0, 0, 0);
 }
+/* listmodification */
+#pieceModifs {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#pieceModifs img {
+    height: 200px;
+    width: 200px;
+    background-color: rgba(0, 0, 0, 0.486);
+}
 /************* RESPONSIVE *************/
 @media only screen and (max-width: 600px) {
     #listPiece-form {
