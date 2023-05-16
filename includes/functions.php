@@ -33,7 +33,6 @@ function displayType(array $types, $curentType)
         <?php
     }
 }
-
 function getAllComponents($db, $getArchived = true)
 {
     $slqComponents = "SELECT *,c.idComponent FROM Component as c
@@ -57,7 +56,6 @@ function getAllComponents($db, $getArchived = true)
     }
     return $components;
 }
-
 function getComponentById($id, $db)
 {
     $slqComponent = "SELECT *,c.idComponent FROM Component as c
@@ -79,6 +77,4 @@ function getComponentById($id, $db)
     $component = (new ComponentFactory)->create($result);
     return $component;
 }
-
-
 ?>

@@ -32,9 +32,11 @@ if ($modelHandler->isSubmitted()) {
     </div>
 
     <div class="row">
-        <?php include 'src/View/template/formulaireModel.php' ?>
-        <div class="py-5 text-center">
-            <button class="btn btn-primary" type="submit">Create model</button>
-        </div>
+        <form method="POST" class="mx-auto w-75">
+            <?php include 'src/View/template/formulaireModel.php' ?>
+            <div class="py-5 text-center">
+                <button class="btn btn-primary" type="submit">Create model</button>
+            </div>
+        </form>
     </div>
 </main>
