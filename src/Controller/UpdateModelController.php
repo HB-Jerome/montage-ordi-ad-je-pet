@@ -78,7 +78,8 @@ class UpdateModelController extends AbstractController
 
                         case 'MouseAndPad':
                             $modelHandler->setMouseAndPad($component['idComponent']);
-                            $modelHandler->setMouseAndPadQty($component['quantity']);
+                            $modelHandler->setMouseAndPadQty(intval($component['quantity']));
+
                             break;
 
                         case 'PowerSupply':

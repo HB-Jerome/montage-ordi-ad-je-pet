@@ -91,7 +91,7 @@
     </div>
     <div class="form-group col-md-2">
         <label for="mouseAndPadQty">quantity (1)</label>
-        <input id="mouseAndPadQty" name="mouseAndPadQty" value=<?= $modelHandler->getMouseAndPadQty() ?>>
+        <input id="mouseAndPadQty" name="mouseAndPadQty" value=<?= $modelHandler->getMouseAndPadQty(); ?>>
     </div>
 </div>
 <div class="row">
@@ -103,7 +103,7 @@
     </div>
     <div class="form-group col-md-2">
         <label for="powerSupplyQty">quantity (1)</label>
-        <input id="powerSupplyQty" name="powerSupplyQty" value=<?= $modelHandler->getPowerSupplyQty() ?>>
+        <input id="powerSupplyQty" name="powerSupplyQty" value=<?= $modelHandler->getPowerSupplyQty(); ?>>
     </div>
 </div>
 <div class="row">
