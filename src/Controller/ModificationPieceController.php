@@ -18,7 +18,7 @@ class ModificationPieceController extends AbstractController
             $category = $_GET['category']; // FETCHED from listPiece.php "catResults" => Component::AVAILABLE_CATEGORIES,
 
             if (isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['description']) && isset($_POST['price']) && isset($_POST['componentType'])) {
-                var_dump('ok');
+                
                 $brand = $_POST['brand']; // the value of URL from modify button is initialised to take the new values from the form $_POST
                 $name = $_POST['name'];
                 $name = $_POST['brand'];
@@ -189,7 +189,6 @@ class ModificationPieceController extends AbstractController
             $statement->setFetchMode(PDO::FETCH_CLASS, "Model\\$category");
             $statement->execute();
             $updateResult = $statement->fetch();
-            var_dump($category);
         }
 
         return ["updateResult" => $updateResult, "category" => $category,];
