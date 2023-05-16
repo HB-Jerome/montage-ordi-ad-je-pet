@@ -24,10 +24,8 @@ class DeleteArchiveController extends AbstractController
 
             $resultQuantity=$statement->fetch();
             $quantity=$resultQuantity['quantity'];
-            var_dump($resultQuantity);
-            var_dump($result);
-            var_dump(empty($result));
-            if (empty($result)&&$quantity==0){
+            $isDelete=(empty($result)&&$quantity==0);
+            if ($isDelete){
                 
                 $sqlDelete="DELETE  GraphicCard ,HardDisc,Keyboard,MotherBoard,MouseAndPad,PowerSupply,Processor,Ram,Screen
                 FROM component
@@ -57,7 +55,7 @@ class DeleteArchiveController extends AbstractController
 
             }
         }
-        return [];
+        return ['isDelete'=>$isDelete];
     }
 
     public function getFileName(): string
