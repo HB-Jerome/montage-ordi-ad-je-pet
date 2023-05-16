@@ -17,11 +17,9 @@ class ModificationPieceController extends AbstractController
             $idPost = $_GET['idComponent']; // the value of URL from modify button is initialised to take the new values from the form $_POST
             $category = $_GET['category']; // FETCHED from listPiece.php "catResults" => Component::AVAILABLE_CATEGORIES,
 
-            if (isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['description']) && isset($_POST['price']) && isset($_POST['componentType'])) {
-                
-                $brand = $_POST['brand']; // the value of URL from modify button is initialised to take the new values from the form $_POST
+            if (isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['description']) && isset($_POST['price']) && isset($_POST['componentType'])) {  // the value of URL from modify button is initialised to take the new values from the form $_POST
                 $name = $_POST['name'];
-                $name = $_POST['brand'];
+                $brand = $_POST['brand'];
                 $description = $_POST['description'];
                 $price = $_POST['price'];
                 $componentType = $_POST['componentType'];
