@@ -7,14 +7,13 @@ function displayOptions(?array $components, $category, $curentComponentId)
     ?>
     <option value=> </option>
     <?php
-
     $options = array_filter($components, function ($component) use ($category) {
         return $component->GetCategory() == $category;
     });
     foreach ($options as $option) {
         ?>
         <option <?php if ($curentComponentId == $option->getIdComponent()) {
-            echo "selected";
+            ?> selected class="chosen" <?php
         } ?>
             value=<?= $option->getIdComponent() ?>> <?= $option->getName() ?> - <?= $option->getComponentType() ?></option>
         <?php
@@ -35,7 +34,7 @@ function displayType(array $types, $curentType)
     }
 }
 
-function getAllComponents($db)
+function getAllComponents($db, $getArchived = true)
 {
     $slqComponents = "SELECT *,c.idComponent FROM Component as c
             LEFT JOIN GraphicCard as g on c.idComponent =g.idComponent
@@ -46,8 +45,11 @@ function getAllComponents($db)
             LEFT JOIN PowerSupply as ps on c.idComponent =ps.idComponent
             LEFT JOIN Processor as p on c.idComponent =p.idComponent
             LEFT JOIN Ram as r on c.idComponent =r.idComponent
-            LEFT JOIN Screen as s on c.idComponent = s.idComponent";
+            LEFT JOIN Screen as s on c.idComponent = s.idComponent 
+            WHERE isArchived=false OR isArchived=:getArchived";
+
     $statement = $db->prepare($slqComponents);
+    $statement->bindValue(":getArchived", $getArchived, PDO::PARAM_BOOL);
     $statement->execute();
     $components = [];
     while ($result = $statement->fetch()) {

@@ -30,6 +30,7 @@ class ModelCreationController extends AbstractController
                 $this->insertModelBDD($modelPc, $modelHandler->getConfiguration());
             }
         }
+
         $components = getAllComponents($this->db);
         return ["components" => $components, "modelHandler" => $modelHandler];
     }
