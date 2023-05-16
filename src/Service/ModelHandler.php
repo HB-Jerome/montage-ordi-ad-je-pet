@@ -11,9 +11,9 @@ class ModelHandler
     protected ?string $name = null;
     protected ?int $modelQuantity = null;
     protected ?string $descriptionModel = null;
+    protected ?bool $isSubmitted = false;
     protected ?array $configuration = [];
     protected ?string $modelType = null;
-    protected bool $isSubmitted = false;
     protected ?string $graphicCard = null;
     protected ?string $hardDisc = null;
     protected ?string $keyboard = null;
@@ -23,42 +23,16 @@ class ModelHandler
     protected ?string $processor = null;
     protected ?string $ram = null;
     protected ?string $screen = null;
-    protected ?int $graphicCardQty = null;
-    protected ?int $hardDiscQty = null;
-    protected ?int $KeyboardQty = null;
-    protected ?int $motherBoardQty = null;
-    protected ?int $mouseAndPadQty = null;
-    protected ?int $powerSupplyQty = null;
-    protected ?int $ramQty = null;
-    protected ?int $screenQty = null;
-    protected ?int $ProcessorQty = null;
+    protected ?int $graphicCardQty = 1;
+    protected ?int $hardDiscQty = 1;
+    protected ?int $KeyboardQty = 1;
+    protected ?int $motherBoardQty = 1;
+    protected ?int $mouseAndPadQty = 1;
+    protected ?int $powerSupplyQty = 1;
+    protected ?int $ramQty = 1;
+    protected ?int $screenQty = 1;
+    protected ?int $ProcessorQty = 1;
     protected ?array $errors = [];
-
-    public function handleGet($getData, $db)
-    {
-        if (isset($getData['idModel'])) {
-            $this->idModel = $getData['idModel'];
-            $model = $this->fetchModel($this->idModel, $db);
-            if (!empty($model)) {
-                $this->name = $model->getName();
-                $this->descriptionModel = $model->getDescriptionModel();
-                $this->modelQuantity = $model->getModelQuantity();
-                $this->modelType = $model->getModelType();
-
-
-            }
-        }
-    }
-    protected function fetchModel($idModel, $db)
-    {
-        $sqlModel = 'SELECT * FROM ModelPc WHERE idModel= :idModel';
-        $statement = $db->prepare($sqlModel);
-        $statement->bindValue(':idModel', $idModel, PDO::PARAM_INT);
-        $statement->setFetchMode(PDO::FETCH_CLASS, ModelPc::class);
-        $statement->execute();
-        $model = $statement->fetch();
-        return $model;
-    }
 
 
     public function handlePost($postData)
