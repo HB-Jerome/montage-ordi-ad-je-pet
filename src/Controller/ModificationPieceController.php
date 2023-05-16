@@ -4,7 +4,6 @@ namespace Controller;
 
 use PDO;
 
-
 class ModificationPieceController extends AbstractController
 {
     public function getContent(): array

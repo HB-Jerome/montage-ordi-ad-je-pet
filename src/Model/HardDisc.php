@@ -20,19 +20,11 @@ class HardDisc extends Component
 		return self::HARD_DISC;
 	}
 
-
-	/**
-	 * @return 
-	 */
 	public function getDiscCapacity(): int
 	{
 		return $this->discCapacity;
 	}
 
-	/**
-	 * @param  $discCapacity 
-	 * @return self
-	 */
 	public function setDiscCapacity(int $discCapacity): self
 	{
 		$this->discCapacity = $discCapacity;
