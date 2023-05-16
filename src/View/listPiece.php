@@ -50,7 +50,7 @@
 
                 <!-- price max -->
                 <div class="mt-4 rounded-2">
-                <label for="maxPrice">Prix maximum</label><br>
+                    <label for="maxPrice">Prix maximum</label><br>
                     <input name="maxPrice" placeholder="maxPrice" value="<?= $filters->getMaxPrice(); ?>">
                 </div>
 
@@ -121,7 +121,7 @@
                             <?= $result->getCategory(); ?>
                         </td>
                         <td class="col-1">
-                            <a href="?page=detailsProduit&idComponent?=<?= $result->getIdComponent(); ?>"
+                            <a href="?page=detailsProduit&idComponent=<?= $result->getIdComponent(); ?>"
                                 class="btn btn-primary">Détails</a>
                         </td>
                         <td class="col-1">
@@ -130,7 +130,8 @@
                         </td>
 
                         <td class="col-1">
-                            <a href="?page=deletearchive&idComponent=<?= $result->getIdComponent(); ?>" type="submit" class="btn btn-danger"><small>Suppression/
+                            <a href="?page=deletearchive&idComponent=<?= $result->getIdComponent(); ?>" type="submit"
+                                class="btn btn-danger"><small>Suppression/
                                     archivage</a>
                         </td>
                     </tr>

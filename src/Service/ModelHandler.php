@@ -186,7 +186,7 @@ class ModelHandler
             "HardDisc" => ["id" => $this->getHardDisc(), "quantity" => $this->getHardDiscQty()],
             "Keyboard" => ["id" => $this->getKeyboard(), "quantity" => $this->getKeyboardQty()],
             "MotherBoard" => ["id" => $this->getMotherBoard(), "quantity" => $this->getMotherBoardQty()],
-            "MouseAndPad" => ["id" => $this->getMouseAndPad(), "quantity" => $this->getMouseAndPad()],
+            "MouseAndPad" => ["id" => $this->getMouseAndPad(), "quantity" => $this->getMouseAndPadQty()],
             "PowerSupply" => ["id" => $this->getPowerSupply(), "quantity" => $this->getPowerSupplyQty()],
             "Ram" => ["id" => $this->getRam(), "quantity" => $this->getRamQty()],
             "Processor" => ["id" => $this->getProcessor(), "quantity" => $this->getProcessorQty()],
