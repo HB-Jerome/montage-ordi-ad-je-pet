@@ -24,6 +24,9 @@
     width: 200px;
     background-color: rgba(0, 0, 0, 0.486);
 }
+#pieceModifs input {
+    width: 100%;
+}
 /************* RESPONSIVE *************/
 @media only screen and (max-width: 600px) {
     #listPiece-form {
