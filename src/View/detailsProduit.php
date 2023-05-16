@@ -1,7 +1,6 @@
 <h1>Détails d'un composant</h1>
 
 <?php
-var_dump($details);
 if (!$componentIsValid) {
     ?>
     <div class="alert alert-danger" role="alert">
