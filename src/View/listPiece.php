@@ -44,11 +44,13 @@
                 <!-- price min -->
                 <div class="mt-4 rounded-2">
                     <?php // var_dump($filters, $brandResults); ?>
+                    <label for="minPrice">Prix minimum</label><br>
                     <input name="minPrice" placeholder="MinPrice" value="<?= $filters->getMinPrice(); ?>">
                 </div>
 
                 <!-- price max -->
                 <div class="mt-4 rounded-2">
+                <label for="maxPrice">Prix maximum</label><br>
                     <input name="maxPrice" placeholder="maxPrice" value="<?= $filters->getMaxPrice(); ?>">
                 </div>
 
@@ -119,11 +121,12 @@
                             <?= $result->getCategory(); ?>
                         </td>
                         <td class="col-1">
-                            <a href="?page=detailsProduit&idComponent=<?= $result->getIdComponent(); ?>" type="submit"
+                            <a href="?page=detailsProduit&idComponent?=<?= $result->getIdComponent(); ?>"
                                 class="btn btn-primary">Détails</a>
                         </td>
                         <td class="col-1">
-                            <a href="" type="submit" class="btn btn-primary">Modifier</a>
+                            <a href="?page=modificationPiece&idComponent=<?= $result->getIdComponent(); ?>&category=<?= $result->getCategory(); ?>"
+                                class="btn btn-primary">Modifier</a>
                         </td>
 
                         <td class="col-1">
