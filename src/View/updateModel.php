@@ -27,11 +27,13 @@ if (!$modelIsValid) {
         </div>
 
         <div class="row">
-            <?php include 'src/View/template/formulaireModel.php' ?>
+            <form method="POST" class="mx-auto w-75">
+                <?php include 'src/View/template/formulaireModel.php' ?>
 
-            <div class="py-5 text-center">
-                <button class="btn btn-primary" type="submit">Update model</button>
-            </div>
+                <div class="py-5 text-center">
+                    <button class="btn btn-primary" type="submit">Update model</button>
+                </div>
+            </form>
 
 
 
