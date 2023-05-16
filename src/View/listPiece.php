@@ -127,7 +127,7 @@
                         </td>
 
                         <td class="col-1">
-                            <a href="" type="submit" class="btn btn-danger"><small>Suppression/
+                            <a href="?page=deletearchive&idComponent=<?= $result->getIdComponent(); ?>" type="submit" class="btn btn-danger"><small>Suppression/
                                     archivage</a>
                         </td>
                     </tr>

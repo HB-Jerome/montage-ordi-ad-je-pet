@@ -12,6 +12,8 @@ use Service\PagesHandler;
 use Controller\ListPieceController;
 use Controller\ListModelController;
 use Controller\DetailsProduitController;
+use Controller\DeleteArchiveController;
+
 
 
 $pagesHandler = new PagesHandler([
@@ -26,4 +28,5 @@ $pagesHandler = new PagesHandler([
     new Page('listModel', ListModelController::class),
     new Page('detailsProduit', DetailsProduitController::class),
     new Page('updateModel', UpdateModelController::class),
+    new Page('deletearchive', DeleteArchiveController::class),
 ]);

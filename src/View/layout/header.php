@@ -34,10 +34,10 @@
                             <a class="nav-link" href="?page=listPiece">Liste des pièces</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?page=listModel">list modele</a>
+                            <a class="nav-link" href="?page=listModel">liste des modèles</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?page=modelCreation">Creation modele</a>
+                            <a class="nav-link" href="?page=modelCreation">Creation d'un modèle</a>
                         </li>
 
                     <?php }
