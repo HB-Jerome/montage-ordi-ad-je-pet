@@ -15,7 +15,6 @@ class ListModelController extends AbstractController
         $criteriasWhere = []; //  avoid SQL injection attacks
         $criteriasHaving = []; //  avoid SQL injection attacks
         $listFilter = new ListModelHandler($_POST);
-        var_dump($listFilter);
 
         $sql = 'SELECT mp.*, SUM(c.price*mc.quantity) as price  FROM modelpc AS mp
         LEFT JOIN modelpc_component AS mc ON mp.idModel = mc.idModel
@@ -37,7 +36,6 @@ class ListModelController extends AbstractController
         if (!empty($listFilter->getNonReadComent())) {
             $criteriasWhere[] = 'messageSeen = :messageSeen';
             $params[':messageSeen'] = $listFilter->getNonReadComent(); //minprice params 
-            var_dump($params[':messageSeen']);
         }
 
         if (!empty($criteriasWhere)) {
@@ -58,10 +56,7 @@ class ListModelController extends AbstractController
 
         $statement = $this->db->prepare($sql);
         $statement->setFetchMode(PDO::FETCH_CLASS, ModelPc::class);
-        var_dump($sql);
-        var_dump($params);
         $statement->execute($params);
-        var_dump($sql);
         $models = $statement->fetchAll();
 
         return ["models" => $models, "listFilter" => $listFilter];
