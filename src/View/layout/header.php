@@ -48,6 +48,9 @@
                             <a class="nav-link" href="#">commntairee</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="?page=listModel">liste des modèles</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#">historiques</a>
                         </li>
                     <?php } ?>
