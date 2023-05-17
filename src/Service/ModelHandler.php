@@ -39,7 +39,8 @@ class ModelHandler
     {
         $complete = true;
         if (isset($postData['name'])) {
-            $this->setName($postData['name']);
+            // Filtrage des caractères spéciaux : La fonction htmlspecialchars() permet d'échapper les caractères spéciaux potentiellement dangereux tels que les balises HTML
+            $this->setName(htmlspecialchars($postData['name']));
             $this->isSubmitted = true;
         } else {
             $complete = false;
@@ -51,7 +52,8 @@ class ModelHandler
             $complete = false;
         }
         if (isset($postData['description'])) {
-            $this->setDescriptionModel($postData['description']);
+            // Filtrage des caractères spéciaux : La fonction htmlspecialchars() permet d'échapper les caractères spéciaux potentiellement dangereux tels que les balises HTML
+            $this->setDescriptionModel(htmlspecialchars($postData['description']));
             $this->isSubmitted = true;
         }
         if (isset($postData['Modeltype'])) {
