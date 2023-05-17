@@ -18,10 +18,11 @@ class ModificationPieceController extends AbstractController
             $category = $_GET['category']; // FETCHED from listPiece.php "catResults" => Component::AVAILABLE_CATEGORIES,
 
             if (isset($_POST['name']) && isset($_POST['brand']) && isset($_POST['description']) && isset($_POST['price']) && isset($_POST['componentType'])) {  // the value of URL from modify button is initialised to take the new values from the form $_POST
-                $name = $_POST['name'];
-                $brand = $_POST['brand'];
-                $description = $_POST['description'];
-                $price = $_POST['price'];
+                // Filtrage des caractères spéciaux : La fonction htmlspecialchars() permet d'échapper les caractères spéciaux potentiellement dangereux tels que les balises HTML
+                $name = htmlspecialchars($_POST['name']);
+                $brand = htmlspecialchars($_POST['brand']);
+                $description = htmlspecialchars($_POST['description']);
+                $price = htmlspecialchars($_POST['price']);
                 $componentType = $_POST['componentType'];
 
                 $sqlComponent = "UPDATE component
