@@ -4,8 +4,6 @@ namespace Controller;
 use Model\ModelPc;
 use Service\ModelHandler;
 
-use PDO;
-
 class ModelCreationController extends AbstractController
 {
     public function getFileName(): string
@@ -37,7 +35,7 @@ class ModelCreationController extends AbstractController
 
     public function insertModelBDD(ModelPc $modelPc, array $configuration)
     {
-        $sqlModel = "INSERT INTO ModelPc (name,modelQuantity,descriptionModel,modelType,addDate,isArchived) VALUES (:name,:modelQuantity,:descriptionModel,:modelType,:addDate,:isArchived)";
+        $sqlModel = "INSERT INTO ModelPc (name,modelQuantity,nbrPcCreated,descriptionModel,modelType,addDate,isArchived) VALUES (:name,:modelQuantity,0,:descriptionModel,:modelType,:addDate,:isArchived)";
         $statementModel = $this->db->prepare($sqlModel);
         $statementModel->bindValue(":name", $modelPc->getName());
         $statementModel->bindValue(":modelQuantity", $modelPc->getModelQuantity());

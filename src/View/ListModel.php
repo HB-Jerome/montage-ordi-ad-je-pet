@@ -6,6 +6,65 @@
         <!-- filtre -->
         <div class=" d-md-flex align-item-center gap-3 ">
             <!--  filter -->
+            <div id="listPiece-form">
+                <form action="" method="post">
+                    <select id="filter-from" class="form-select mb-2" name="sortBy">
+                        <option value="">Trier par</option>
+                        <option <?php if ($listFilter->getSortBy() == 'price') {
+                            echo 'selected';
+                        } ?> value="price">Prix
+                        </option>
+                        <option <?php if ($listFilter->getSortBy() == 'modelQuantity') {
+                            echo 'selected';
+                        } ?>
+                            value="modelQuantity">Quantité</option>
+                        <option <?php if ($listFilter->getSortBy() == 'name') {
+                            echo 'selected';
+                        } ?> value="name">Nom</option>
+                        <option value="addDate" <?php if ($listFilter->getSortBy() == 'name') {
+                            echo 'addDate';
+                        } ?>>date ajout</option>
+                    </select>
+                    <hr id="h">
+
+                    <!-- category filter -->
+                    <!-- brand/marque filter -->
+
+                    <!-- isArchived filter -->
+                    <select id="filter-from" class="form-select mt-2" name="isArchived">
+                        <option value=0 >Non archivé</option>
+                        <option value=1 <?php if ($listFilter->getIsArchived() == 1) {
+                            echo 'selected';
+                        } ?> >Archivé inclus</option>
+                    </select>
+
+                    <!-- price min -->
+                    <div class="mt-4 rounded-2">
+                        <?php // var_dump($filters, $brandResults); ?>
+                        <label for="minPrice">Prix minimum</label><br>
+                        <input name="minPrice" placeholder="MinPrice" value="<?=$listFilter->getMinPrice()?>">
+                    </div>
+
+                    <!-- price max -->
+                    <div class="mt-4 rounded-2">
+                        <label for="maxPrice">Prix maximum</label><br>
+                        <input name="maxPrice" placeholder="maxPrice" value="<?=$listFilter->getMaxPrice()?>">
+                    </div>
+
+                    <hr id="h">
+                    <!-- filter per stock -->
+                    <div class>
+                        <input name="nonReadComent" type="radio" value=0 id="tout" <?php if($listFilter->getNonReadComent()==0){echo "checked";} ?>>
+                        <label for="tout">Voir Tous</label>
+                        <br>
+                        <input name="nonReadComent" value=1 type="radio" id="non-lu"<?php if($listFilter->getNonReadComent()==1){echo "checked";} ?>>
+                        <label for="non-lu">commentaires non-lu</label>
+                    </div>
+                    <div class="ms-4 mt-3">
+                        <input type="submit" value="submit" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
             <!-- table liste -->
             <table id="tableList" class="table table-bordered">
                 <thead>
@@ -15,6 +74,7 @@
                         <th scope="col">Prix</th>
                         <th scope="col">Descritpion</th>
                         <th scope="col">Type</th>
+                        <th scope="col">Quantity</th>
                         <th scope="col">Nombre de modèles créés</th>
                         <th scope="col">Plus de Détails</th>
                         <th scope="col">Modifications</th>
@@ -48,6 +108,9 @@
                             </td>
                             <td class="col-1">
                                 <?= $model->getModelQuantity(); ?>
+                            </td>
+                            <td class="col-1">
+                                <?= $model->getNbrPcCreated(); ?>
                             </td>
                             <td class="col-1">
                                 <a href="?page=detailsModel&idModel=<?= $model->getIdModel(); ?>"
