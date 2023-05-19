@@ -45,12 +45,12 @@ class ModelHandler
         } else {
             $complete = false;
         }
-        if (isset($postData['modelQuantity'])) {
-            $this->setModelQuantity(intval($postData['modelQuantity']));
-            $this->isSubmitted = true;
-        } else {
-            $complete = false;
-        }
+        // if (isset($postData['modelQuantity'])) {
+        //     $this->setModelQuantity(intval($postData['modelQuantity']));
+        //     $this->isSubmitted = true;
+        // } else {
+        //     $complete = false;
+        // }
         if (isset($postData['description'])) {
             // Filtrage des caractères spéciaux : La fonction htmlspecialchars() permet d'échapper les caractères spéciaux potentiellement dangereux tels que les balises HTML
             $this->setDescriptionModel(htmlspecialchars($postData['description']));
@@ -181,21 +181,7 @@ class ModelHandler
             $this->errors[] = "Somme field are missing";
         }
     }
-    public function setConfiguration(): self
-    {
-        $this->configuration = [
-            "GraphicCard" => ["id" => $this->getGraphicCard(), "quantity" => $this->getGraphicCardQty()],
-            "HardDisc" => ["id" => $this->getHardDisc(), "quantity" => $this->getHardDiscQty()],
-            "Keyboard" => ["id" => $this->getKeyboard(), "quantity" => $this->getKeyboardQty()],
-            "MotherBoard" => ["id" => $this->getMotherBoard(), "quantity" => $this->getMotherBoardQty()],
-            "MouseAndPad" => ["id" => $this->getMouseAndPad(), "quantity" => $this->getMouseAndPadQty()],
-            "PowerSupply" => ["id" => $this->getPowerSupply(), "quantity" => $this->getPowerSupplyQty()],
-            "Ram" => ["id" => $this->getRam(), "quantity" => $this->getRamQty()],
-            "Processor" => ["id" => $this->getProcessor(), "quantity" => $this->getProcessorQty()],
-            "Screen" => ["id" => $this->getScreen(), "quantity" => $this->getScreenQty()],
-        ];
-        return $this;
-    }
+
     public function factory()
     {
         $model = new ModelPc();
@@ -214,7 +200,6 @@ class ModelHandler
         if (!empty($this->errors)) {
             return false;
         } else {
-            $this->setConfiguration();
             return true;
         }
     }

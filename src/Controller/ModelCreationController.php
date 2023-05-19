@@ -25,7 +25,18 @@ class ModelCreationController extends AbstractController
 
             if ($typeIsValid) {
                 $modelPc = $modelHandler->factory();
-                $this->insertModelBDD($modelPc, $modelHandler->getConfiguration());
+                $configuration = [
+                    "GraphicCard" => ["id" => $modelHandler->getGraphicCard(), "quantity" => $modelHandler->getGraphicCardQty()],
+                    "HardDisc" => ["id" => $modelHandler->getHardDisc(), "quantity" => $modelHandler->getHardDiscQty()],
+                    "Keyboard" => ["id" => $modelHandler->getKeyboard(), "quantity" => $modelHandler->getKeyboardQty()],
+                    "MotherBoard" => ["id" => $modelHandler->getMotherBoard(), "quantity" => $modelHandler->getMotherBoardQty()],
+                    "MouseAndPad" => ["id" => $modelHandler->getMouseAndPad(), "quantity" => $modelHandler->getMouseAndPadQty()],
+                    "PowerSupply" => ["id" => $modelHandler->getPowerSupply(), "quantity" => $modelHandler->getPowerSupplyQty()],
+                    "Ram" => ["id" => $modelHandler->getRam(), "quantity" => $modelHandler->getRamQty()],
+                    "Processor" => ["id" => $modelHandler->getProcessor(), "quantity" => $modelHandler->getProcessorQty()],
+                    "Screen" => ["id" => $modelHandler->getScreen(), "quantity" => $modelHandler->getScreenQty()],
+                ];
+                $this->insertModelBDD($modelPc, $configuration);
             }
         }
 

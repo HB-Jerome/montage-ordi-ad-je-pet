@@ -33,7 +33,7 @@ function displayType(array $types, $curentType)
         <?php
     }
 }
-function getAllComponents($db, $getArchived = true)
+function getAllComponents($db, $getArchived = false)
 {
     $slqComponents = "SELECT *,c.idComponent FROM Component as c
             LEFT JOIN GraphicCard as g on c.idComponent =g.idComponent

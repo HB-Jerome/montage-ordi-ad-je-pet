@@ -2,18 +2,6 @@
 
 namespace Model;
 
-use Model\Component;
-use Model\GraphicCard;
-use Model\HardDisc;
-use Model\Keyboard;
-use Model\MotherBoard;
-use Model\MouseAndPad;
-use Model\PowerSupply;
-use Model\Processor;
-use Model\Ram;
-use Model\Screen;
-
-
 class ModelPc
 {
     protected ?int $idModel;
