@@ -9,10 +9,9 @@ class ModelHandler
 {
     protected ?int $idModel = null;
     protected ?string $name = null;
-    protected ?int $modelQuantity = null;
     protected ?string $descriptionModel = null;
     protected ?bool $isSubmitted = false;
-    protected ?array $configuration = [];
+    // protected ?array $configuration = [];
     protected ?string $modelType = null;
     protected ?string $graphicCard = null;
     protected ?string $hardDisc = null;
@@ -45,12 +44,6 @@ class ModelHandler
         } else {
             $complete = false;
         }
-        // if (isset($postData['modelQuantity'])) {
-        //     $this->setModelQuantity(intval($postData['modelQuantity']));
-        //     $this->isSubmitted = true;
-        // } else {
-        //     $complete = false;
-        // }
         if (isset($postData['description'])) {
             // Filtrage des caractères spéciaux : La fonction htmlspecialchars() permet d'échapper les caractères spéciaux potentiellement dangereux tels que les balises HTML
             $this->setDescriptionModel(htmlspecialchars($postData['description']));
@@ -182,6 +175,23 @@ class ModelHandler
         }
     }
 
+    public function getConfiguration(): array
+    {
+        $configuration = [
+            "GraphicCard" => ["id" => $this->getGraphicCard(), "quantity" => $this->getGraphicCardQty()],
+            "HardDisc" => ["id" => $this->getHardDisc(), "quantity" => $this->getHardDiscQty()],
+            "Keyboard" => ["id" => $this->getKeyboard(), "quantity" => $this->getKeyboardQty()],
+            "MotherBoard" => ["id" => $this->getMotherBoard(), "quantity" => $this->getMotherBoardQty()],
+            "MouseAndPad" => ["id" => $this->getMouseAndPad(), "quantity" => $this->getMouseAndPadQty()],
+            "PowerSupply" => ["id" => $this->getPowerSupply(), "quantity" => $this->getPowerSupplyQty()],
+            "Ram" => ["id" => $this->getRam(), "quantity" => $this->getRamQty()],
+            "Processor" => ["id" => $this->getProcessor(), "quantity" => $this->getProcessorQty()],
+            "Screen" => ["id" => $this->getScreen(), "quantity" => $this->getScreenQty()],
+        ];
+
+        return $configuration;
+    }
+
     public function factory()
     {
         $model = new ModelPc();
@@ -189,7 +199,6 @@ class ModelHandler
             ->setIdModel($this->idModel)
             ->setName($this->name)
             ->setAddDate(date("y/m/d H:i"))
-            ->setModelQuantity($this->modelQuantity)
             ->setDescriptionModel($this->getDescriptionModel())
             ->setModelType($this->modelType)
             ->setIsArchived(false);
@@ -492,41 +501,12 @@ class ModelHandler
     {
         return $this->ProcessorQty;
     }
-    public function getConfiguration(): ?array
-    {
-        return $this->configuration;
-    }
 
-    /**
-     * @return 
-     */
-    public function getModelQuantity(): ?int
-    {
-        return $this->modelQuantity;
-    }
-
-    /**
-     * @param  $modelQuantity 
-     * @return self
-     */
-    public function setModelQuantity(?int $modelQuantity): self
-    {
-        $this->modelQuantity = $modelQuantity;
-        return $this;
-    }
-
-    /**
-     * @return 
-     */
     public function getIdModel(): ?int
     {
         return $this->idModel;
     }
 
-    /**
-     * @param  $idModel 
-     * @return self
-     */
     public function setIdModel(?int $idModel): self
     {
         $this->idModel = $idModel;

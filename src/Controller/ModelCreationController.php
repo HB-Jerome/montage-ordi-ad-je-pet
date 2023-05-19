@@ -25,17 +25,7 @@ class ModelCreationController extends AbstractController
 
             if ($typeIsValid) {
                 $modelPc = $modelHandler->factory();
-                $configuration = [
-                    "GraphicCard" => ["id" => $modelHandler->getGraphicCard(), "quantity" => $modelHandler->getGraphicCardQty()],
-                    "HardDisc" => ["id" => $modelHandler->getHardDisc(), "quantity" => $modelHandler->getHardDiscQty()],
-                    "Keyboard" => ["id" => $modelHandler->getKeyboard(), "quantity" => $modelHandler->getKeyboardQty()],
-                    "MotherBoard" => ["id" => $modelHandler->getMotherBoard(), "quantity" => $modelHandler->getMotherBoardQty()],
-                    "MouseAndPad" => ["id" => $modelHandler->getMouseAndPad(), "quantity" => $modelHandler->getMouseAndPadQty()],
-                    "PowerSupply" => ["id" => $modelHandler->getPowerSupply(), "quantity" => $modelHandler->getPowerSupplyQty()],
-                    "Ram" => ["id" => $modelHandler->getRam(), "quantity" => $modelHandler->getRamQty()],
-                    "Processor" => ["id" => $modelHandler->getProcessor(), "quantity" => $modelHandler->getProcessorQty()],
-                    "Screen" => ["id" => $modelHandler->getScreen(), "quantity" => $modelHandler->getScreenQty()],
-                ];
+                $configuration = $modelHandler->getConfiguration();
                 $this->insertModelBDD($modelPc, $configuration);
             }
         }
@@ -46,10 +36,9 @@ class ModelCreationController extends AbstractController
 
     public function insertModelBDD(ModelPc $modelPc, array $configuration)
     {
-        $sqlModel = "INSERT INTO ModelPc (name,modelQuantity,nbrPcCreated,descriptionModel,modelType,addDate,isArchived) VALUES (:name,:modelQuantity,0,:descriptionModel,:modelType,:addDate,:isArchived)";
+        $sqlModel = "INSERT INTO ModelPc (name,modelQuantity,nbrPcCreated,descriptionModel,modelType,addDate,isArchived) VALUES (:name,0,0,:descriptionModel,:modelType,:addDate,:isArchived)";
         $statementModel = $this->db->prepare($sqlModel);
         $statementModel->bindValue(":name", $modelPc->getName());
-        $statementModel->bindValue(":modelQuantity", $modelPc->getModelQuantity());
         $statementModel->bindValue(":modelType", $modelPc->getModelType());
         $statementModel->bindValue(":descriptionModel", $modelPc->getDescriptionModel());
         $statementModel->bindValue(":addDate", $modelPc->getAddDate());
