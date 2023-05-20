@@ -36,7 +36,7 @@ class ModelCreationController extends AbstractController
 
     public function insertModelBDD(ModelPc $modelPc, array $configuration)
     {
-        $sqlModel = "INSERT INTO ModelPc (name,modelQuantity,nbrPcCreated,descriptionModel,modelType,addDate,isArchived) VALUES (:name,0,0,:descriptionModel,:modelType,:addDate,:isArchived)";
+        $sqlModel = "INSERT INTO ModelPc (name,nbrPcCreated,descriptionModel,modelType,addDate,isArchived) VALUES (:name,0,:descriptionModel,:modelType,:addDate,:isArchived)";
         $statementModel = $this->db->prepare($sqlModel);
         $statementModel->bindValue(":name", $modelPc->getName());
         $statementModel->bindValue(":modelType", $modelPc->getModelType());

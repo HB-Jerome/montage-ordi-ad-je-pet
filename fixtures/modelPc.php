@@ -42,7 +42,7 @@ $laptop = 0;
 $fixe = 0;
 foreach ($modelPcs as $modelPc) {
 
-    $sqlModel = "INSERT INTO modelPc (name,descriptionModel,modelType,modelQuantity,nbrPcCreated,isArchived) VALUE (:name,:descriptionModel,:modelType,0,0,false)";
+    $sqlModel = "INSERT INTO modelPc (name,descriptionModel,modelType,nbrPcCreated,isArchived) VALUE (:name,:descriptionModel,:modelType,0,false)";
     $statementModel = $db->prepare($sqlModel);
     $statementModel->bindValue(":name", $modelPc->getName());
     $statementModel->bindValue(":descriptionModel", $modelPc->getDescriptionModel());
@@ -50,14 +50,12 @@ foreach ($modelPcs as $modelPc) {
     $statementModel->execute();
 
     $idModel = $db->lastInsertId();
-    var_dump("idModel " . $idModel);
 
     if ($modelPc->getModelType() == Component::FIXE) {
         $offset = $fixe;
     } else {
         $offset = $laptop;
     }
-    var_dump("offset " . $offset);
     foreach ($categories as $category) {
         $sqlComponent = "SELECT idComponent FROM Component WHERE category=:category AND componentType=:componentType LIMIT 1 OFFSET :offset";
         $statement = $db->prepare($sqlComponent);
@@ -68,11 +66,7 @@ foreach ($modelPcs as $modelPc) {
         $result = $statement->fetch();
         $idComponent = $result['idComponent'];
 
-        var_dump($idComponent);
-        // $config[] = ["id" => $id, "quantity" => 1];
-
         $sqlModelPc_Component = "INSERT INTO ModelPc_Component (idComponent, idModel,quantity) VALUES (:idComponent, :idModel,1)";
-
         $Modelpc_Component = $db->prepare($sqlModelPc_Component);
         $Modelpc_Component->bindValue(":idComponent", $idComponent, PDO::PARAM_INT);
         $Modelpc_Component->bindValue(":idModel", $idModel, PDO::PARAM_INT);
