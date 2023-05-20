@@ -229,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `screen` (
 DROP TABLE IF EXISTS `stockhistory`;
 CREATE TABLE IF NOT EXISTS `stockhistory` (
   `idStockHistory` int NOT NULL AUTO_INCREMENT,
-  `modificationDate` datetime DEFAULT NULL,
+  `modificationDate` datetime DEFAULT CURRENT_TIMESTAMP,
   `quantity` int DEFAULT NULL,
   `addedRemoved` tinyint(1) DEFAULT NULL,
   `idComponent` int NOT NULL,

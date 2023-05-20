@@ -13,6 +13,7 @@ use Controller\ListPieceController;
 use Controller\ListModelController;
 use Controller\DetailsProduitController;
 use Controller\DeleteArchiveController;
+use Controller\GestionStockController;
 
 
 
@@ -29,4 +30,5 @@ $pagesHandler = new PagesHandler([
     new Page('detailsProduit', DetailsProduitController::class),
     new Page('updateModel', UpdateModelController::class),
     new Page('deletearchive', DeleteArchiveController::class),
+    new Page('gestionStock', GestionStockController::class),
 ]);

@@ -9,6 +9,7 @@ abstract class AbstractController
 {
     protected PDO $db;
     protected Page $page;
+    protected ?array $errors = [];
 
     public function __construct(PDO $db, Page $page)
     {

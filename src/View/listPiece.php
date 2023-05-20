@@ -87,6 +87,7 @@
                     <!-- <th scope="col">Nombre de modèles créés</th> -->
                     <th scope="col">Plus de Détails</th>
                     <th scope="col">Modifications</th>
+                    <th scope="col">gestion stock</th>
                     <!-- <th scope="col">Disponibilité</th> -->
                     <th scope="col">Suppression et Archivage des piéces</th>
                 </tr>
@@ -127,6 +128,10 @@
                         <td class="col-1">
                             <a href="?page=modificationPiece&idComponent=<?= $result->getIdComponent(); ?>&category=<?= $result->getCategory(); ?>"
                                 class="btn btn-primary">Modifier</a>
+                        </td>
+                        <td class="col-1">
+                            <a href="?page=gestionStock&idComponent=<?= $result->getIdComponent(); ?>"
+                                class="btn btn-primary"> gerer le stock</a>
                         </td>
 
                         <td class="col-1">
