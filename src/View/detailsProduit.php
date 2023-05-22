@@ -10,7 +10,7 @@ if (!$componentIsValid) {
 } else { ?>
 
     <div class="card mb-3">
-        <img class="card-img-top" src="..." alt="Card image cap">
+        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
         <div class="card-body">
             <!-- Propriétés de la classe mère -->
             <h5 class="card-title">
@@ -164,7 +164,7 @@ if (!$componentIsValid) {
             }
 
             ?>
-
+            <a href="?page=gestionStock&idComponent=<?= $details->getIdComponent(); ?>" class="btn btn-primary">Gerer le
+                stock</a>
         </div>
-    </div>
-<?php } ?>
+    <?php } ?>

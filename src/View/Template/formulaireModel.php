@@ -8,14 +8,6 @@
         <input type="text" class="form-control" name="name" id="name" value="<?= $modelHandler->getName() ?>">
     </div>
 </div>
-<div class="form-row">
-    <div class="form-group col-md-10">
-        <label for="modelQuantity">model Quantity</label>
-        <input type="number" class="form-control" name="modelQuantity" id="modelQuantity"
-            value="<?= $modelHandler->getModelQuantity() ?>">
-    </div>
-</div>
-
 
 <div class="form-group col-md-10 ">
     <label for="Modeltype">Type</label>

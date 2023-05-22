@@ -2,27 +2,13 @@
 
 namespace Model;
 
-use Model\Component;
-use Model\GraphicCard;
-use Model\HardDisc;
-use Model\Keyboard;
-use Model\MotherBoard;
-use Model\MouseAndPad;
-use Model\PowerSupply;
-use Model\Processor;
-use Model\Ram;
-use Model\Screen;
-
-
 class ModelPc
 {
     protected ?int $idModel;
     protected string $name;
     protected ?string $descriptionModel;
-    protected int $modelQuantity;
     protected int $nbrPcCreated;
     protected string $modelType;
-    protected int $pcNumber;
     protected float $price;
     protected $addDate;
     protected bool $isArchived;
@@ -84,16 +70,6 @@ class ModelPc
         return $this;
     }
 
-    public function getPcNumber(): int
-    {
-        return $this->pcNumber;
-    }
-
-    public function setPcNumber(int $pcNumber): self
-    {
-        $this->pcNumber = $pcNumber;
-        return $this;
-    }
     public function getDescriptionModel(): ?string
     {
         return $this->descriptionModel;
@@ -115,30 +91,12 @@ class ModelPc
         $this->modelType = $modelType;
         return $this;
     }
-    public function getModelQuantity(): int
-    {
-        return $this->modelQuantity;
-    }
 
-
-    public function setModelQuantity(int $modelQuantity): self
-    {
-        $this->modelQuantity = $modelQuantity;
-        return $this;
-    }
-
-    /**
-     * @return 
-     */
     public function getNbrPcCreated(): int
     {
         return $this->nbrPcCreated;
     }
 
-    /**
-     * @param  $nbrPcCreated 
-     * @return self
-     */
     public function setNbrPcCreated(int $nbrPcCreated): self
     {
         $this->nbrPcCreated = $nbrPcCreated;

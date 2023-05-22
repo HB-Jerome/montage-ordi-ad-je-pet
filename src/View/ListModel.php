@@ -14,10 +14,10 @@
                             echo 'selected';
                         } ?> value="price">Prix
                         </option>
-                        <option <?php if ($listFilter->getSortBy() == 'modelQuantity') {
+                        <option <?php if ($listFilter->getSortBy() == 'nbrPcCreated') {
                             echo 'selected';
                         } ?>
-                            value="modelQuantity">Quantité</option>
+                            value="nbrPcCreated"> nbr Pc Created</option>
                         <option <?php if ($listFilter->getSortBy() == 'name') {
                             echo 'selected';
                         } ?> value="name">Nom</option>
@@ -74,7 +74,6 @@
                         <th scope="col">Prix</th>
                         <th scope="col">Descritpion</th>
                         <th scope="col">Type</th>
-                        <th scope="col">Quantity</th>
                         <th scope="col">Nombre de modèles créés</th>
                         <th scope="col">Plus de Détails</th>
                         <th scope="col">Modifications</th>
@@ -105,9 +104,6 @@
 
                             <td class="col-1">
                                 <?= $model->getModelType(); ?>
-                            </td>
-                            <td class="col-1">
-                                <?= $model->getModelQuantity(); ?>
                             </td>
                             <td class="col-1">
                                 <?= $model->getNbrPcCreated(); ?>
