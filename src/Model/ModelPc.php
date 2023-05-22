@@ -7,7 +7,7 @@ class ModelPc
     protected ?int $idModel;
     protected string $name;
     protected ?string $descriptionModel;
-    protected int $nbrPcCreated;
+    protected int $nbrPcCreated = 0;
     protected string $modelType;
     protected float $price;
     protected $addDate;

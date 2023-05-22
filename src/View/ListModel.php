@@ -69,8 +69,9 @@
             <table id="tableList" class="table table-bordered">
                 <thead>
                     <tr>
+                        <th scope="col">Id Model</th>
                         <th scope="col">Nom</th>
-                        <th scope="col">Date Ajouter</th>
+                        <th scope="col">Date d'ajout</th>
                         <th scope="col">Prix</th>
                         <th scope="col">Descritpion</th>
                         <th scope="col">Type</th>
@@ -90,8 +91,11 @@
                     foreach ($models as $model) { ?>
                         <tr>
                             <td class="col-1">
+                                <?= $model->getIdModel(); ?>
+                            </td>
+                            <td class="col-1">
                                 <?= $model->getName(); ?>
-
+                            </td>
                             <td class="col-1">
                                 <?= $model->getAddDate(); ?>
                             </td>
