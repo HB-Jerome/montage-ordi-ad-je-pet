@@ -12,8 +12,14 @@ class DetailsModelController extends AbstractController
 {
     public function getContent(): array
     {
-        $sqlModel = "SELECT * FROM modelpc";
+
+        if (isset($_GET['idModel']) && !empty($_GET['idModel'])) {
+            $idModel = $_GET['idModel'];
+        }
+
+        $sqlModel = "SELECT * FROM modelpc WHERE idModel=:idModel";
         $statementModel = $this->db->prepare($sqlModel);
+        $statementModel->bindValue(":idModel", $idModel, PDO::PARAM_INT);
         $statementModel->setFetchMode(PDO::FETCH_CLASS, ModelPc::class);
         $statementModel->execute();
         $modelResults = $statementModel->fetchAll();
@@ -30,7 +36,7 @@ class DetailsModelController extends AbstractController
                     LEFT JOIN Processor as p on c.idComponent =p.idComponent 
                     LEFT JOIN Ram as r on c.idComponent =r.idComponent 
                     LEFT JOIN Screen as s on c.idComponent = s.idComponent 
-        WHERE modelpc_component.idModel=1"; 
+        WHERE modelpc_component.idModel=1";
         $modelCatStatement = $this->db->prepare($sqlModelCat);
         $modelCatStatement->execute();
         $components = [];
@@ -38,7 +44,7 @@ class DetailsModelController extends AbstractController
             $components[] = (new ComponentFactory)->create($result);
         }
 
-        return ["modelResults" => $modelResults,"components" => $components,];
+        return ["modelResults" => $modelResults, "components" => $components,];
     }
     public function getFileName(): string
     {
