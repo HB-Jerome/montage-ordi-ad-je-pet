@@ -1,5 +1,20 @@
 <main class="container">
-    <?php foreach ($errors as $error) {
+    <?php
+    if ($postIsSubmited && empty($errors)) {
+        ?>
+        <div class="alert alert-success" role="alert">
+            Le Composant à été Créer !
+        </div>
+        <div class="text-center  ">
+            <a class="btn btn-primary m-5" href="?page=detailsProduit&idComponent=<?= $idComponent ?>">
+                Voir le composant</a>
+            <a href="?page=gestionStock&idComponent=<?= $idComponent ?>" class="btn btn-primary m-5">
+                Gerer le stock</a>
+        </div>
+        <?php
+    }
+
+    foreach ($errors as $error) {
         ?>
         <div class="alert alert-danger" role="alert">
             <?= $error ?>

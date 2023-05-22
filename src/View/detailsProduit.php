@@ -166,5 +166,7 @@ if (!$componentIsValid) {
             ?>
             <a href="?page=gestionStock&idComponent=<?= $details->getIdComponent(); ?>" class="btn btn-primary">Gerer le
                 stock</a>
+            <a href="?page=modificationPiece&idComponent=<?= $details->getIdComponent(); ?>&category=<?= $details->getCategory(); ?>"
+                class="btn btn-primary">Modifier</a>
         </div>
     <?php } ?>

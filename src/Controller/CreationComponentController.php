@@ -12,6 +12,7 @@ class CreationComponentController extends AbstractController
 
     public function getContent(): array
     {
+        $idComponent = null;
         $availlablesCategories = Component::AVAILABLE_CATEGORIES;
         $componentsTypes = Component::TYPES;
 
@@ -22,15 +23,13 @@ class CreationComponentController extends AbstractController
             $component = new Component();
         }
 
-
         $this->handlePost($_POST, $component);
 
         if ($this->postIsSubmited && $this->postIsValid && $this->postIsComplete) {
-            // $component = $this->createComponent();
-            $this->insertInBdd($component);
+            $idComponent = $this->insertInBdd($component);
         }
 
-        return ["availlablesCategories" => $availlablesCategories, "componentsTypes" => $componentsTypes, "errors" => $this->errors, "component" => $component];
+        return ["availlablesCategories" => $availlablesCategories, "componentsTypes" => $componentsTypes, "errors" => $this->errors, "component" => $component, "postIsSubmited" => $this->postIsSubmited, "idComponent" => $idComponent];
     }
 
     public function getFileName(): string
@@ -314,5 +313,7 @@ class CreationComponentController extends AbstractController
                 $statementCat->execute();
                 break;
         }
+
+        return $idComponent;
     }
 }
