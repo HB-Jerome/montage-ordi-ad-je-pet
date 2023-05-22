@@ -3,7 +3,7 @@
 namespace Controller;
 
 use PDO;
-use Model\Component;
+use Service\ListModelHandler;
 use Model\ModelPc;
 
 
@@ -11,9 +11,55 @@ class ListModelController extends AbstractController
 {
     public function getContent(): array
     {
-        $models = $this->getModels();
+        $params = []; //  avoid SQL injection attacks
+        $criteriasWhere = []; //  avoid SQL injection attacks
+        $criteriasHaving = []; //  avoid SQL injection attacks
+        $listFilter = new ListModelHandler($_POST);
 
-        return ["models" => $models];
+        $sql = 'SELECT mp.*, SUM(c.price*mc.quantity) as price  FROM modelpc AS mp
+        LEFT JOIN modelpc_component AS mc ON mp.idModel = mc.idModel
+        LEFT JOIN component AS c ON mc.idComponent = c.idComponent
+        LEFT JOIN comment as cm ON cm.idModel = mp.idModel ';
+
+        if (!empty($listFilter->getMinPrice())) {
+            $criteriasHaving[] = 'price >= :minprice';
+            $params[':minprice'] = $listFilter->getMinPrice(); //minprice params 
+        }
+        if (!empty($listFilter->getMaxPrice())) {
+            $criteriasHaving[] = 'price <= :maxprice';
+            $params[':maxprice'] = $listFilter->getMaxPrice(); //minprice params 
+        }
+        if (!empty($listFilter->getIsArchived())) {
+            $criteriasWhere[] = '(mp.isArchived = false OR mp.isArchived=:isArchived)';
+            $params[':isArchived'] = $listFilter->getIsArchived(); //minprice params 
+        }
+        if (!empty($listFilter->getNonReadComent())) {
+            $criteriasWhere[] = 'messageSeen = :messageSeen';
+            $params[':messageSeen'] = $listFilter->getNonReadComent(); //minprice params 
+        }
+
+        if (!empty($criteriasWhere)) {
+            $sql .= ' WHERE ' . implode(' AND ', $criteriasWhere);
+
+        }
+        $sql .= ' GROUP BY mp.idModel';
+        if (!empty($criteriasHaving)) {
+            $sql .= ' HAVING ' . implode(' AND ', $criteriasHaving);
+        }
+
+        if (!empty($listFilter->getSortBy())) {
+            $sql .= ' ORDER BY ' . $listFilter->getSortBy();
+        } else {
+            $sql .= ' ORDER BY name ASC';
+        }
+
+
+        $statement = $this->db->prepare($sql);
+        $statement->setFetchMode(PDO::FETCH_CLASS, ModelPc::class);
+        $statement->execute($params);
+        $models = $statement->fetchAll();
+
+        return ["models" => $models, "listFilter" => $listFilter];
     }
 
     public function getFileName(): string
@@ -25,17 +71,4 @@ class ListModelController extends AbstractController
     {
         return 'Liste des Modeles !';
     }
-    public function getModels()
-    {
-        $sql = 'SELECT m.*, SUM(c.price*mc.quantity) as price FROM modelpc AS m
-        INNER JOIN modelpc_component AS mc ON m.idModel = mc.idModel
-        INNER JOIN component AS c ON mc.idComponent = c.idComponent
-        GROUP BY m.idModel ORDER BY addDate DESC';
-        $statement = $this->db->prepare($sql);
-        $statement->setFetchMode(PDO::FETCH_CLASS, ModelPc::class);
-        $statement->execute();
-        $models = $statement->fetchAll();
-        return $models;
-    }
-
 }

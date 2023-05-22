@@ -22,7 +22,7 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+DROP TABLE `comment`, `component`, `graphiccard`, `harddisc`, `keyboard`, `modelpc`, `modelpc_component`, `motherboard`, `mouseandpad`, `powersupply`, `processor`, `ram`, `screen`, `stockhistory`, `users`; 
 --
 -- Table structure for table `comment`
 --
@@ -115,9 +115,9 @@ CREATE TABLE IF NOT EXISTS `modelpc` (
   `name` varchar(50) DEFAULT NULL,
   `descriptionModel` varchar(250) DEFAULT NULL,
   `modelType` varchar(50) DEFAULT NULL,
-  `modelQuantity` int DEFAULT NULL,
-  `addDate` datetime DEFAULT NULL,
-  `isArchived` tinyint(1) DEFAULT NULL,
+  `nbrPcCreated` int DEFAULT NULL,
+  `addDate` datetime DEFAULT CURRENT_TIMESTAMP,
+  `isArchived` tinyint(1) NULL DEFAULT '0',
   PRIMARY KEY (`idModel`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -229,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `screen` (
 DROP TABLE IF EXISTS `stockhistory`;
 CREATE TABLE IF NOT EXISTS `stockhistory` (
   `idStockHistory` int NOT NULL AUTO_INCREMENT,
-  `modificationDate` datetime DEFAULT NULL,
+  `modificationDate` datetime DEFAULT CURRENT_TIMESTAMP,
   `quantity` int DEFAULT NULL,
   `addedRemoved` tinyint(1) DEFAULT NULL,
   `idComponent` int NOT NULL,

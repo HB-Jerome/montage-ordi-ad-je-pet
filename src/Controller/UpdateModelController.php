@@ -40,7 +40,6 @@ class UpdateModelController extends AbstractController
                 // si le model existe i.e l'object crée est non vide on initalise model handler avec les proprieté de ce model
                 $modelHandler->setName($model->getName());
                 $modelHandler->setDescriptionModel($model->getDescriptionModel());
-                $modelHandler->setModelQuantity($model->getModelQuantity());
                 $modelHandler->setModelType($model->getModelType());
 
                 // on recupere l'id et la quantity des composant liés au model 
@@ -145,13 +144,12 @@ class UpdateModelController extends AbstractController
     public function updateModelBDD(ModelPc $modelPc, array $configuration)
     {
         $sqlModel = "UPDATE ModelPc 
-        SET `name`=:name,modelQuantity=:modelQuantity,descriptionModel=:descriptionModel,modelType=:modelType
+        SET `name`=:name,descriptionModel=:descriptionModel,modelType=:modelType
         WHERE idModel=:idModel";
         $statementModel = $this->db->prepare($sqlModel);
 
         $statementModel->bindValue(":idModel", $modelPc->getIdModel());
         $statementModel->bindValue(":name", $modelPc->getName());
-        $statementModel->bindValue(":modelQuantity", $modelPc->getModelQuantity());
         $statementModel->bindValue(":modelType", $modelPc->getModelType());
         $statementModel->bindValue(":descriptionModel", $modelPc->getDescriptionModel());
         $statementModel->execute();

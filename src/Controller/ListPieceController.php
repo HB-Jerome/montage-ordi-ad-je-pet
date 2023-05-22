@@ -64,6 +64,7 @@ class ListPieceController extends AbstractController
         // trier par stock
         $statement = $this->db->prepare($sql);
         $statement->execute($params);
+        var_dump($sql);
         $statement->setFetchMode(PDO::FETCH_CLASS, Component::class);
         $results = $statement->fetchAll();
 
