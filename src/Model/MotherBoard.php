@@ -3,12 +3,12 @@ namespace Model; // afin que l'autoload puisse retrouver notre classe. Model cor
 
 class MotherBoard extends Component
 {
-	protected string $socket;
-	protected string $format;
+	protected ?string $socket = null;
+	protected ?string $format = null;
 
 	//Méthodes (Set et Get)
 
-	public function getSocket(): string
+	public function getSocket(): ?string
 	{
 		return $this->socket;
 	}
@@ -19,7 +19,7 @@ class MotherBoard extends Component
 		return $this;
 	}
 
-	public function getFormat(): string
+	public function getFormat(): ?string
 	{
 		return $this->format;
 	}

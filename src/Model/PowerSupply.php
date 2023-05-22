@@ -8,14 +8,14 @@ class PowerSupply extends Component
 {
 
 
-	protected string $batteryPower;
+	protected ?string $batteryPower = null;
 
 	public function __construct()
 	{
 
 	}
 
-	public function getBatteryPower(): string
+	public function getBatteryPower(): ?string
 	{
 		return $this->batteryPower;
 	}

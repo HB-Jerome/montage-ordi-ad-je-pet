@@ -1,5 +1,4 @@
 <?php
-
 if ($login->isSubmited()) {
     if (empty($login->getErrors())) {
         ?>

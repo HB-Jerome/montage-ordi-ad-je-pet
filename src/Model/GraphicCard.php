@@ -3,12 +3,12 @@ namespace Model; // afin que l'autoload puisse retrouver notre classe. Model cor
 
 class GraphicCard extends Component
 {
-	protected string $chipset;
-	protected string $memory;
+	protected ?string $chipset = null;
+	protected ?string $memory = null;
 
 	//Méthodes (Set et Get) 
 
-	public function getChipset(): string
+	public function getChipset(): ?string
 	{
 		return $this->chipset;
 	}
@@ -19,7 +19,7 @@ class GraphicCard extends Component
 		return $this;
 	}
 
-	public function getMemory(): string
+	public function getMemory(): ?string
 	{
 		return $this->memory;
 	}

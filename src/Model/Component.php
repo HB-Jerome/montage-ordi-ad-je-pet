@@ -50,19 +50,19 @@ class Component
 	const FIXE = "fixe";
 	const LAPTOP = "laptop";
 
-	protected int $idComponent;
-	protected string $name;
-	protected string $brand;
-	protected string $description;
-	protected int $quantity;
+	protected ?int $idComponent = null;
+	protected ?string $name = null;
+	protected ?string $brand = null;
+	protected ?string $description = null;
+	protected ?int $quantity = null;
 
-	protected float $price;
-	protected string $componentType;
-	protected bool $isArchived;
-	protected string $category;
-	protected string $addDate;
+	protected ?float $price = null;
+	protected ?string $componentType = null;
+	protected ?bool $isArchived = null;
+	protected ?string $category = null;
+	protected ?string $addDate = null;
 
-	public function getIdComponent(): int
+	public function getIdComponent(): ?int
 	{
 		return $this->idComponent;
 	}
@@ -71,7 +71,7 @@ class Component
 		$this->idComponent = $idComponent;
 		return $this;
 	}
-	public function getName(): string
+	public function getName(): ?string
 	{
 		return $this->name;
 	}
@@ -80,7 +80,7 @@ class Component
 		$this->name = $name;
 		return $this;
 	}
-	public function getBrand(): string
+	public function getBrand(): ?string
 	{
 		return $this->brand;
 	}
@@ -89,7 +89,7 @@ class Component
 		$this->brand = $brand;
 		return $this;
 	}
-	public function getDescription(): string
+	public function getDescription(): ?string
 	{
 		return $this->description;
 	}
@@ -98,7 +98,7 @@ class Component
 		$this->description = $description;
 		return $this;
 	}
-	public function getPrice(): float
+	public function getPrice(): ?float
 	{
 		return $this->price;
 	}
@@ -107,7 +107,7 @@ class Component
 		$this->price = $price;
 		return $this;
 	}
-	public function getIsArchived(): bool
+	public function getIsArchived(): ?bool
 	{
 		return $this->isArchived;
 	}
@@ -116,7 +116,7 @@ class Component
 		$this->isArchived = $isArchived;
 		return $this;
 	}
-	public function getQuantity(): int
+	public function getQuantity(): ?int
 	{
 		return $this->quantity;
 	}
@@ -129,7 +129,7 @@ class Component
 	{
 		return self::AVAILABLE_CATEGORIES;
 	}
-	public function getCategory(): string
+	public function getCategory(): ?string
 	{
 		return $this->category;
 	}
@@ -139,7 +139,7 @@ class Component
 		$this->category = $category;
 		return $this;
 	}
-	public function getComponentType(): string
+	public function getComponentType(): ?string
 	{
 		return $this->componentType;
 	}
@@ -148,7 +148,7 @@ class Component
 		$this->componentType = $componentType;
 		return $this;
 	}
-	public function getAddDate(): string
+	public function getAddDate(): ?string
 	{
 		return $this->addDate;
 	}

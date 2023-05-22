@@ -6,9 +6,9 @@ use Model\Component;
 // Creation class enfant RAM which extends Component
 class Ram extends Component
 {
-	protected int $ramCapacity;
-	protected int $numberOfBars;
-	protected string $detail;
+	protected ?int $ramCapacity = null;
+	protected ?int $numberOfBars = null;
+	protected ?string $detail = null;
 
 	public function __construct()
 	{
@@ -17,11 +17,7 @@ class Ram extends Component
 
 
 
-
-
-
-
-	public function getNumberOfBars(): int
+	public function getNumberOfBars(): ?int
 	{
 		return $this->numberOfBars;
 	}
@@ -34,7 +30,7 @@ class Ram extends Component
 	}
 
 
-	public function getDetail(): string
+	public function getDetail(): ?string
 	{
 		return $this->detail;
 	}
@@ -45,23 +41,16 @@ class Ram extends Component
 		$this->detail = $detail;
 		return $this;
 	}
-	public function GetCategory(): string
+	public function GetCategory(): ?string
 	{
 		return self::RAM;
 	}
 
-	/**
-	 * @return 
-	 */
-	public function getRamCapacity(): int
+	public function getRamCapacity(): ?int
 	{
 		return $this->ramCapacity;
 	}
 
-	/**
-	 * @param  $ramCapacity 
-	 * @return self
-	 */
 	public function setRamCapacity(int $ramCapacity): self
 	{
 		$this->ramCapacity = $ramCapacity;
