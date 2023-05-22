@@ -79,7 +79,7 @@
             <thead>
                 <tr>
                     <th scope="col">Nom</th>
-                    <th scope="col">Date Ajouter</th>
+                    <th scope="col">Date d'ajout</th>
                     <th scope="col">Marque</th>
                     <th scope="col">Prix</th>
                     <th scope="col">Quantité en Stock</th>
