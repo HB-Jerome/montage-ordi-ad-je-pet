@@ -3,8 +3,9 @@ include 'includes/autoload.php';
 include 'includes/pages.php';
 include 'includes/config.inc.php';
 
+
 session_start();
-// var_dump($_SESSION);
+
 $page = $pagesHandler->getCurrent($_GET);
 
 $controller = $page->getController();

@@ -135,7 +135,7 @@
                         </td>
                         <td class="col-1">
                             <a href="?page=gestionStock&idComponent=<?= $result->getIdComponent(); ?>"
-                                class="btn btn-primary"> gerer le stock</a>
+                                class="btn btn-primary">gerer le stock</a>
                         </td>
 
                         <td class="col-1">

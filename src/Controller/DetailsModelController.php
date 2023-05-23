@@ -20,6 +20,10 @@ class DetailsModelController extends AbstractController
             $idModel = $_GET['idModel'];
             $dataComments = $this->getDataComment($idModel);
 
+            if (isset($_SESSION['user'])) {
+                $role = $_SESSION['user']->getRole();
+                $this->CommentAreRead($idModel, $role);
+            }
             if (isset($_POST['message'])) {
                 $this->postIsSubmitted = true;
                 if (empty($_POST['message'])) {
@@ -39,7 +43,7 @@ class DetailsModelController extends AbstractController
             }
         }
 
-        // on recupere les donner du model
+        // on recupere les données du model
         $sqlModel = "SELECT * FROM modelpc WHERE idModel=:idModel";
         $statementModel = $this->db->prepare($sqlModel);
         $statementModel->bindValue(":idModel", $idModel, PDO::PARAM_INT);
@@ -88,6 +92,19 @@ class DetailsModelController extends AbstractController
         $statement->execute();
         $comments = $statement->fetchAll();
         return $comments;
+    }
+    public function CommentAreRead($idModel, $role)
+    {
+        $sqlComment = 'UPDATE comment 
+        INNER JOIN Users on Users.idUser =comment.idUser
+        SET comment.messageSeen=:messageSeen  
+        WHERE idModel =:idModel AND Users.role=:role';
+        $statement = $this->db->prepare($sqlComment);
+        $statement->bindValue(":idModel", $idModel, PDO::PARAM_INT);
+        $statement->bindValue(":messageSeen", true, PDO::PARAM_BOOL);
+        $statement->bindValue(":role", $role, PDO::PARAM_STR);
+        $success = $statement->execute();
+        return $success;
     }
     public function getDataComment(int $idModel)
     {
