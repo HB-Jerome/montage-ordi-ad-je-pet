@@ -16,6 +16,8 @@ include_once "processor.php";
 include_once "ram.php";
 include_once "screen.php";
 
-include "modelPc.php";
+include_once "modelPc.php";
 
 include_once "user.php";
+
+include_once "comment.php";

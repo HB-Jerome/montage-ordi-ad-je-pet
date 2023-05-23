@@ -14,7 +14,7 @@ $Users = [
         ->setUsername('Peter'),
     (new User())
         ->setPassword("1234")
-        ->setRole('concepteur')
+        ->setRole('monteur')
         ->setUsername('Jerome'),
     (new User())
         ->setPassword("007")
