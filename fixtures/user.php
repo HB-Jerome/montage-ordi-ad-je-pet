@@ -9,6 +9,10 @@ $Users = [
         ->setRole('concepteur')
         ->setUsername('Adel'),
     (new User())
+        ->setPassword("007")
+        ->setRole('monteur')
+        ->setUsername('toto'),
+    (new User())
         ->setPassword("1234")
         ->setRole('concepteur')
         ->setUsername('Peter'),
@@ -19,7 +23,7 @@ $Users = [
     (new User())
         ->setPassword("007")
         ->setRole('monteur')
-        ->setUsername('toto'),
+        ->setUsername('TatyJosy'),
 ];
 
 $sql = 'INSERT INTO Users (username,password,role) VALUES (:username,:password,:role)';
