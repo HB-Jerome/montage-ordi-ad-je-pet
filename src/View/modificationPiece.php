@@ -1,4 +1,3 @@
-<!-- <?php var_dump($updateResult); ?> -->
 <section>
     <div id="pieceModifs" class="d-flex  align-items-center gap-5 text-center">
         <aside class="">
