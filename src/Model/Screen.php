@@ -6,10 +6,10 @@ use Model\Component;
 // Creation de class PowerSupply extends Componen
 class Screen extends Component
 {
-	protected float $size;
+	protected ?float $size = null;
 
 
-	public function getSize(): float
+	public function getSize(): ?float
 	{
 		return $this->size;
 	}

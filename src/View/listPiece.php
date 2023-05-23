@@ -2,6 +2,10 @@
     <!-- add the filtre of items per category
          -->
     <h2 class="text-center p-4">Liste des pièces</h2>
+
+    <div class="text-center my-5">
+        <a href="?page=creationComponent" class="btn btn-primary">Creer un composant</a>
+    </div>
     <!-- filtre -->
     <div class=" d-md-flex align-item-center gap-3 ">
         <!--  filter -->

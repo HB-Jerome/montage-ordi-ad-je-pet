@@ -6,16 +6,16 @@ use Model\Component;
 // Création de la classe enfant processor extends Component
 class Processor extends Component
 {
-	protected int $coreNumber;
-	protected string $compatibleChipset;
-	protected float $cpuFrequency;
+	protected ?int $coreNumber = null;
+	protected ?string $compatibleChipset = null;
+	protected ?float $cpuFrequency = null;
 
 	public function __construct()
 	{
 	}
 
 
-	public function getCoreNumber()
+	public function getCoreNumber(): ?int
 	{
 		return $this->coreNumber;
 	}
@@ -26,7 +26,7 @@ class Processor extends Component
 		return $this;
 	}
 
-	public function getCompatibleChipset()
+	public function getCompatibleChipset(): ?string
 	{
 		return $this->compatibleChipset;
 	}
@@ -38,7 +38,7 @@ class Processor extends Component
 		return $this;
 	}
 
-	public function getCpuFrequency()
+	public function getCpuFrequency(): ?string
 	{
 		return $this->cpuFrequency;
 	}
