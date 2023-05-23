@@ -30,7 +30,8 @@ DROP TABLE `comment`, `component`, `graphiccard`, `harddisc`, `keyboard`, `model
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
   `idComment` int NOT NULL AUTO_INCREMENT,
-  `commentDate` datetime DEFAULT NULL,
+  `commentDate` datetime DEFAULT CURRENT_TIMESTAMP,
+  `message` varchar(250) DEFAULT NULL,
   `messageSeen` tinyint(1) DEFAULT NULL,
   `idModel` int NOT NULL,
   `idUser` int NOT NULL,
