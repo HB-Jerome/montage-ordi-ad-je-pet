@@ -25,9 +25,7 @@ class LoginController extends AbstractController
                 $login->addError("L'utilisateur n'existe pas !");
             } else {
                 if (password_verify($login->getPassword(), $user->getPassword())) {
-                    var_dump("ok");
                     $user->saveSession();
-                    // var_dump($_SESSION);
                     header("Location: ?");
                 } else {
                     $login->addError("L'utilisateur et le mot de passe ne correspondent pas !");
@@ -36,7 +34,7 @@ class LoginController extends AbstractController
         }
 
 
-        return ['login' => $login];
+        return ['login' => $login, "errors" => $this->errors];
     }
 
     public function getFileName(): string

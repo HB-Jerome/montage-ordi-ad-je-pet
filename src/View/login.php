@@ -1,4 +1,15 @@
 <?php
+
+if (!empty($errors)) {
+    foreach ($errors as $error) {
+        ?>
+        <div class="alert alert-warning" role="alert">
+            <?= $error ?>
+        </div>
+
+        <?php
+    }
+}
 if ($login->isSubmited()) {
     if (empty($login->getErrors())) {
         ?>

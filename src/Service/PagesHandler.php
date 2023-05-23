@@ -8,7 +8,6 @@ class PagesHandler
 {
     protected array $pages;
 
-
     public function __construct(array $pages)
     {
         $this->pages = $pages;
@@ -34,6 +33,8 @@ class PagesHandler
             $pageName = "concepteur";
         } elseif (isset($_SESSION['user']) && ($_SESSION['user']->getRole() == "monteur")) {
             $pageName = "monteur";
+        } elseif (isset($_SESSION['user']) && ($_SESSION['user']->getRole() == "admin")) {
+            $pageName = "backOffice";
         } else {
             // cas default 
             $pageName = "login";
@@ -47,4 +48,8 @@ class PagesHandler
             }
         }
     }
+
+	public function getPages(): array {
+		return $this->pages;
+	}
 }

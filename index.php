@@ -12,4 +12,5 @@ $controller = $page->getController();
 
 $current = new $controller($db, $page);
 
+$current->secureAcces();
 $current->render();
