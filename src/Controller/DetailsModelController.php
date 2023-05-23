@@ -80,8 +80,8 @@ class DetailsModelController extends AbstractController
 
     public function getComment(int $idModel)
     {
-        $sqlComment = 'SELECT * FROM comment
-        WHERE idModel =:idModel';
+        $sqlComment = 'SELECT * FROM  comment
+        WHERE idModel =:idModel ORDER BY commentDate DESC';
         $statement = $this->db->prepare($sqlComment);
         $statement->bindValue(":idModel", $idModel, PDO::PARAM_INT);
         $statement->setFetchMode(PDO::FETCH_CLASS, Comment::class);
