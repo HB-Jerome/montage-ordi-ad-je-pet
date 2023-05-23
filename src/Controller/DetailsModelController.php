@@ -2,21 +2,44 @@
 
 namespace Controller;
 
+use Model\Comment;
 use PDO;
-use Model\HardDisc;
+use Model\User;
 use Model\ModelPc;
-use Controller\ListModelController;
 use Service\ComponentFactory;
 
 class DetailsModelController extends AbstractController
 {
+    protected bool $postIsSubmitted = false;
+    protected bool $postIsValid = true;
+
     public function getContent(): array
     {
 
         if (isset($_GET['idModel']) && !empty($_GET['idModel'])) {
             $idModel = $_GET['idModel'];
+            $dataComments = $this->getDataComment($idModel);
+
+            if (isset($_POST['message'])) {
+                $this->postIsSubmitted = true;
+                if (empty($_POST['message'])) {
+                    $this->postIsValid = false;
+                    $this->errors[] = "message cannot be empty";
+                }
+            }
+
+            if ($this->postIsSubmitted && $this->postIsValid && isset($_SESSION['user'])) {
+                $idUser = $_SESSION['user']->getIdUser();
+                $message = $_POST['message'];
+                $success = $this->CreateComment($message, $idUser, $idModel);
+                if ($success) {
+                    header("location: ?page=detailsModel&idModel=" . $idModel);
+                }
+
+            }
         }
 
+        // on recupere les donner du model
         $sqlModel = "SELECT * FROM modelpc WHERE idModel=:idModel";
         $statementModel = $this->db->prepare($sqlModel);
         $statementModel->bindValue(":idModel", $idModel, PDO::PARAM_INT);
@@ -44,7 +67,7 @@ class DetailsModelController extends AbstractController
             $components[] = (new ComponentFactory)->create($result);
         }
 
-        return ["modelResults" => $modelResults, "components" => $components,];
+        return ["modelResults" => $modelResults, "components" => $components, "dataComments" => $dataComments];
     }
     public function getFileName(): string
     {
@@ -53,5 +76,48 @@ class DetailsModelController extends AbstractController
     public function getPageTitle(): string
     {
         return "Détails d'un Model";
+    }
+
+    public function getComment(int $idModel)
+    {
+        $sqlComment = 'SELECT * FROM comment
+        WHERE idModel =:idModel';
+        $statement = $this->db->prepare($sqlComment);
+        $statement->bindValue(":idModel", $idModel, PDO::PARAM_INT);
+        $statement->setFetchMode(PDO::FETCH_CLASS, Comment::class);
+        $statement->execute();
+        $comments = $statement->fetchAll();
+        return $comments;
+    }
+    public function getDataComment(int $idModel)
+    {
+        $comments = $this->getComment($idModel);
+        $dataComments = [];
+        foreach ($comments as $comment) {
+            $sqlUser = 'SELECT Users.* FROM Users
+            INNER JOIN comment on Users.idUser =comment.idUser
+            WHERE comment.idComment =:idComment';
+            $statement = $this->db->prepare($sqlUser);
+            $statement->bindValue(":idComment", $comment->getIdComment(), PDO::PARAM_INT);
+            $statement->setFetchMode(PDO::FETCH_CLASS, User::class);
+            $statement->execute();
+
+            while ($user = $statement->fetch()) {
+                $dataComments[] = ['comment' => $comment, 'user' => $user];
+            }
+        }
+        return $dataComments;
+    }
+    public function CreateComment(string $message, int $idUser, int $idModel)
+    {
+        $sqlComment = "INSERT INTO comment (message,idModel,idUser) VALUES (:message,:idModel,:idUser)";
+
+        $statement = $this->db->prepare($sqlComment);
+        $statement->bindValue(":message", $message, PDO::PARAM_STR);
+        $statement->bindValue(":idUser", $idUser, PDO::PARAM_INT);
+        $statement->bindValue(":idModel", $idModel, PDO::PARAM_INT);
+        $success = $statement->execute();
+        return $success;
+
     }
 }

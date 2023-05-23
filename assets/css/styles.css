@@ -18,17 +18,17 @@
 }
 /* listmodification */
 #pieceModifs {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 #pieceModifs img {
-    height: 200px;
-    width: 200px;
-    background-color: rgba(0, 0, 0, 0.486);
+  height: 200px;
+  width: 200px;
+  background-color: rgba(0, 0, 0, 0.486);
 }
 #pieceModifs input {
-    width: 100%;
+  width: 100%;
 }
 /************* RESPONSIVE *************/
 @media only screen and (max-width: 600px) {
@@ -50,4 +50,11 @@
 .chosen:hover,
 .chosen::selection {
   color: green !important;
+}
+
+#ModelDetail {
+  max-height: 100vh;
+}
+#ModelDetail .commentContainer {
+  overflow-x: scroll;
 }

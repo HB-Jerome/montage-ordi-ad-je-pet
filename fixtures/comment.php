@@ -11,7 +11,7 @@ $idModels = $statement->fetchAll();
 
 
 // on obtient des idUser
-$sqlIdUser = "SELECT idUser FROM users LIMIT 4";
+$sqlIdUser = "SELECT idUser FROM users LIMIT 5";
 $statement = $db->prepare($sqlIdUser);
 $statement->execute();
 $idUsers = $statement->fetchAll();
@@ -22,6 +22,7 @@ $message1 = "message 1 :coucou ceci est un message";
 $message2 = "message 2: Genial ton message très original";
 $message3 = "message 3: J'ai pas d'inspiration";
 $message4 = "message 4: Est-ce que tout les message vont se ressembler ?";
+$message5 = "message 5: je vais pas faire des message unique pour chaque model !";
 
 
 foreach ($idModels as $idModel) {
@@ -55,6 +56,13 @@ foreach ($idModels as $idModel) {
             ->setIdModel($idModel['idModel'])
             ->setIdUser($idUsers[3]['idUser'])
             ->setMessage($message4)
+            ->setMessageSeen(false),
+        (new Comment())
+
+            // propriètés message
+            ->setIdModel($idModel['idModel'])
+            ->setIdUser($idUsers[4]['idUser'])
+            ->setMessage($message5)
             ->setMessageSeen(false),
     ];
 
