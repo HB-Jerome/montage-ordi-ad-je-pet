@@ -8,7 +8,7 @@ class Comment
     protected ?int $idComment = null;
     protected $commentDate = null;
     protected ?bool $messageSeen = false;
-    protected ?string $message =null;
+    protected ?string $message;
     protected ?int $idModel = null;
     protected ?int $idUser = null;
 
