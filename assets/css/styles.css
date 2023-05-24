@@ -30,6 +30,9 @@
 #pieceModifs input {
   width: 100%;
 }
+#messageAside, #concepteur {
+  height: 80vh;
+}
 /************* RESPONSIVE *************/
 @media only screen and (max-width: 600px) {
   #listPiece-form {
@@ -55,6 +58,6 @@
 #ModelDetail {
   max-height: 100vh;
 }
-#ModelDetail .commentContainer {
+#messageAside, #ModelDetail .commentContainer {
   overflow-x: scroll;
 }

@@ -8,9 +8,10 @@ class Comment
     protected ?int $idComment = null;
     protected $commentDate = null;
     protected ?bool $messageSeen = false;
-    protected ?string $message =null;
+    protected ?string $message;
     protected ?int $idModel = null;
     protected ?int $idUser = null;
+    protected ?string $username = null;
 
 
     public function getIdComment(): ?int
@@ -73,19 +74,39 @@ class Comment
         return $this;
     }
 
-	/**
-	 * @return 
-	 */
-	public function getMessage(): ?string {
-		return $this->message;
-	}
-	
-	/**
-	 * @param  $message 
-	 * @return self
-	 */
-	public function setMessage(?string $message): self {
-		$this->message = $message;
-		return $this;
-	}
+    /**
+     * @return 
+     */
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+
+    /**
+     * @param  $message 
+     * @return self
+     */
+    public function setMessage(?string $message): self
+    {
+        $this->message = $message;
+        return $this;
+    }
+
+    /**
+     * @return 
+     */
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param  $username 
+     * @return self
+     */
+    public function setUsername(?string $username): self
+    {
+        $this->username = $username;
+        return $this;
+    }
 }
