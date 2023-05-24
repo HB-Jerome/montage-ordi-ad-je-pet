@@ -9,6 +9,12 @@ class User
     protected string $password;
     protected string $role;
 
+    const CONCEPTEUR = "concepteur";
+    const MONTEUR = "monteur";
+    const ADMIN = "admin";
+
+    const AVAILABLE_ROLES = [self::CONCEPTEUR, self::MONTEUR];
+
     public function __construct()
     {
     }
