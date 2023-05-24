@@ -125,7 +125,7 @@ class DetailsModelController extends AbstractController
         }
         return $dataComments;
     }
-    public function CreateComment(string $message, int $idUser, int $idModel)
+    public function CreateComment(int $idUser,string $message, int $idModel)
     {
         $sqlComment = "INSERT INTO comment (message,idModel,idUser) VALUES (:message,:idModel,:idUser)";
 

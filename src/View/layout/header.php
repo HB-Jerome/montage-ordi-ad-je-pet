@@ -45,13 +45,7 @@
                     if (isset($_SESSION['user']) && $_SESSION['user']->getRole() == "monteur") {
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">commntairee</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="?page=listModel">liste des modèles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">historiques</a>
                         </li>
                     <?php } ?>
                     <!-- - - - - - - NAV UTILISATEUR NON CONNECTE - - - - - - -->

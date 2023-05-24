@@ -30,14 +30,8 @@
 #pieceModifs input {
   width: 100%;
 }
-#messageAside, #concepteurComp {
+#messageAside, #concepteur {
   height: 80vh;
-}
-#concepteur {
-  height: 35vh;
-}
-#concepteurMessage {
-  height: 30vh;
 }
 /************* RESPONSIVE *************/
 @media only screen and (max-width: 600px) {
@@ -64,6 +58,6 @@
 #ModelDetail {
   max-height: 100vh;
 }
-#concepteur, #ModelDetail .commentContainer {
+#messageAside, #ModelDetail .commentContainer {
   overflow-x: scroll;
 }
